@@ -1,0 +1,2889 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kritox Digital | Responsive Website Design &amp; Development</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-dark': '#1F3D5A',
+                        'brand-base': '#2F6F73',
+                        'brand-light': '#7FB8B4',
+                        'brand-accent': '#E5B93C',
+                        'neutral-black': '#1A1A1A',
+                        'neutral-dark': '#4A4A4A',
+                        'neutral-light': '#EDEDED',
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ─── Kritox Digital Design System ─────────────────────── */
+        :root {
+            --primary-dark: #1F3D5A;
+            --primary-base: #2F6F73;
+            --teal-light: #7FB8B4;
+            --accent-yellow: #E5B93C;
+            --neutral-black: #1A1A1A;
+            --neutral-dark: #4A4A4A;
+            --neutral-light: #EDEDED;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+            color: var(--neutral-dark);
+        }
+
+        /* ─── Utility helpers ───────────────────────────────────── */
+        .brand-primary {
+            color: var(--primary-dark);
+        }
+
+        .brand-teal {
+            color: var(--primary-base);
+        }
+
+        .brand-accent {
+            color: var(--accent-yellow);
+        }
+
+        .bg-brand-primary {
+            background-color: var(--primary-dark);
+        }
+
+        .bg-brand-teal {
+            background-color: var(--primary-base);
+        }
+
+        .bg-brand-light {
+            background-color: var(--neutral-light);
+        }
+
+        .bg-brand-icn {
+            background-color: rgba(47, 111, 115, 0.08);
+        }
+
+        /* Legacy aliases so existing Tailwind JIT refs still work */
+        .teal-primary {
+            color: var(--primary-base);
+        }
+
+        .bg-teal-primary {
+            background-color: var(--primary-base);
+        }
+
+        .bg-teal-light {
+            background-color: rgba(47, 111, 115, 0.08);
+        }
+
+        .selection-style::selection {
+            background-color: rgba(47, 111, 115, 0.12);
+            color: var(--primary-base);
+        }
+
+        /* ─── Mega Menu ─────────────────────────────────────────── */
+        .mega-menu-panel {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(8px);
+            transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
+        }
+
+        .nav-item:hover .mega-menu-panel {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .nav-item-full {
+            position: static;
+        }
+
+        .mega-menu-full {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            width: 100%;
+            border-radius: 0;
+        }
+
+        /* ─── Mobile menu ───────────────────────────────────────── */
+        .mobile-menu {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* ─── Scrolled nav ──────────────────────────────────────── */
+        .nav-scrolled {
+            background-color: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--neutral-light);
+        }
+
+        /* ─── Nav link hover: subtle bg pill, no underline ───────── */
+        .nav-link-item {
+            border-radius: 8px;
+            transition: background-color 0.18s ease, color 0.18s ease;
+        }
+
+        .nav-link-item:hover {
+            background-color: rgba(31, 61, 90, 0.06);
+            color: var(--primary-dark);
+        }
+
+        /* ─── Carousel Helpers ───────────────────────────────────── */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            scroll-behavior: auto;
+        }
+
+        /* Precise Alignment for Bleed Carousels */
+        .bleed-carousel-container {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .bleed-carousel-container {
+                padding-left: 2.5rem;
+                padding-right: 2.5rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .bleed-carousel-container {
+                padding-left: 2.5rem;
+                padding-right: 0;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .bleed-carousel-container {
+                /* Aligns card left edge with max-w-7xl heading above */
+                padding-left: max(2.5rem, calc((100vw - 80rem) / 2 + 2.5rem));
+                padding-right: 0;
+            }
+        }
+
+        .carousel-arrow i {
+            stroke-linecap: square !important;
+            stroke-linejoin: miter !important;
+        }
+
+        .carousel-container.active {
+            cursor: grabbing;
+            cursor: -webkit-grabbing;
+        }
+
+        /* Smooth horizontal drag; snap fights continuous drag */
+        .carousel-container {
+            touch-action: pan-x;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .carousel-container.is-dragging {
+            scroll-snap-type: none;
+            scroll-behavior: auto;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-brand-dark selection-style">
+
+    <!-- Navbar -->
+    <nav id="navbar"
+        class="fixed top-0 w-full z-50 transition-all duration-300 bg-white border-b border-[#EDEDED] py-3">
+        <div class="max-w-7xl mx-auto px-6 md:px-10 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center shrink-0">
+                <img src="assets/logo.png" alt="Kritox Digital Logo" class="h-12 w-auto">
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <div class="hidden lg:flex items-center gap-1">
+
+                <!-- Company -->
+                <div class="nav-item nav-item-full">
+                    <button
+                        class="nav-link-item flex items-center gap-1 py-2 px-3 text-[13px] text-neutral-dark font-semibold hover:text-brand-base transition-colors">
+                        Company <i data-lucide="chevron-down" class="w-3 h-3"></i>
+                    </button>
+                    <div class="mega-menu-panel mega-menu-full bg-[#FAFAFA] border-b border-neutral-light py-8">
+                        <div class="max-w-7xl mx-auto px-10 grid grid-cols-4 gap-0">
+                            <div class="bg-brand-dark rounded-2xl p-7 mr-6 flex flex-col justify-between min-h-[200px]">
+                                <div>
+                                    <p class="text-white font-black text-lg leading-snug mb-3">Get Free Consultation</p>
+                                    <p class="text-teal-50 text-sm leading-relaxed">Let's discuss your idea for project
+                                        plan, budget and timeline</p>
+                                </div>
+                                <a href="#contact"
+                                    class="mt-6 inline-block bg-white text-brand-base font-bold text-sm px-6 py-3 rounded-xl hover:bg-brand-base/10 transition-colors text-center">Get
+                                    Quote</a>
+                            </div>
+                            <div class="flex flex-col gap-6 pr-8 border-r border-[#EDEDED]">
+                                <a href="#" class="group flex gap-4 items-start">
+                                    <div
+                                        class="bg-white p-2 rounded-lg text-brand-base shrink-0 mt-0.5 border border-neutral-light">
+                                        <i data-lucide="info" class="w-4 h-4"></i>
+                                    </div>
+                                    <div>
+                                        <p
+                                            class="font-bold text-brand-dark text-sm group-hover:text-brand-base transition-colors">
+                                            About Us</p>
+                                        <p class="text-xs text-neutral-dark mt-1 leading-relaxed">Find out who we are,
+                                            what we do, and how we deliver software services.</p>
+                                    </div>
+                                </a>
+                                <a href="#" class="group flex gap-4 items-start">
+                                    <div
+                                        class="bg-white p-2 rounded-lg text-brand-base shrink-0 mt-0.5 border border-neutral-light">
+                                        <i data-lucide="newspaper" class="w-4 h-4"></i>
+                                    </div>
+                                    <div>
+                                        <p
+                                            class="font-bold text-brand-dark text-sm group-hover:text-brand-base transition-colors">
+                                            Blog</p>
+                                        <p class="text-xs text-neutral-dark mt-1 leading-relaxed">Insights into current
+                                            tech trends and news, crafted by our techies!</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="flex flex-col gap-6 px-8 border-r border-[#EDEDED]">
+                                <a href="#" class="group flex gap-4 items-start">
+                                    <div
+                                        class="bg-white p-2 rounded-lg text-brand-base shrink-0 mt-0.5 border border-neutral-light">
+                                        <i data-lucide="layers" class="w-4 h-4"></i>
+                                    </div>
+                                    <div>
+                                        <p
+                                            class="font-bold text-brand-dark text-sm group-hover:text-brand-base transition-colors">
+                                            Engagement Model</p>
+                                        <p class="text-xs text-neutral-dark mt-1 leading-relaxed">Our hiring model
+                                            ensures modern businesses meet advanced solutions.</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="flex flex-col gap-6 pl-8">
+                                <a href="#" class="group flex gap-4 items-start">
+                                    <div
+                                        class="bg-white p-2 rounded-lg text-brand-base shrink-0 mt-0.5 border border-neutral-light">
+                                        <i data-lucide="heart" class="w-4 h-4"></i>
+                                    </div>
+                                    <div>
+                                        <p
+                                            class="font-bold text-brand-dark text-sm group-hover:text-brand-base transition-colors">
+                                            Life @ Kritox</p>
+                                        <p class="text-xs text-neutral-dark mt-1 leading-relaxed">Kritox values people —
+                                            each member is part of our family.</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Services -->
+                <div class="nav-item nav-item-full">
+                    <button
+                        class="nav-link-item flex items-center gap-1 py-2 px-3 text-[13px] text-neutral-dark font-semibold hover:text-brand-base transition-colors">
+                        Services <i data-lucide="chevron-down" class="w-3 h-3"></i>
+                    </button>
+                    <div class="mega-menu-panel mega-menu-full bg-[#FAFAFA] border-b border-neutral-light py-8">
+                        <div class="max-w-7xl mx-auto px-10 grid grid-cols-4 gap-0">
+                            <div class="bg-brand-dark rounded-2xl p-7 mr-6 flex flex-col justify-between min-h-[200px]">
+                                <div>
+                                    <p class="text-white font-black text-lg leading-snug mb-3">What We Build</p>
+                                    <p class="text-teal-50 text-sm leading-relaxed">End-to-end digital solutions from
+                                        strategy to launch.</p>
+                                </div>
+                                <a href="#contact"
+                                    class="mt-6 inline-block bg-white text-[#2F6F73] font-bold text-sm px-6 py-3 rounded-xl hover:bg-[#2F6F73]/10 transition-colors text-center">Start
+                                    Project</a>
+                            </div>
+                            <div class="flex flex-col gap-5 pr-8 border-r border-[#EDEDED]">
+                                <a href="#" class="group flex gap-3 items-start">
+                                    <div
+                                        class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
+                                        <i data-lucide="monitor" class="w-4 h-4"></i>
+                                    </div>
+                                    <div>
+                                        <p
+                                            class="font-bold text-[#1F3D5A] text-sm group-hover:text-[#2F6F73] transition-colors">
+                                            Web Development</p>
+                                        <p class="text-xs text-[#4A4A4A] mt-0.5">Scalable, high-performance web apps</p>
+                                    </div>
+                                </a>
+                                <a href="#" class="group flex gap-3 items-start">
+                                    <div
+                                        class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
+                                        <i data-lucide="layout" class="w-4 h-4"></i>
+                                    </div>
+                                    <div>
+                                        <p
+                                            class="font-bold text-[#1F3D5A] text-sm group-hover:text-[#2F6F73] transition-colors">
+                                            UI/UX Design</p>
+                                        <p class="text-xs text-[#4A4A4A] mt-0.5">User-centered, conversion-focused</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="flex flex-col gap-5 px-8 border-r border-[#EDEDED]">
+                                <a href="#" class="group flex gap-3 items-start">
+                                    <div
+                                        class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
+                                        <i data-lucide="smartphone" class="w-4 h-4"></i>
+                                    </div>
+                                    <div>
+                                        <p
+                                            class="font-bold text-[#1F3D5A] text-sm group-hover:text-[#2F6F73] transition-colors">
+                                            Mobile Apps</p>
+                                        <p class="text-xs text-[#4A4A4A] mt-0.5">iOS & Android native experiences</p>
+                                    </div>
+                                </a>
+                                <a href="#" class="group flex gap-3 items-start">
+                                    <div
+                                        class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
+                                        <i data-lucide="bar-chart-3" class="w-4 h-4"></i>
+                                    </div>
+                                    <div>
+                                        <p
+                                            class="font-bold text-[#1F3D5A] text-sm group-hover:text-[#2F6F73] transition-colors">
+                                            Digital Marketing</p>
+                                        <p class="text-xs text-[#4A4A4A] mt-0.5">Growth, SEO & brand positioning</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="flex flex-col gap-5 pl-8">
+                                <a href="#" class="group flex gap-3 items-start">
+                                    <div
+                                        class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
+                                        <i data-lucide="zap" class="w-4 h-4"></i>
+                                    </div>
+                                    <div>
+                                        <p
+                                            class="font-bold text-[#1F3D5A] text-sm group-hover:text-[#2F6F73] transition-colors">
+                                            Brand Strategy</p>
+                                        <p class="text-xs text-[#4A4A4A] mt-0.5">Identity, positioning & messaging</p>
+                                    </div>
+                                </a>
+                                <a href="#" class="group flex gap-3 items-start">
+                                    <div
+                                        class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
+                                        <i data-lucide="cloud" class="w-4 h-4"></i>
+                                    </div>
+                                    <div>
+                                        <p
+                                            class="font-bold text-[#1F3D5A] text-sm group-hover:text-[#2F6F73] transition-colors">
+                                            Cloud Solutions</p>
+                                        <p class="text-xs text-[#4A4A4A] mt-0.5">Infrastructure & DevOps</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technologies -->
+                <div class="nav-item nav-item-full">
+                    <button
+                        class="nav-link-item flex items-center gap-1 py-2 px-3 text-[13px] text-neutral-dark font-semibold hover:text-brand-base transition-colors">
+                        Technologies <i data-lucide="chevron-down" class="w-3 h-3"></i>
+                    </button>
+                    <div class="mega-menu-panel mega-menu-full bg-[#FAFAFA] border-b border-neutral-light py-8">
+                        <div class="max-w-7xl mx-auto px-10 grid grid-cols-4 gap-0">
+                            <div class="bg-brand-dark rounded-2xl p-7 mr-6 flex flex-col justify-between min-h-[200px]">
+                                <div>
+                                    <p class="text-white font-black text-lg leading-snug mb-3">Our Tech Stack</p>
+                                    <p class="text-teal-50 text-sm leading-relaxed">Modern, battle-tested platforms for
+                                        every scale.</p>
+                                </div>
+                                <a href="#contact"
+                                    class="mt-6 inline-block bg-white text-[#2F6F73] font-bold text-sm px-6 py-3 rounded-xl hover:bg-[#2F6F73]/10 transition-colors text-center">Discuss
+                                    Stack</a>
+                            </div>
+                            <div class="flex flex-col gap-5 pr-8 border-r border-[#EDEDED]">
+                                <a href="#" class="group flex gap-3 items-start">
+                                    <div
+                                        class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
+                                        <i data-lucide="code-2" class="w-4 h-4"></i>
+                                    </div>
+                                    <div>
+                                        <p
+                                            class="font-bold text-[#1F3D5A] text-sm group-hover:text-[#2F6F73] transition-colors">
+                                            React & Next.js</p>
+                                        <p class="text-xs text-[#4A4A4A] mt-0.5">Frontend excellence</p>
+                                    </div>
+                                </a>
+                                <a href="#" class="group flex gap-3 items-start">
+                                    <div
+                                        class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
+                                        <i data-lucide="server" class="w-4 h-4"></i>
+                                    </div>
+                                    <div>
+                                        <p
+                                            class="font-bold text-[#1F3D5A] text-sm group-hover:text-[#2F6F73] transition-colors">
+                                            Node & Go</p>
+                                        <p class="text-xs text-[#4A4A4A] mt-0.5">Backend architecture</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="flex flex-col gap-5 px-8 border-r border-[#EDEDED]">
+                                <a href="#" class="group flex gap-3 items-start">
+                                    <div
+                                        class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
+                                        <i data-lucide="database" class="w-4 h-4"></i>
+                                    </div>
+                                    <div>
+                                        <p
+                                            class="font-bold text-[#1F3D5A] text-sm group-hover:text-[#2F6F73] transition-colors">
+                                            Databases</p>
+                                        <p class="text-xs text-[#4A4A4A] mt-0.5">PostgreSQL, MongoDB</p>
+                                    </div>
+                                </a>
+                                <a href="#" class="group flex gap-3 items-start">
+                                    <div
+                                        class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
+                                        <i data-lucide="cloud" class="w-4 h-4"></i>
+                                    </div>
+                                    <div>
+                                        <p
+                                            class="font-bold text-[#1F3D5A] text-sm group-hover:text-[#2F6F73] transition-colors">
+                                            AWS & GCP</p>
+                                        <p class="text-xs text-[#4A4A4A] mt-0.5">Cloud infrastructure</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="flex flex-col gap-5 pl-8">
+                                <a href="#" class="group flex gap-3 items-start">
+                                    <div
+                                        class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
+                                        <i data-lucide="smartphone" class="w-4 h-4"></i>
+                                    </div>
+                                    <div>
+                                        <p
+                                            class="font-bold text-[#1F3D5A] text-sm group-hover:text-[#2F6F73] transition-colors">
+                                            React Native</p>
+                                        <p class="text-xs text-[#4A4A4A] mt-0.5">Cross-platform mobile</p>
+                                    </div>
+                                </a>
+                                <a href="#" class="group flex gap-3 items-start">
+                                    <div
+                                        class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
+                                        <i data-lucide="cpu" class="w-4 h-4"></i>
+                                    </div>
+                                    <div>
+                                        <p
+                                            class="font-bold text-[#1F3D5A] text-sm group-hover:text-[#2F6F73] transition-colors">
+                                            AI & ML</p>
+                                        <p class="text-xs text-[#4A4A4A] mt-0.5">Intelligent systems</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hire Developer -->
+                <div class="nav-item nav-item-full">
+                    <button
+                        class="nav-link-item flex items-center gap-1 py-2 px-3 text-[13px] text-neutral-dark font-semibold hover:text-brand-base transition-colors">
+                        Hire Developer <i data-lucide="chevron-down" class="w-3 h-3"></i>
+                    </button>
+                    <div class="mega-menu-panel mega-menu-full bg-[#FAFAFA] border-b border-neutral-light py-8">
+                        <div class="max-w-7xl mx-auto px-10 grid grid-cols-4 gap-0">
+                            <div class="bg-brand-dark rounded-2xl p-7 mr-6 flex flex-col justify-between min-h-[200px]">
+                                <div>
+                                    <p class="text-white font-black text-lg leading-snug mb-3">Elite Talent, Fast</p>
+                                    <p class="text-teal-50 text-sm leading-relaxed">Hire pre-vetted developers in days,
+                                        not months.</p>
+                                </div>
+                                <a href="#contact"
+                                    class="mt-6 inline-block bg-white text-[#2F6F73] font-bold text-sm px-6 py-3 rounded-xl hover:bg-[#2F6F73]/10 transition-colors text-center">Book
+                                    a Call</a>
+                            </div>
+                            <div class="flex flex-col gap-5 pr-8 border-r border-[#EDEDED]">
+                                <a href="#" class="group flex gap-3 items-start">
+                                    <div
+                                        class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
+                                        <i data-lucide="user-check" class="w-4 h-4"></i>
+                                    </div>
+                                    <div>
+                                        <p
+                                            class="font-bold text-[#1F3D5A] text-sm group-hover:text-[#2F6F73] transition-colors">
+                                            Dedicated Developer</p>
+                                        <p class="text-xs text-[#4A4A4A] mt-0.5">Full-time embedded talent</p>
+                                    </div>
+                                </a>
+                                <a href="#" class="group flex gap-3 items-start">
+                                    <div
+                                        class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
+                                        <i data-lucide="users" class="w-4 h-4"></i>
+                                    </div>
+                                    <div>
+                                        <p
+                                            class="font-bold text-[#1F3D5A] text-sm group-hover:text-[#2F6F73] transition-colors">
+                                            Team Extension</p>
+                                        <p class="text-xs text-[#4A4A4A] mt-0.5">Scale your engineering team</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="flex flex-col gap-5 px-8 border-r border-[#EDEDED]">
+                                <a href="#" class="group flex gap-3 items-start">
+                                    <div
+                                        class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
+                                        <i data-lucide="clock" class="w-4 h-4"></i>
+                                    </div>
+                                    <div>
+                                        <p
+                                            class="font-bold text-[#1F3D5A] text-sm group-hover:text-[#2F6F73] transition-colors">
+                                            Part-time Experts</p>
+                                        <p class="text-xs text-[#4A4A4A] mt-0.5">Flexible engagement model</p>
+                                    </div>
+                                </a>
+                                <a href="#" class="group flex gap-3 items-start">
+                                    <div
+                                        class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
+                                        <i data-lucide="briefcase" class="w-4 h-4"></i>
+                                    </div>
+                                    <div>
+                                        <p
+                                            class="font-bold text-[#1F3D5A] text-sm group-hover:text-[#2F6F73] transition-colors">
+                                            Project-based</p>
+                                        <p class="text-xs text-[#4A4A4A] mt-0.5">End-to-end delivery</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="flex flex-col gap-4 pl-8">
+                                <p class="text-[11px] font-black uppercase tracking-widest text-[#4A4A4A]/60">Popular
+                                    Roles</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="px-3 py-1 bg-white border border-[#EDEDED] text-slate-700 text-xs font-semibold rounded-full">React
+                                        Dev</span>
+                                    <span
+                                        class="px-3 py-1 bg-white border border-[#EDEDED] text-slate-700 text-xs font-semibold rounded-full">Node.js</span>
+                                    <span
+                                        class="px-3 py-1 bg-white border border-[#EDEDED] text-slate-700 text-xs font-semibold rounded-full">UI
+                                        Designer</span>
+                                    <span
+                                        class="px-3 py-1 bg-white border border-[#EDEDED] text-slate-700 text-xs font-semibold rounded-full">Flutter</span>
+                                    <span
+                                        class="px-3 py-1 bg-white border border-[#EDEDED] text-slate-700 text-xs font-semibold rounded-full">DevOps</span>
+                                    <span
+                                        class="px-3 py-1 bg-white border border-[#EDEDED] text-slate-700 text-xs font-semibold rounded-full">Python</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Our Work -->
+                <div class="nav-item nav-item-full">
+                    <button
+                        class="nav-link-item flex items-center gap-1 py-2 px-3 text-[13px] text-neutral-dark font-semibold hover:text-brand-base transition-colors">
+                        Our Work <i data-lucide="chevron-down" class="w-3 h-3"></i>
+                    </button>
+                    <div class="mega-menu-panel mega-menu-full bg-[#FAFAFA] border-b border-neutral-light py-8">
+                        <div class="max-w-7xl mx-auto px-10 grid grid-cols-4 gap-0">
+                            <div class="bg-brand-dark rounded-2xl p-7 mr-6 flex flex-col justify-between min-h-[200px]">
+                                <div>
+                                    <p class="text-white font-black text-lg leading-snug mb-3">See Our Work</p>
+                                    <p class="text-teal-50 text-sm leading-relaxed">Real projects, real results —
+                                        worldwide.</p>
+                                </div>
+                                <a href="#portfolio"
+                                    class="mt-6 inline-block bg-white text-[#2F6F73] font-bold text-sm px-6 py-3 rounded-xl hover:bg-[#2F6F73]/10 transition-colors text-center">View
+                                    Portfolio</a>
+                            </div>
+                            <div class="flex flex-col gap-5 pr-8 border-r border-[#EDEDED]">
+                                <a href="#portfolio" class="group flex gap-3 items-start">
+                                    <div
+                                        class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
+                                        <i data-lucide="layout-grid" class="w-4 h-4"></i>
+                                    </div>
+                                    <div>
+                                        <p
+                                            class="font-bold text-[#1F3D5A] text-sm group-hover:text-[#2F6F73] transition-colors">
+                                            Case Studies</p>
+                                        <p class="text-xs text-[#4A4A4A] mt-0.5">Deep-dive project reviews</p>
+                                    </div>
+                                </a>
+                                <a href="#" class="group flex gap-3 items-start">
+                                    <div
+                                        class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
+                                        <i data-lucide="image" class="w-4 h-4"></i>
+                                    </div>
+                                    <div>
+                                        <p
+                                            class="font-bold text-[#1F3D5A] text-sm group-hover:text-[#2F6F73] transition-colors">
+                                            Portfolio</p>
+                                        <p class="text-xs text-[#4A4A4A] mt-0.5">Browse all projects</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="flex flex-col gap-5 px-8 border-r border-[#EDEDED]">
+                                <a href="#" class="group flex gap-3 items-start">
+                                    <div
+                                        class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
+                                        <i data-lucide="star" class="w-4 h-4"></i>
+                                    </div>
+                                    <div>
+                                        <p
+                                            class="font-bold text-[#1F3D5A] text-sm group-hover:text-[#2F6F73] transition-colors">
+                                            Testimonials</p>
+                                        <p class="text-xs text-[#4A4A4A] mt-0.5">What clients say</p>
+                                    </div>
+                                </a>
+                                <a href="#" class="group flex gap-3 items-start">
+                                    <div
+                                        class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
+                                        <i data-lucide="award" class="w-4 h-4"></i>
+                                    </div>
+                                    <div>
+                                        <p
+                                            class="font-bold text-[#1F3D5A] text-sm group-hover:text-[#2F6F73] transition-colors">
+                                            Achievements</p>
+                                        <p class="text-xs text-[#4A4A4A] mt-0.5">Awards & recognition</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="flex flex-col gap-4 pl-8">
+                                <p class="text-[11px] font-black uppercase tracking-widest text-[#4A4A4A]/60">Industries
+                                    Served</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="px-3 py-1 bg-white border border-[#EDEDED] text-slate-700 text-xs font-semibold rounded-full">Fintech</span>
+                                    <span
+                                        class="px-3 py-1 bg-white border border-[#EDEDED] text-slate-700 text-xs font-semibold rounded-full">Healthcare</span>
+                                    <span
+                                        class="px-3 py-1 bg-white border border-[#EDEDED] text-slate-700 text-xs font-semibold rounded-full">E-commerce</span>
+                                    <span
+                                        class="px-3 py-1 bg-white border border-[#EDEDED] text-slate-700 text-xs font-semibold rounded-full">SaaS</span>
+                                    <span
+                                        class="px-3 py-1 bg-white border border-[#EDEDED] text-slate-700 text-xs font-semibold rounded-full">EdTech</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Career (no mega menu) -->
+                <a href="#"
+                    class="nav-link-item py-2 px-3 text-[13px] text-neutral-dark font-semibold hover:text-brand-base transition-colors">Career</a>
+
+            </div>
+
+            <!-- CTA -->
+            <div class="hidden lg:flex items-center">
+                <a href="#"
+                    class="px-5 py-2.5 bg-brand-dark text-white text-[13px] font-bold rounded-xl hover:brightness-110 transition-colors">
+                    Get a Quote
+                </a>
+            </div>
+
+            <button class="lg:hidden p-2" id="mobile-menu-open" aria-label="Open mobile menu">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </nav>
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="mobile-menu fixed inset-0 bg-white z-[100] translate-x-full">
+        <div class="p-6 flex justify-between items-center border-b border-[#EDEDED]">
+            <img src="assets/logo.png" alt="Kritox Digital Logo" class="h-9 w-auto">
+            <button id="mobile-menu-close" aria-label="Close mobile menu"><i data-lucide="x"
+                    class="w-7 h-7"></i></button>
+        </div>
+        <div class="p-8 space-y-5">
+            <details class="group border-b border-[#EDEDED] pb-4">
+                <summary
+                    class="flex items-center justify-between text-xl font-bold text-[#1F3D5A] cursor-pointer list-none">
+                    Company
+                    <i data-lucide="chevron-down"
+                        class="w-5 h-5 text-[#4A4A4A] transition-transform group-open:rotate-180"></i>
+                </summary>
+                <div class="mt-3 space-y-2 pl-1">
+                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">About Us</a>
+                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Blog</a>
+                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Engagement
+                        Model</a>
+                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Life @
+                        Kritox</a>
+                </div>
+            </details>
+            <details class="group border-b border-[#EDEDED] pb-4">
+                <summary
+                    class="flex items-center justify-between text-xl font-bold text-[#1F3D5A] cursor-pointer list-none">
+                    Services
+                    <i data-lucide="chevron-down"
+                        class="w-5 h-5 text-[#4A4A4A] transition-transform group-open:rotate-180"></i>
+                </summary>
+                <div class="mt-3 space-y-2 pl-1">
+                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Web
+                        Development</a>
+                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">UI/UX
+                        Design</a>
+                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Mobile
+                        Apps</a>
+                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Digital
+                        Marketing</a>
+                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Brand
+                        Strategy</a>
+                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Cloud
+                        Solutions</a>
+                </div>
+            </details>
+            <details class="group border-b border-[#EDEDED] pb-4">
+                <summary
+                    class="flex items-center justify-between text-xl font-bold text-[#1F3D5A] cursor-pointer list-none">
+                    Technologies
+                    <i data-lucide="chevron-down"
+                        class="w-5 h-5 text-[#4A4A4A] transition-transform group-open:rotate-180"></i>
+                </summary>
+                <div class="mt-3 space-y-2 pl-1">
+                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">React &
+                        Next.js</a>
+                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Node &
+                        Go</a>
+                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Databases</a>
+                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">AWS &
+                        GCP</a>
+                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">React
+                        Native</a>
+                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">AI &
+                        ML</a>
+                </div>
+            </details>
+            <details class="group border-b border-[#EDEDED] pb-4">
+                <summary
+                    class="flex items-center justify-between text-xl font-bold text-[#1F3D5A] cursor-pointer list-none">
+                    Hire Developer
+                    <i data-lucide="chevron-down"
+                        class="w-5 h-5 text-[#4A4A4A] transition-transform group-open:rotate-180"></i>
+                </summary>
+                <div class="mt-3 space-y-2 pl-1">
+                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Dedicated
+                        Developer</a>
+                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Team
+                        Extension</a>
+                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Part-time
+                        Experts</a>
+                    <a href="#"
+                        class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Project-based</a>
+                </div>
+            </details>
+            <details class="group border-b border-[#EDEDED] pb-4">
+                <summary
+                    class="flex items-center justify-between text-xl font-bold text-[#1F3D5A] cursor-pointer list-none">
+                    Our Work
+                    <i data-lucide="chevron-down"
+                        class="w-5 h-5 text-[#4A4A4A] transition-transform group-open:rotate-180"></i>
+                </summary>
+                <div class="mt-3 space-y-2 pl-1">
+                    <a href="#portfolio" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Case
+                        Studies</a>
+                    <a href="#portfolio"
+                        class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Portfolio</a>
+                    <a href="#"
+                        class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Testimonials</a>
+                    <a href="#"
+                        class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Achievements</a>
+                </div>
+            </details>
+            <a href="#" class="block text-xl font-bold text-[#1F3D5A]">Career</a>
+            <div class="pt-6">
+                <a href="#"
+                    class="block w-full py-4 bg-[#1F3D5A] text-white font-bold rounded-2xl text-center text-lg hover:brightness-110 transition-all">Get
+                    a Quote</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <header id="home" class="relative pt-36 pb-32 md:pt-52 md:pb-44 bg-brand-dark overflow-hidden text-center">
+        <!-- Enhanced Premium Background Glows -->
+        <div
+            class="absolute inset-0 bg-gradient-to-br from-[#1F3D5A] via-[#2F6F73]/20 to-[#1F3D5A] z-0 pointer-events-none">
+        </div>
+        <div
+            class="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-[#7FB8B4]/20 rounded-full blur-[100px] pointer-events-none">
+        </div>
+        <div
+            class="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[#E5B93C]/10 rounded-full blur-[120px] pointer-events-none">
+        </div>
+
+        <!-- Watermark Background Text -->
+        <div
+            class="absolute inset-x-0 bottom-0 flex items-end justify-center pointer-events-none select-none overflow-hidden z-0">
+            <span
+                class="text-[140px] sm:text-[220px] md:text-[320px] font-black text-white/[0.04] leading-none tracking-tight whitespace-nowrap blur-[1px] translate-y-8">
+                KRITOX
+            </span>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 max-w-4xl mx-auto px-6 md:px-10">
+
+            <!-- Tagline -->
+            <p class="text-xs sm:text-sm font-black uppercase tracking-[0.25em] text-[#E5B93C] mb-5 drop-shadow-sm">
+                Innovator, Creator &amp; Provider
+            </p>
+
+            <!-- Heading -->
+            <h1
+                class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight mb-6 drop-shadow-md">
+                Trusted Partner for Startups <br class="hidden lg:block"> &amp; Fortune 500 Companies
+            </h1>
+
+            <!-- Description -->
+            <p
+                class="text-sm sm:text-base md:text-lg text-white/90 leading-relaxed max-w-3xl mx-auto mb-10 drop-shadow-sm">
+                We empower startups and Fortune 500s with engineered solutions that redefine retail, manufacturing, and
+                distribution through seamless integration, trusted partnerships, and industry-aligned digital
+                innovation.
+            </p>
+
+            <!-- CTA Button -->
+            <a href="#contact"
+                class="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#2F6F73] font-bold text-base rounded-2xl hover:bg-[#F0F4F8] transition-colors">
+                Get Started Now
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+
+        </div>
+    </header>
+
+    <!-- Stats + Testimonial Overlay Card -->
+    <section class="relative z-10 -mt-16 md:-mt-20 pb-0">
+        <div class="max-w-5xl mx-auto px-6 md:px-10">
+            <div
+                class="bg-white border border-[#EDEDED] rounded-3xl px-8 py-8 md:px-12 md:py-10 grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-0 sm:divide-x divide-slate-100">
+
+                <!-- Stat 1: Clients -->
+                <div class="flex flex-col gap-1 sm:pr-8">
+                    <div class="flex items-center gap-2 text-[#2F6F73] text-sm font-bold mb-1">
+                        <i data-lucide="heart" class="w-4 h-4 fill-current"></i>
+                        Loved & Trusted by
+                    </div>
+                    <p class="text-4xl font-extrabold text-[#1F3D5A] leading-none">500+</p>
+                    <p class="text-xs font-bold uppercase tracking-widest text-[#4A4A4A]/60 mt-1">Global Clients</p>
+                </div>
+
+                <!-- Stat 2: Ratings -->
+                <div class="flex flex-col gap-1 sm:px-8">
+                    <div class="flex items-center gap-0.5 text-[#E5B93C] mb-1">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-4xl font-extrabold text-[#1F3D5A] leading-none">4.9/5</p>
+                    <p class="text-xs font-bold uppercase tracking-widest text-[#4A4A4A]/60 mt-1">Based on 200+ Reviews
+                    </p>
+                </div>
+
+                <!-- Testimonial -->
+                <div class="flex flex-col gap-2 sm:pl-8">
+                    <p class="text-sm text-[#4A4A4A] leading-relaxed italic">
+                        "Best team we've worked with. Delivered on time, exceeded expectations, and the support is
+                        outstanding."
+                    </p>
+                    <p class="text-xs font-bold text-[#4A4A4A]/60 uppercase tracking-widest mt-1">— Sarah M., Founder at
+                        TechNova</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Logos Section -->
+    <section class="pt-20 pb-10 bg-white">
+        <div class="max-w-7xl mx-auto px-6 md:px-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-5xl font-black text-brand-dark leading-tight mb-6">Empowering <span
+                        class="text-brand-base">Industry Leaders</span><br>Worldwide</h2>
+                <p class="text-sm md:text-base text-[#4A4A4A] leading-relaxed">Join hundreds of global enterprises and
+                    rapid-growth startups leveraging our cutting-edge technology solutions.</p>
+            </div>
+
+            <div
+                class="grid grid-cols-2 lg:grid-cols-5 gap-x-10 gap-y-14 md:gap-x-14 md:gap-y-16 items-center justify-items-center">
+                <img src="assets/client%20logo/hello%20healthy.png" alt="Hello Healthy"
+                    class="h-12 md:h-14 w-auto grayscale opacity-60 mix-blend-multiply object-contain">
+                <img src="assets/client%20logo/HP%20Logo(PantoneU)%20copy.png" alt="HP"
+                    class="h-12 md:h-14 w-auto grayscale opacity-60 mix-blend-multiply object-contain">
+                <img src="assets/client%20logo/Stern-logo-blue.png" alt="Stern"
+                    class="h-12 md:h-14 w-auto grayscale opacity-60 mix-blend-multiply object-contain">
+                <img src="assets/client%20logo/logo-skedulo-navy.svg" alt="Skedulo"
+                    class="h-12 md:h-14 w-auto grayscale opacity-60 mix-blend-multiply object-contain">
+                <img src="assets/client%20logo/smarteinc.png" alt="Smarteinc"
+                    class="h-12 md:h-14 w-auto grayscale opacity-60 mix-blend-multiply object-contain">
+                <img src="assets/client%20logo/KBOnline.png" alt="KBOnline"
+                    class="h-12 md:h-14 w-auto grayscale opacity-60 mix-blend-multiply object-contain">
+                <img src="assets/client%20logo/Quietlight.webp" alt="Quietlight"
+                    class="h-12 md:h-14 w-auto grayscale opacity-60 mix-blend-multiply object-contain">
+                <img src="assets/client%20logo/vitaskan.png" alt="Vitaskan"
+                    class="h-12 md:h-14 w-auto grayscale opacity-60 mix-blend-multiply object-contain">
+                <img src="assets/client%20logo/myally.webp" alt="MyAlly"
+                    class="h-12 md:h-14 w-auto grayscale opacity-60 mix-blend-multiply object-contain">
+                <img src="assets/client%20logo/paris%20creative.png" alt="Paris Creative"
+                    class="h-12 md:h-14 w-auto grayscale opacity-60 mix-blend-multiply object-contain">
+            </div>
+        </div>
+    </section>
+
+    <!-- Digital Solutions Section -->
+    <section class="py-24 bg-[#F8FAFC]">
+        <div class="max-w-7xl mx-auto px-6 md:px-10">
+            <!-- Header -->
+            <div class="flex flex-col md:flex-row md:items-end gap-6 md:gap-10 mb-16">
+                <!-- Title Left -->
+                <h2 class="text-3xl md:text-5xl font-black text-brand-dark leading-tight shrink-0">
+                    <span class="text-brand-base">Digital Solution</span><br>Made just for you.
+                </h2>
+                <!-- Horizontal Line -->
+                <div class="hidden md:block h-[1.5px] bg-[#1F3D5A] flex-grow mb-4"></div>
+                <!-- Description Right -->
+                <p
+                    class="text-base md:text-lg font-medium text-neutral-dark md:max-w-[420px] leading-relaxed shrink-0 md:mb-1">
+                    We work with our clients to create online strategies that produce more traffic, more leads, and more
+                    business.
+                </p>
+            </div>
+
+            <!-- Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div
+                    class="group relative bg-brand-dark rounded-[2.5rem] p-10 h-[280px] flex flex-col justify-between overflow-hidden transition-all duration-500 hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-brand-dark/20 cursor-pointer">
+                    <div
+                        class="absolute -right-8 -bottom-8 text-white/[0.04] rotate-[-15deg] transition-transform duration-700 group-hover:scale-110 group-hover:rotate-0">
+                        <i data-lucide="layout" class="w-44 h-44"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <p class="text-white/40 text-[11px] font-bold uppercase tracking-[0.2em] leading-relaxed">
+                            consultation on<br>development, design,<br>marketing, etc.</p>
+                    </div>
+                    <div class="relative z-10 flex items-end justify-between">
+                        <h3 class="text-white text-2xl font-extrabold tracking-tight">UI/UX Design</h3>
+                        <div
+                            class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white transition-all group-hover:bg-white group-hover:text-brand-dark group-hover:scale-110">
+                            <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div
+                    class="group relative bg-brand-dark rounded-[2.5rem] p-10 h-[280px] flex flex-col justify-between overflow-hidden transition-all duration-500 hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-brand-dark/20 cursor-pointer">
+                    <div
+                        class="absolute -right-8 -bottom-8 text-white/[0.04] rotate-[-15deg] transition-transform duration-700 group-hover:scale-110 group-hover:rotate-0">
+                        <i data-lucide="code-2" class="w-44 h-44"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <p class="text-white/40 text-[11px] font-bold uppercase tracking-[0.2em] leading-relaxed">
+                            consultation on<br>development, design,<br>marketing, etc.</p>
+                    </div>
+                    <div class="relative z-10 flex items-end justify-between">
+                        <h3 class="text-white text-2xl font-extrabold tracking-tight">Web Development</h3>
+                        <div
+                            class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white transition-all group-hover:bg-white group-hover:text-brand-dark group-hover:scale-110">
+                            <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div
+                    class="group relative bg-brand-dark rounded-[2.5rem] p-10 h-[280px] flex flex-col justify-between overflow-hidden transition-all duration-500 hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-brand-dark/20 cursor-pointer">
+                    <div
+                        class="absolute -right-8 -bottom-8 text-white/[0.04] rotate-[-15deg] transition-transform duration-700 group-hover:scale-110 group-hover:rotate-0">
+                        <i data-lucide="shopping-cart" class="w-44 h-44"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <p class="text-white/40 text-[11px] font-bold uppercase tracking-[0.2em] leading-relaxed">
+                            consultation on<br>development, design,<br>marketing, etc.</p>
+                    </div>
+                    <div class="relative z-10 flex items-end justify-between">
+                        <h3 class="text-white text-2xl font-extrabold tracking-tight">eCommerce Solutions</h3>
+                        <div
+                            class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white transition-all group-hover:bg-white group-hover:text-brand-dark group-hover:scale-110">
+                            <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div
+                    class="group relative bg-brand-dark rounded-[2.5rem] p-10 h-[280px] flex flex-col justify-between overflow-hidden transition-all duration-500 hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-brand-dark/20 cursor-pointer">
+                    <div
+                        class="absolute -right-8 -bottom-8 text-white/[0.04] rotate-[-15deg] transition-transform duration-700 group-hover:scale-110 group-hover:rotate-0">
+                        <i data-lucide="cpu" class="w-44 h-44"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <p class="text-white/40 text-[11px] font-bold uppercase tracking-[0.2em] leading-relaxed">
+                            consultation on<br>development, design,<br>marketing, etc.</p>
+                    </div>
+                    <div class="relative z-10 flex items-end justify-between">
+                        <h3 class="text-white text-2xl font-extrabold tracking-tight">Custom Software Solutions</h3>
+                        <div
+                            class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white transition-all group-hover:bg-white group-hover:text-brand-dark group-hover:scale-110">
+                            <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div
+                    class="group relative bg-brand-dark rounded-[2.5rem] p-10 h-[280px] flex flex-col justify-between overflow-hidden transition-all duration-500 hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-brand-dark/20 cursor-pointer">
+                    <div
+                        class="absolute -right-8 -bottom-8 text-white/[0.04] rotate-[-15deg] transition-transform duration-700 group-hover:scale-110 group-hover:rotate-0">
+                        <i data-lucide="megaphone" class="w-44 h-44"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <p class="text-white/40 text-[11px] font-bold uppercase tracking-[0.2em] leading-relaxed">
+                            consultation on<br>development, design,<br>marketing, etc.</p>
+                    </div>
+                    <div class="relative z-10 flex items-end justify-between">
+                        <h3 class="text-white text-2xl font-extrabold tracking-tight">Digital Marketing</h3>
+                        <div
+                            class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center text-white transition-all group-hover:bg-white group-hover:text-brand-dark group-hover:scale-110">
+                            <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6 (Explore) -->
+                <div
+                    class="group relative bg-brand-dark rounded-[2.5rem] p-10 h-[280px] flex flex-col justify-center items-center overflow-hidden transition-all duration-500 hover:translate-y-[-8px] hover:shadow-2xl hover:shadow-brand-dark/20 cursor-pointer border-2 border-dashed border-white/10 hover:border-brand-base">
+                    <div class="relative z-10 flex flex-col items-center gap-4">
+                        <h3 class="text-white text-2xl font-extrabold tracking-tight">Explore Our Services</h3>
+                        <div
+                            class="w-12 h-12 bg-white text-brand-dark rounded-full flex items-center justify-center transition-transform duration-300 group-hover:scale-125 group-hover:shadow-xl group-hover:shadow-white/20">
+                            <i data-lucide="arrow-right" class="w-6 h-6"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Industry Carousel Section -->
+    <section class="py-24 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 md:px-10 mb-16">
+            <div class="flex flex-col md:flex-row md:items-end gap-6 md:gap-10">
+                <!-- Title Left -->
+                <h2 class="text-3xl md:text-5xl font-black text-brand-dark leading-tight shrink-0">
+                    <span class="text-brand-base">Industry based</span><br>Software Development.
+                </h2>
+                <!-- Horizontal Line -->
+                <div class="hidden md:block h-[1.5px] bg-[#1F3D5A] flex-grow mb-4"></div>
+                <!-- Description Right -->
+                <p class="text-lg md:text-xl font-medium text-[#4A4A4A] md:max-w-xs leading-tight shrink-0 md:mb-2">
+                    Specialized solutions for every sector.
+                </p>
+            </div>
+        </div>
+
+        <!-- Regenerated Industry Carousel -->
+        <div class="relative">
+            <div class="pointer-events-none absolute left-0 top-0 h-full w-24 md:w-40 z-10"
+                style="background: linear-gradient(to right, #ffffff 0%, rgba(255,255,255,0) 100%);"></div>
+
+            <div id="industry-carousel"
+                class="bleed-carousel-container carousel-container carousel-seamless carousel-no-hover-pause flex gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-10 cursor-grab active:cursor-grabbing">
+
+                <!-- Track A (visible loop) -->
+                <!-- Item 1 -->
+                <div
+                    class="snap-start shrink-0 w-[85%] sm:w-[50%] md:w-[42%] lg:w-[32%] xl:w-[28%] min-h-[460px] bg-[#F4F4F5] rounded-[1rem] border border-[#EDEDED] shadow-[0_8px_28px_rgba(31,61,90,0.08)] overflow-hidden group flex flex-col cursor-pointer hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
+                    <div class="relative h-[220px] shrink-0 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/1371360/pexels-photo-1371360.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Tours & Travels" draggable="false"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 select-none">
+                        <div
+                            class="absolute top-5 left-5 bg-white text-[#1F3D5A] text-[13px] font-bold px-4 py-1.5 rounded-full shadow-sm">
+                            Industry
+                        </div>
+                    </div>
+                    <div class="p-6 md:p-8 flex flex-col flex-1 bg-[#F4F4F5] relative">
+                        <h4 class="text-sm font-bold text-[#1F3D5A] mb-3">Kritox Digital</h4>
+                        <h3 class="text-[26px] md:text-3xl font-black text-[#1F3D5A] leading-tight mb-8">
+                            Tours & Travels
+                        </h3>
+                        <div class="space-y-2 mb-8 flex-1">
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">CUSTOM BOOKING
+                                SYSTEMS</p>
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">ITINERARY
+                                FLOWS</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto pt-4 relative">
+                            <span
+                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW
+                                DETAILS</span>
+                            <div
+                                class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
+                                <div class="w-10 sm:w-16 h-[2px] bg-[#1F3D5A] -mr-1"></div>
+                                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div
+                    class="snap-start shrink-0 w-[85%] sm:w-[50%] md:w-[42%] lg:w-[32%] xl:w-[28%] min-h-[460px] bg-[#F4F4F5] rounded-[1rem] border border-[#EDEDED] shadow-[0_8px_28px_rgba(31,61,90,0.08)] overflow-hidden group flex flex-col cursor-pointer hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
+                    <div class="relative h-[220px] shrink-0 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Healthcare" draggable="false"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 select-none">
+                        <div
+                            class="absolute top-5 left-5 bg-white text-[#1F3D5A] text-[13px] font-bold px-4 py-1.5 rounded-full shadow-sm">
+                            Industry
+                        </div>
+                    </div>
+                    <div class="p-6 md:p-8 flex flex-col flex-1 bg-[#F4F4F5] relative">
+                        <h4 class="text-sm font-bold text-[#1F3D5A] mb-3">Kritox Digital</h4>
+                        <h3 class="text-[26px] md:text-3xl font-black text-[#1F3D5A] leading-tight mb-8">
+                            Healthcare
+                        </h3>
+                        <div class="space-y-2 mb-8 flex-1">
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">SECURE PATIENT
+                                PORTALS</p>
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">TELEMEDICINE
+                                EXPERIENCES</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto pt-4 relative">
+                            <span
+                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW
+                                DETAILS</span>
+                            <div
+                                class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
+                                <div class="w-10 sm:w-16 h-[2px] bg-[#1F3D5A] -mr-1"></div>
+                                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div
+                    class="snap-start shrink-0 w-[85%] sm:w-[50%] md:w-[42%] lg:w-[32%] xl:w-[28%] min-h-[460px] bg-[#F4F4F5] rounded-[1rem] border border-[#EDEDED] shadow-[0_8px_28px_rgba(31,61,90,0.08)] overflow-hidden group flex flex-col cursor-pointer hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
+                    <div class="relative h-[220px] shrink-0 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/256490/pexels-photo-256490.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Education & LMS" draggable="false"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 select-none">
+                        <div
+                            class="absolute top-5 left-5 bg-white text-[#1F3D5A] text-[13px] font-bold px-4 py-1.5 rounded-full shadow-sm">
+                            Industry
+                        </div>
+                    </div>
+                    <div class="p-6 md:p-8 flex flex-col flex-1 bg-[#F4F4F5] relative">
+                        <h4 class="text-sm font-bold text-[#1F3D5A] mb-3">Kritox Digital</h4>
+                        <h3 class="text-[26px] md:text-3xl font-black text-[#1F3D5A] leading-tight mb-8">
+                            Education & LMS
+                        </h3>
+                        <div class="space-y-2 mb-8 flex-1">
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">INTERACTIVE
+                                PLATFORMS</p>
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">EDTECH
+                                SOLUTIONS</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto pt-4 relative">
+                            <span
+                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW
+                                DETAILS</span>
+                            <div
+                                class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
+                                <div class="w-10 sm:w-16 h-[2px] bg-[#1F3D5A] -mr-1"></div>
+                                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div
+                    class="snap-start shrink-0 w-[85%] sm:w-[50%] md:w-[42%] lg:w-[32%] xl:w-[28%] min-h-[460px] bg-[#F4F4F5] rounded-[1rem] border border-[#EDEDED] shadow-[0_8px_28px_rgba(31,61,90,0.08)] overflow-hidden group flex flex-col cursor-pointer hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
+                    <div class="relative h-[220px] shrink-0 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Retail & Ecommerce" draggable="false"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 select-none">
+                        <div
+                            class="absolute top-5 left-5 bg-white text-[#1F3D5A] text-[13px] font-bold px-4 py-1.5 rounded-full shadow-sm">
+                            Industry
+                        </div>
+                    </div>
+                    <div class="p-6 md:p-8 flex flex-col flex-1 bg-[#F4F4F5] relative">
+                        <h4 class="text-sm font-bold text-[#1F3D5A] mb-3">Kritox Digital</h4>
+                        <h3 class="text-[26px] md:text-3xl font-black text-[#1F3D5A] leading-tight mb-8">
+                            Retail & Ecommerce
+                        </h3>
+                        <div class="space-y-2 mb-8 flex-1">
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">OMNICHANNEL
+                                STOREFRONTS</p>
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">OPTIMIZED
+                                CHECKOUTS</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto pt-4 relative">
+                            <span
+                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW
+                                DETAILS</span>
+                            <div
+                                class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
+                                <div class="w-10 sm:w-16 h-[2px] bg-[#1F3D5A] -mr-1"></div>
+                                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div
+                    class="snap-start shrink-0 w-[85%] sm:w-[50%] md:w-[42%] lg:w-[32%] xl:w-[28%] min-h-[460px] bg-[#F4F4F5] rounded-[1rem] border border-[#EDEDED] shadow-[0_8px_28px_rgba(31,61,90,0.08)] overflow-hidden group flex flex-col cursor-pointer hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
+                    <div class="relative h-[220px] shrink-0 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/280229/pexels-photo-280229.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Real Estate" draggable="false"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 select-none">
+                        <div
+                            class="absolute top-5 left-5 bg-white text-[#1F3D5A] text-[13px] font-bold px-4 py-1.5 rounded-full shadow-sm">
+                            Industry
+                        </div>
+                    </div>
+                    <div class="p-6 md:p-8 flex flex-col flex-1 bg-[#F4F4F5] relative">
+                        <h4 class="text-sm font-bold text-[#1F3D5A] mb-3">Kritox Digital</h4>
+                        <h3 class="text-[26px] md:text-3xl font-black text-[#1F3D5A] leading-tight mb-8">
+                            Real Estate
+                        </h3>
+                        <div class="space-y-2 mb-8 flex-1">
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">PROPERTY
+                                PLATFORMS</p>
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">BROKER
+                                WORKFLOWS</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto pt-4 relative">
+                            <span
+                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW
+                                DETAILS</span>
+                            <div
+                                class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
+                                <div class="w-10 sm:w-16 h-[2px] bg-[#1F3D5A] -mr-1"></div>
+                                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 6 -->
+                <div
+                    class="snap-start shrink-0 w-[85%] sm:w-[50%] md:w-[42%] lg:w-[32%] xl:w-[28%] min-h-[460px] bg-[#F4F4F5] rounded-[1rem] border border-[#EDEDED] shadow-[0_8px_28px_rgba(31,61,90,0.08)] overflow-hidden group flex flex-col cursor-pointer hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
+                    <div class="relative h-[220px] shrink-0 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Restaurant & Ordering" draggable="false"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 select-none">
+                        <div
+                            class="absolute top-5 left-5 bg-white text-[#1F3D5A] text-[13px] font-bold px-4 py-1.5 rounded-full shadow-sm">
+                            Industry
+                        </div>
+                    </div>
+                    <div class="p-6 md:p-8 flex flex-col flex-1 bg-[#F4F4F5] relative">
+                        <h4 class="text-sm font-bold text-[#1F3D5A] mb-3">Kritox Digital</h4>
+                        <h3 class="text-[26px] md:text-3xl font-black text-[#1F3D5A] leading-tight mb-8">
+                            Restaurant & Ordering
+                        </h3>
+                        <div class="space-y-2 mb-8 flex-1">
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">CUSTOM
+                                DELIVERY APPS</p>
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">POS
+                                INTEGRATIONS</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto pt-4 relative">
+                            <span
+                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW
+                                DETAILS</span>
+                            <div
+                                class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
+                                <div class="w-10 sm:w-16 h-[2px] bg-[#1F3D5A] -mr-1"></div>
+                                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Track B (duplicate for seamless infinite scroll; hidden from AT) -->
+                <!-- Item 1 -->
+                <div aria-hidden="true"
+                    class="snap-start shrink-0 w-[85%] sm:w-[50%] md:w-[42%] lg:w-[32%] xl:w-[28%] min-h-[460px] bg-[#F4F4F5] rounded-[1rem] border border-[#EDEDED] shadow-[0_8px_28px_rgba(31,61,90,0.08)] overflow-hidden group flex flex-col cursor-pointer hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
+                    <div class="relative h-[220px] shrink-0 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/1371360/pexels-photo-1371360.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Tours & Travels" draggable="false"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 select-none">
+                        <div
+                            class="absolute top-5 left-5 bg-white text-[#1F3D5A] text-[13px] font-bold px-4 py-1.5 rounded-full shadow-sm">
+                            Industry
+                        </div>
+                    </div>
+                    <div class="p-6 md:p-8 flex flex-col flex-1 bg-[#F4F4F5] relative">
+                        <h4 class="text-sm font-bold text-[#1F3D5A] mb-3">Kritox Digital</h4>
+                        <h3 class="text-[26px] md:text-3xl font-black text-[#1F3D5A] leading-tight mb-8">
+                            Tours & Travels
+                        </h3>
+                        <div class="space-y-2 mb-8 flex-1">
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">CUSTOM BOOKING
+                                SYSTEMS</p>
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">ITINERARY
+                                FLOWS</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto pt-4 relative">
+                            <span
+                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW
+                                DETAILS</span>
+                            <div
+                                class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
+                                <div class="w-10 sm:w-16 h-[2px] bg-[#1F3D5A] -mr-1"></div>
+                                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div aria-hidden="true"
+                    class="snap-start shrink-0 w-[85%] sm:w-[50%] md:w-[42%] lg:w-[32%] xl:w-[28%] min-h-[460px] bg-[#F4F4F5] rounded-[1rem] border border-[#EDEDED] shadow-[0_8px_28px_rgba(31,61,90,0.08)] overflow-hidden group flex flex-col cursor-pointer hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
+                    <div class="relative h-[220px] shrink-0 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Healthcare" draggable="false"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 select-none">
+                        <div
+                            class="absolute top-5 left-5 bg-white text-[#1F3D5A] text-[13px] font-bold px-4 py-1.5 rounded-full shadow-sm">
+                            Industry
+                        </div>
+                    </div>
+                    <div class="p-6 md:p-8 flex flex-col flex-1 bg-[#F4F4F5] relative">
+                        <h4 class="text-sm font-bold text-[#1F3D5A] mb-3">Kritox Digital</h4>
+                        <h3 class="text-[26px] md:text-3xl font-black text-[#1F3D5A] leading-tight mb-8">
+                            Healthcare
+                        </h3>
+                        <div class="space-y-2 mb-8 flex-1">
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">SECURE PATIENT
+                                PORTALS</p>
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">TELEMEDICINE
+                                EXPERIENCES</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto pt-4 relative">
+                            <span
+                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW
+                                DETAILS</span>
+                            <div
+                                class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
+                                <div class="w-10 sm:w-16 h-[2px] bg-[#1F3D5A] -mr-1"></div>
+                                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div aria-hidden="true"
+                    class="snap-start shrink-0 w-[85%] sm:w-[50%] md:w-[42%] lg:w-[32%] xl:w-[28%] min-h-[460px] bg-[#F4F4F5] rounded-[1rem] border border-[#EDEDED] shadow-[0_8px_28px_rgba(31,61,90,0.08)] overflow-hidden group flex flex-col cursor-pointer hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
+                    <div class="relative h-[220px] shrink-0 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/256490/pexels-photo-256490.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Education & LMS" draggable="false"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 select-none">
+                        <div
+                            class="absolute top-5 left-5 bg-white text-[#1F3D5A] text-[13px] font-bold px-4 py-1.5 rounded-full shadow-sm">
+                            Industry
+                        </div>
+                    </div>
+                    <div class="p-6 md:p-8 flex flex-col flex-1 bg-[#F4F4F5] relative">
+                        <h4 class="text-sm font-bold text-[#1F3D5A] mb-3">Kritox Digital</h4>
+                        <h3 class="text-[26px] md:text-3xl font-black text-[#1F3D5A] leading-tight mb-8">
+                            Education & LMS
+                        </h3>
+                        <div class="space-y-2 mb-8 flex-1">
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">INTERACTIVE
+                                PLATFORMS</p>
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">EDTECH
+                                SOLUTIONS</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto pt-4 relative">
+                            <span
+                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW
+                                DETAILS</span>
+                            <div
+                                class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
+                                <div class="w-10 sm:w-16 h-[2px] bg-[#1F3D5A] -mr-1"></div>
+                                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div aria-hidden="true"
+                    class="snap-start shrink-0 w-[85%] sm:w-[50%] md:w-[42%] lg:w-[32%] xl:w-[28%] min-h-[460px] bg-[#F4F4F5] rounded-[1rem] border border-[#EDEDED] shadow-[0_8px_28px_rgba(31,61,90,0.08)] overflow-hidden group flex flex-col cursor-pointer hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
+                    <div class="relative h-[220px] shrink-0 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Retail & Ecommerce" draggable="false"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 select-none">
+                        <div
+                            class="absolute top-5 left-5 bg-white text-[#1F3D5A] text-[13px] font-bold px-4 py-1.5 rounded-full shadow-sm">
+                            Industry
+                        </div>
+                    </div>
+                    <div class="p-6 md:p-8 flex flex-col flex-1 bg-[#F4F4F5] relative">
+                        <h4 class="text-sm font-bold text-[#1F3D5A] mb-3">Kritox Digital</h4>
+                        <h3 class="text-[26px] md:text-3xl font-black text-[#1F3D5A] leading-tight mb-8">
+                            Retail & Ecommerce
+                        </h3>
+                        <div class="space-y-2 mb-8 flex-1">
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">OMNICHANNEL
+                                STOREFRONTS</p>
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">OPTIMIZED
+                                CHECKOUTS</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto pt-4 relative">
+                            <span
+                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW
+                                DETAILS</span>
+                            <div
+                                class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
+                                <div class="w-10 sm:w-16 h-[2px] bg-[#1F3D5A] -mr-1"></div>
+                                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div aria-hidden="true"
+                    class="snap-start shrink-0 w-[85%] sm:w-[50%] md:w-[42%] lg:w-[32%] xl:w-[28%] min-h-[460px] bg-[#F4F4F5] rounded-[1rem] border border-[#EDEDED] shadow-[0_8px_28px_rgba(31,61,90,0.08)] overflow-hidden group flex flex-col cursor-pointer hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
+                    <div class="relative h-[220px] shrink-0 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/280229/pexels-photo-280229.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Real Estate" draggable="false"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 select-none">
+                        <div
+                            class="absolute top-5 left-5 bg-white text-[#1F3D5A] text-[13px] font-bold px-4 py-1.5 rounded-full shadow-sm">
+                            Industry
+                        </div>
+                    </div>
+                    <div class="p-6 md:p-8 flex flex-col flex-1 bg-[#F4F4F5] relative">
+                        <h4 class="text-sm font-bold text-[#1F3D5A] mb-3">Kritox Digital</h4>
+                        <h3 class="text-[26px] md:text-3xl font-black text-[#1F3D5A] leading-tight mb-8">
+                            Real Estate
+                        </h3>
+                        <div class="space-y-2 mb-8 flex-1">
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">PROPERTY
+                                PLATFORMS</p>
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">BROKER
+                                WORKFLOWS</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto pt-4 relative">
+                            <span
+                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW
+                                DETAILS</span>
+                            <div
+                                class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
+                                <div class="w-10 sm:w-16 h-[2px] bg-[#1F3D5A] -mr-1"></div>
+                                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 6 -->
+                <div aria-hidden="true"
+                    class="snap-start shrink-0 w-[85%] sm:w-[50%] md:w-[42%] lg:w-[32%] xl:w-[28%] min-h-[460px] bg-[#F4F4F5] rounded-[1rem] border border-[#EDEDED] shadow-[0_8px_28px_rgba(31,61,90,0.08)] overflow-hidden group flex flex-col cursor-pointer hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
+                    <div class="relative h-[220px] shrink-0 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Restaurant & Ordering" draggable="false"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 select-none">
+                        <div
+                            class="absolute top-5 left-5 bg-white text-[#1F3D5A] text-[13px] font-bold px-4 py-1.5 rounded-full shadow-sm">
+                            Industry
+                        </div>
+                    </div>
+                    <div class="p-6 md:p-8 flex flex-col flex-1 bg-[#F4F4F5] relative">
+                        <h4 class="text-sm font-bold text-[#1F3D5A] mb-3">Kritox Digital</h4>
+                        <h3 class="text-[26px] md:text-3xl font-black text-[#1F3D5A] leading-tight mb-8">
+                            Restaurant & Ordering
+                        </h3>
+                        <div class="space-y-2 mb-8 flex-1">
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">CUSTOM
+                                DELIVERY APPS</p>
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">POS
+                                INTEGRATIONS</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto pt-4 relative">
+                            <span
+                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW
+                                DETAILS</span>
+                            <div
+                                class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
+                                <div class="w-10 sm:w-16 h-[2px] bg-[#1F3D5A] -mr-1"></div>
+                                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Industry carousel controls (inline SVG so arrows always show) -->
+        <div class="relative z-20 max-w-7xl mx-auto px-6 md:px-10 flex justify-end items-center gap-3 mt-4">
+            <button type="button" id="industry-carousel-prev" aria-label="Previous slide"
+                class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#EDEDED] bg-white text-[#1F3D5A] shadow-sm hover:bg-[#F8FAFC] hover:border-brand-base/30 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    aria-hidden="true">
+                    <path d="m15 18-6-6 6-6" />
+                </svg>
+            </button>
+            <button type="button" id="industry-carousel-next" aria-label="Next slide"
+                class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#EDEDED] bg-white text-[#1F3D5A] shadow-sm hover:bg-[#F8FAFC] hover:border-brand-base/30 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    aria-hidden="true">
+                    <path d="m9 18 6-6-6-6" />
+                </svg>
+            </button>
+        </div>
+    </section>
+    <!-- Why Choose Us -->
+    <section id="why-choose-us" class="py-24 bg-white relative overflow-hidden">
+        <!-- Background decoration -->
+        <div
+            class="absolute top-0 right-0 w-64 h-64 bg-brand-base/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 z-0 pointer-events-none">
+        </div>
+        <div
+            class="absolute bottom-0 left-0 w-64 h-64 bg-brand-dark/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 z-0 pointer-events-none">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 md:px-10 relative z-10">
+            <!-- Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-5xl font-black text-brand-dark mb-4 tracking-tight">Why Choose <span
+                        class="text-brand-base">Kritox Digital</span></h2>
+                <p class="text-lg text-[#4A4A4A]">3 Factors That Make us The Best option For Your Digital Marketing.</p>
+            </div>
+
+            <!-- Content Grid: Stats Left (5 cols out of 12) | Features Right (7 cols out of 12) -->
+            <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                <!-- Left: Stats Grid -->
+                <div class="lg:col-span-5 grid grid-cols-2 gap-4 h-fit">
+                    <!-- Stat 1 -->
+                    <div
+                        class="bg-[#FAFAFA] border border-[#EDEDED] rounded-[2rem] py-10 px-6 text-center flex flex-col items-center justify-center hover:shadow-xl hover:shadow-[#1F3D5A]/5 hover:-translate-y-1 transition-all duration-300">
+                        <h3 class="text-3xl md:text-4xl font-black text-[#1F3D5A] mb-2 tracking-tight">240+</h3>
+                        <p class="text-sm font-semibold text-[#4A4A4A]">Professionals</p>
+                    </div>
+                    <!-- Stat 2 -->
+                    <div
+                        class="bg-white border border-[#EDEDED] rounded-[2rem] py-10 px-6 text-center flex flex-col items-center justify-center hover:shadow-xl hover:shadow-[#1F3D5A]/5 hover:-translate-y-1 transition-all duration-300">
+                        <h3 class="text-3xl md:text-4xl font-black text-[#1F3D5A] mb-2 tracking-tight">16+</h3>
+                        <p class="text-sm font-semibold text-[#4A4A4A]">Years of Experience</p>
+                    </div>
+                    <!-- Stat 3 -->
+                    <div
+                        class="bg-white border border-[#EDEDED] rounded-[2rem] py-10 px-6 text-center flex flex-col items-center justify-center hover:shadow-xl hover:shadow-[#1F3D5A]/5 hover:-translate-y-1 transition-all duration-300">
+                        <h3 class="text-3xl md:text-4xl font-black text-[#1F3D5A] mb-2 tracking-tight">2000+</h3>
+                        <p class="text-sm font-semibold text-[#4A4A4A]">Projects</p>
+                    </div>
+                    <!-- Stat 4 -->
+                    <div
+                        class="bg-[#FAFAFA] border border-[#EDEDED] rounded-[2rem] py-10 px-6 text-center flex flex-col items-center justify-center hover:shadow-xl hover:shadow-[#1F3D5A]/5 hover:-translate-y-1 transition-all duration-300">
+                        <h3 class="text-3xl md:text-4xl font-black text-[#1F3D5A] mb-2 tracking-tight">46+</h3>
+                        <p class="text-sm font-semibold text-[#4A4A4A]">Countries Globally</p>
+                    </div>
+                    <!-- Stat 5 -->
+                    <div
+                        class="bg-[#FAFAFA] border border-[#EDEDED] rounded-[2rem] py-10 px-6 text-center flex flex-col items-center justify-center hover:shadow-xl hover:shadow-[#1F3D5A]/5 hover:-translate-y-1 transition-all duration-300">
+                        <h3 class="text-3xl md:text-4xl font-black text-[#1F3D5A] mb-2 tracking-tight">1223</h3>
+                        <p class="text-sm font-semibold text-[#4A4A4A]">dumy content</p>
+                    </div>
+                    <!-- Stat 6 -->
+                    <div
+                        class="bg-white border border-[#EDEDED] rounded-[2rem] py-10 px-6 text-center flex flex-col items-center justify-center hover:shadow-xl hover:shadow-[#1F3D5A]/5 hover:-translate-y-1 transition-all duration-300">
+                        <h3 class="text-3xl md:text-4xl font-black text-[#1F3D5A] mb-2 tracking-tight">25</h3>
+                        <p class="text-sm font-semibold text-[#4A4A4A]">dumy content</p>
+                    </div>
+                </div>
+
+                <!-- Right: Features List -->
+                <div class="lg:col-span-7">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
+                        <!-- Row 1 -->
+                        <div class="flex items-center gap-4 py-5 border-b border-[#EDEDED] group">
+                            <div
+                                class="w-12 h-12 flex items-center justify-center text-brand-base group-hover:scale-110 group-hover:text-brand-dark transition-all duration-300 shrink-0">
+                                <i data-lucide="award" class="w-8 h-8 stroke-[1.5]"></i>
+                            </div>
+                            <p class="font-extrabold text-[#1F3D5A] leading-snug">16+ Years in Business</p>
+                        </div>
+                        <div class="flex items-center gap-4 py-5 border-b border-[#EDEDED] group">
+                            <div
+                                class="w-12 h-12 flex items-center justify-center text-brand-base group-hover:scale-110 group-hover:text-brand-dark transition-all duration-300 shrink-0">
+                                <i data-lucide="calendar-check" class="w-8 h-8 stroke-[1.5]"></i>
+                            </div>
+                            <p class="font-extrabold text-[#1F3D5A] leading-snug">Guaranteed Project Timelines</p>
+                        </div>
+
+                        <!-- Row 2 -->
+                        <div class="flex items-center gap-4 py-5 border-b border-[#EDEDED] group">
+                            <div
+                                class="w-12 h-12 flex items-center justify-center text-brand-base group-hover:scale-110 group-hover:text-brand-dark transition-all duration-300 shrink-0">
+                                <i data-lucide="file-text" class="w-8 h-8 stroke-[1.5]"></i>
+                            </div>
+                            <p class="font-extrabold text-[#1F3D5A] leading-snug">Transparent & Seamless Updates</p>
+                        </div>
+                        <div class="flex items-center gap-4 py-5 border-b border-[#EDEDED] group">
+                            <div
+                                class="w-12 h-12 flex items-center justify-center text-brand-base group-hover:scale-110 group-hover:text-brand-dark transition-all duration-300 shrink-0">
+                                <i data-lucide="globe" class="w-8 h-8 stroke-[1.5]"></i>
+                            </div>
+                            <p class="font-extrabold text-[#1F3D5A] leading-snug">100% Satisfaction Rate</p>
+                        </div>
+
+                        <!-- Row 3 -->
+                        <div class="flex items-center gap-4 py-5 border-b border-[#EDEDED] group">
+                            <div
+                                class="w-12 h-12 flex items-center justify-center text-brand-base group-hover:scale-110 group-hover:text-brand-dark transition-all duration-300 shrink-0">
+                                <i data-lucide="user-check" class="w-8 h-8 stroke-[1.5]"></i>
+                            </div>
+                            <p class="font-extrabold text-[#1F3D5A] leading-snug">Skilled & Senior Developers</p>
+                        </div>
+                        <div class="flex items-center gap-4 py-5 border-b border-[#EDEDED] group">
+                            <div
+                                class="w-12 h-12 flex items-center justify-center text-brand-base group-hover:scale-110 group-hover:text-brand-dark transition-all duration-300 shrink-0">
+                                <i data-lucide="calendar-days" class="w-8 h-8 stroke-[1.5]"></i>
+                            </div>
+                            <p class="font-extrabold text-[#1F3D5A] leading-snug">30 Days Free Support</p>
+                        </div>
+
+                        <!-- Row 4 -->
+                        <div class="flex items-center gap-4 py-5 border-b border-[#EDEDED] group">
+                            <div
+                                class="w-12 h-12 flex items-center justify-center text-brand-base group-hover:scale-110 group-hover:text-brand-dark transition-all duration-300 shrink-0">
+                                <i data-lucide="monitor-play" class="w-8 h-8 stroke-[1.5]"></i>
+                            </div>
+                            <p class="font-extrabold text-[#1F3D5A] leading-snug">Fast & Flexible Development</p>
+                        </div>
+                        <div class="flex items-center gap-4 py-5 border-b border-[#EDEDED] group">
+                            <div
+                                class="w-12 h-12 flex items-center justify-center text-brand-base group-hover:scale-110 group-hover:text-brand-dark transition-all duration-300 shrink-0">
+                                <i data-lucide="shield-check" class="w-8 h-8 stroke-[1.5]"></i>
+                            </div>
+                            <p class="font-extrabold text-[#1F3D5A] leading-snug">Built on Honesty & Integrity</p>
+                        </div>
+
+                        <!-- Row 5 -->
+                        <div class="flex items-center gap-4 py-5 border-b border-[#EDEDED] group">
+                            <div
+                                class="w-12 h-12 flex items-center justify-center text-brand-base group-hover:scale-110 group-hover:text-brand-dark transition-all duration-300 shrink-0">
+                                <i data-lucide="code" class="w-8 h-8 stroke-[1.5]"></i>
+                            </div>
+                            <p class="font-extrabold text-[#1F3D5A] leading-snug">NDA-Ready Partnership</p>
+                        </div>
+                        <div class="flex items-center gap-4 py-5 border-b border-[#EDEDED] group">
+                            <div
+                                class="w-12 h-12 flex items-center justify-center text-brand-base group-hover:scale-110 group-hover:text-brand-dark transition-all duration-300 shrink-0">
+                                <i data-lucide="shopping-cart" class="w-8 h-8 stroke-[1.5]"></i>
+                            </div>
+                            <p class="font-extrabold text-[#1F3D5A] leading-snug">Industry-Leading Flexibility</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-24 bg-[#FAFAFA]">
+        <div class="max-w-7xl mx-auto px-6 md:px-10">
+            <div class="text-center max-w-2xl mx-auto mb-20">
+                <h2 class="text-4xl font-extrabold mb-6">Real stories from <br /><span class="teal-primary">happy
+                        clients.</span></h2>
+                <div class="flex justify-center gap-1 text-yellow-400">
+                    <i data-lucide="star" class="w-5 h-5" fill="currentColor"></i>
+                    <i data-lucide="star" class="w-5 h-5" fill="currentColor"></i>
+                    <i data-lucide="star" class="w-5 h-5" fill="currentColor"></i>
+                    <i data-lucide="star" class="w-5 h-5" fill="currentColor"></i>
+                    <i data-lucide="star" class="w-5 h-5" fill="currentColor"></i>
+                </div>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Card 1 -->
+                <div
+                    class="bg-white p-8 md:p-10 rounded-[30px] border border-[#EDEDED] shadow-sm flex flex-col justify-between">
+                    <div class="flex flex-col sm:flex-row gap-6 lg:gap-8 items-start">
+                        <div class="w-24 h-24 sm:w-32 sm:h-32 shrink-0 bg-slate-200 rounded-2xl overflow-hidden">
+                        </div>
+                        <div class="flex flex-col">
+                            <h4 class="font-bold text-xl text-[#1F3D5A] mb-1">Alex Rivera</h4>
+                            <p class="text-sm text-[#4A4A4A] mb-5">CTO, FinLaunch</p>
+                            <p class="text-[15px] text-[#4A4A4A] leading-relaxed">
+                                "The level of detail in their UX audit was astounding. They found bottlenecks in our
+                                funnel that we'd missed for years."
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mt-10 pt-8 flex items-center gap-6">
+                        <svg width="80" height="24" viewBox="0 0 80 24" fill="currentColor"
+                            class="text-slate-200 shrink-0">
+                            <polygon points="0,0 24,0 0,24" />
+                            <path d="M 28 0 A 12 12 0 0 0 52 0 Z" />
+                            <circle cx="68" cy="12" r="12" />
+                        </svg>
+                        <div class="flex flex-col">
+                            <p class="text-[15px] font-bold text-[#1F3D5A] mb-0.5">Development For:</p>
+                            <p class="text-sm text-[#4A4A4A]">Enterprise Web Platform</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div
+                    class="bg-white p-8 md:p-10 rounded-[30px] border border-[#EDEDED] shadow-sm flex flex-col justify-between">
+                    <div class="flex flex-col sm:flex-row gap-6 lg:gap-8 items-start">
+                        <div class="w-24 h-24 sm:w-32 sm:h-32 shrink-0 bg-slate-200 rounded-2xl overflow-hidden">
+                        </div>
+                        <div class="flex flex-col">
+                            <h4 class="font-bold text-xl text-[#1F3D5A] mb-1">Sarah Chen</h4>
+                            <p class="text-sm text-[#4A4A4A] mb-5">Founder, Lume Labs</p>
+                            <p class="text-[15px] text-[#4A4A4A] leading-relaxed">
+                                "Kritox didn't just build a site; they built a brand identity that doubled our
+                                conversion rate in the first three months."
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mt-10 pt-8 flex items-center gap-6">
+                        <svg width="80" height="24" viewBox="0 0 80 24" fill="currentColor"
+                            class="text-slate-200 shrink-0">
+                            <polygon points="0,0 24,0 0,24" />
+                            <path d="M 28 0 A 12 12 0 0 0 52 0 Z" />
+                            <circle cx="68" cy="12" r="12" />
+                        </svg>
+                        <div class="flex flex-col">
+                            <p class="text-[15px] font-bold text-[#1F3D5A] mb-0.5">Development For:</p>
+                            <p class="text-sm text-[#4A4A4A]">Native iOS & Android Mobile Apps</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div
+                    class="bg-white p-8 md:p-10 rounded-[30px] border border-[#EDEDED] shadow-sm flex flex-col justify-between">
+                    <div class="flex flex-col sm:flex-row gap-6 lg:gap-8 items-start">
+                        <div class="w-24 h-24 sm:w-32 sm:h-32 shrink-0 bg-slate-200 rounded-2xl overflow-hidden">
+                        </div>
+                        <div class="flex flex-col">
+                            <h4 class="font-bold text-xl text-[#1F3D5A] mb-1">David Miller</h4>
+                            <p class="text-sm text-[#4A4A4A] mb-5">VP, RealEdge</p>
+                            <p class="text-[15px] text-[#4A4A4A] leading-relaxed">
+                                "Reliable, communicative, and exceptionally skilled. It's rare to find an agency that
+                                actually cares about your ROI."
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mt-10 pt-8 flex items-center gap-6">
+                        <svg width="80" height="24" viewBox="0 0 80 24" fill="currentColor"
+                            class="text-slate-200 shrink-0">
+                            <polygon points="0,0 24,0 0,24" />
+                            <path d="M 28 0 A 12 12 0 0 0 52 0 Z" />
+                            <circle cx="68" cy="12" r="12" />
+                        </svg>
+                        <div class="flex flex-col">
+                            <p class="text-[15px] font-bold text-[#1F3D5A] mb-0.5">Development For:</p>
+                            <p class="text-sm text-[#4A4A4A]">B2B SaaS Portal</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div
+                    class="bg-white p-8 md:p-10 rounded-[30px] border border-[#EDEDED] shadow-sm flex flex-col justify-between">
+                    <div class="flex flex-col sm:flex-row gap-6 lg:gap-8 items-start">
+                        <div class="w-24 h-24 sm:w-32 sm:h-32 shrink-0 bg-slate-200 rounded-2xl overflow-hidden">
+                        </div>
+                        <div class="flex flex-col">
+                            <h4 class="font-bold text-xl text-[#1F3D5A] mb-1">Emily Watson</h4>
+                            <p class="text-sm text-[#4A4A4A] mb-5">Director, HealthTech</p>
+                            <p class="text-[15px] text-[#4A4A4A] leading-relaxed">
+                                "Their team seamlessly integrated with our backend developers to deliver a stunning
+                                frontend for our healthcare platform."
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mt-10 pt-8 flex items-center gap-6">
+                        <svg width="80" height="24" viewBox="0 0 80 24" fill="currentColor"
+                            class="text-slate-200 shrink-0">
+                            <polygon points="0,0 24,0 0,24" />
+                            <path d="M 28 0 A 12 12 0 0 0 52 0 Z" />
+                            <circle cx="68" cy="12" r="12" />
+                        </svg>
+                        <div class="flex flex-col">
+                            <p class="text-[15px] font-bold text-[#1F3D5A] mb-0.5">Development For:</p>
+                            <p class="text-sm text-[#4A4A4A]">Cloud Infrastructure & UX</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-24 bg-[#FAFAFA]">
+        <div class="max-w-7xl mx-auto px-6 md:px-10">
+            <!-- Header -->
+            <div class="text-center max-w-4xl mx-auto mb-16">
+                <p class="text-[13px] font-black text-brand-dark uppercase tracking-[0.2em] mb-4">BLOGS</p>
+                <h2 class="text-3xl md:text-5xl font-black text-brand-dark mb-6 tracking-tight">The latest News,
+                    Developments and Insights</h2>
+                <p class="text-lg text-[#4A4A4A] leading-relaxed max-w-3xl mx-auto">
+                    We work with our clients to create online strategies that produce more traffic, more leads, and more
+                    business. Our teams use combination of expertises, knowledges and experiences to deliver the best
+                    digital results.
+                </p>
+            </div>
+
+            <!-- Cards Grid -->
+            <div class="grid md:grid-cols-3 gap-8 md:gap-10">
+                <!-- Card 1 -->
+                <div class="group cursor-pointer flex flex-col h-full">
+                    <!-- Image -->
+                    <div
+                        class="relative rounded-[2rem] overflow-hidden mb-6 aspect-[4/3] bg-slate-200 shrink-0 border border-[#EDEDED] shadow-sm">
+                        <img src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Advertising"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div
+                            class="absolute bottom-4 left-4 bg-brand-base text-white text-[11px] font-bold uppercase tracking-wider px-4 py-2 rounded-xl ring-2 ring-white/10">
+                            Advertising
+                        </div>
+                    </div>
+                    <!-- Content -->
+                    <div class="px-2 flex flex-col flex-1">
+                        <p class="text-sm font-semibold text-[#4A4A4A] mb-3">Posted by ace@admin | March 12, 2026</p>
+                        <h4
+                            class="text-xl md:text-2xl font-extrabold text-brand-dark mb-4 leading-snug group-hover:text-brand-base transition-colors">
+                            is Lorem Ipsum What is Lorem Ipsum?</h4>
+                        <p class="text-[15px] text-[#4A4A4A] leading-relaxed mb-6 line-clamp-3">Lorem Ipsum is simply
+                            dummy text of the printing and typesetting industry. Lorem Ipsum has been...</p>
+                        <div class="mt-auto pt-2">
+                            <a href="#"
+                                class="inline-flex items-center gap-2 font-bold text-brand-dark group-hover:text-brand-base transition-colors text-sm">
+                                Read More <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="group cursor-pointer flex flex-col h-full">
+                    <!-- Image -->
+                    <div
+                        class="relative rounded-[2rem] overflow-hidden mb-6 aspect-[4/3] bg-slate-200 shrink-0 border border-[#EDEDED] shadow-sm">
+                        <img src="https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Content Creation"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div
+                            class="absolute bottom-4 left-4 bg-brand-base text-white text-[11px] font-bold uppercase tracking-wider px-4 py-2 rounded-xl ring-2 ring-white/10">
+                            Content Creation
+                        </div>
+                    </div>
+                    <!-- Content -->
+                    <div class="px-2 flex flex-col flex-1">
+                        <p class="text-sm font-semibold text-[#4A4A4A] mb-3">Posted by ace@admin | March 12, 2026</p>
+                        <h4
+                            class="text-xl md:text-2xl font-extrabold text-brand-dark mb-4 leading-snug group-hover:text-brand-base transition-colors">
+                            What is Lorem Ipsum is Lorem Ipsum?</h4>
+                        <p class="text-[15px] text-[#4A4A4A] leading-relaxed mb-6 line-clamp-3">Lorem Ipsum is simply
+                            dummy text of the printing and typesetting industry. Lorem Ipsum has been...</p>
+                        <div class="mt-auto pt-2">
+                            <a href="#"
+                                class="inline-flex items-center gap-2 font-bold text-brand-dark group-hover:text-brand-base transition-colors text-sm">
+                                Read More <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="group cursor-pointer flex flex-col h-full">
+                    <!-- Image -->
+                    <div
+                        class="relative rounded-[2rem] overflow-hidden mb-6 aspect-[4/3] bg-slate-200 shrink-0 border border-[#EDEDED] shadow-sm">
+                        <img src="https://images.pexels.com/photos/196645/pexels-photo-196645.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="UI Design"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                        <div
+                            class="absolute bottom-4 left-4 bg-brand-base text-white text-[11px] font-bold uppercase tracking-wider px-4 py-2 rounded-xl ring-2 ring-white/10">
+                            UI Design
+                        </div>
+                    </div>
+                    <!-- Content -->
+                    <div class="px-2 flex flex-col flex-1">
+                        <p class="text-sm font-semibold text-[#4A4A4A] mb-3">Posted by ace@admin | March 12, 2026</p>
+                        <h4
+                            class="text-xl md:text-2xl font-extrabold text-brand-dark mb-4 leading-snug group-hover:text-brand-base transition-colors">
+                            The User Interface Vs The User Experience of Mobile App</h4>
+                        <p class="text-[15px] text-[#4A4A4A] leading-relaxed mb-6 line-clamp-3">Should your mobile app
+                            be designed for better user experience or just to ensure the...</p>
+                        <div class="mt-auto pt-2">
+                            <a href="#"
+                                class="inline-flex items-center gap-2 font-bold text-brand-dark group-hover:text-brand-base transition-colors text-sm">
+                                Read More <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- We Work With Section -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6 md:px-10">
+            <!-- Header -->
+            <div class="flex flex-col md:flex-row md:items-end gap-6 md:gap-10 mb-16">
+                <!-- Title Left -->
+                <h2 class="text-3xl md:text-5xl font-black text-brand-dark leading-tight shrink-0">
+                    We work <span class="text-brand-base">with</span>
+                </h2>
+                <!-- Horizontal Line -->
+                <div class="hidden md:block h-[1.5px] bg-[#1F3D5A] flex-grow mb-4"></div>
+                <!-- Description Right -->
+                <p class="text-lg md:text-xl font-medium text-[#4A4A4A] md:max-w-xs leading-tight shrink-0 md:mb-2">
+                    Business Startups to Enterprises.
+                </p>
+            </div>
+
+            <!-- Top Row -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                <!-- Startups Business -->
+                <div
+                    class="bg-[#FAFAFA] border border-[#EDEDED] p-8 md:p-10 rounded-[32px] hover:shadow-xl hover:shadow-[#1F3D5A]/5 transition-all duration-300">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div
+                            class="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm border border-[#EDEDED] text-brand-base">
+                            <i data-lucide="lightbulb" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-2xl font-extrabold text-brand-dark">Startups Business</h3>
+                    </div>
+                    <p class="text-sm md:text-base text-[#4A4A4A] leading-relaxed">
+                        Our expertise in MVP development, rapid prototyping, and flexible engagement models, enables us
+                        to give startups the ability to transition from MVP to full-scale product launch. Startups love
+                        our diverse technology stack and proactive execution, enabling them to fully rely on us for both
+                        strategic tech decisions and seamless execution. We act as their extended tech team, ensuring
+                        they can focus on growth while we handle the technology.
+                    </p>
+                </div>
+
+                <!-- Small Business -->
+                <div
+                    class="bg-[#FAFAFA] border border-[#EDEDED] p-8 md:p-10 rounded-[32px] hover:shadow-xl hover:shadow-[#1F3D5A]/5 transition-all duration-300">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div
+                            class="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm border border-[#EDEDED] text-brand-base">
+                            <i data-lucide="briefcase" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-2xl font-extrabold text-brand-dark">Small Business</h3>
+                    </div>
+                    <p class="text-sm md:text-base text-[#4A4A4A] leading-relaxed">
+                        Small businesses are always looking to scale and enhance efficiency through technology. That's
+                        where we add immense value. We provide end-to-end custom technology solutions under one
+                        roof—covering everything from UI/UX design and development to quality assurance and cloud-based
+                        deployment, you name it and we take care of it.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Bottom Row -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Enterprise Business -->
+                <div
+                    class="bg-white border border-[#EDEDED] p-8 md:p-10 rounded-[32px] hover:shadow-xl hover:shadow-[#1F3D5A]/5 transition-all duration-300">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div
+                            class="w-12 h-12 bg-[#FAFAFA] rounded-xl flex items-center justify-center border border-[#EDEDED] text-brand-base">
+                            <i data-lucide="building-2" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl xl:text-2xl font-extrabold text-brand-dark">Enterprise Business</h3>
+                    </div>
+                    <p class="text-sm text-[#4A4A4A] leading-relaxed">
+                        We are a high-end product development company, building enterprise grade tech solutions that
+                        drive real business impact. From global clinical trial management systems to insurance portfolio
+                        platforms, our products serve as the backbone of multi-million dollar revenue-generating
+                        businesses for our clients worldwide. Enterprises prefer hiring a team of resources from us on a
+                        dedicated hire model which is easy to scale as per their business needs.
+                    </p>
+                </div>
+
+                <!-- Agency Business -->
+                <div
+                    class="bg-white border border-[#EDEDED] p-8 md:p-10 rounded-[32px] hover:shadow-xl hover:shadow-[#1F3D5A]/5 transition-all duration-300">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div
+                            class="w-12 h-12 bg-[#FAFAFA] rounded-xl flex items-center justify-center border border-[#EDEDED] text-brand-base">
+                            <i data-lucide="users" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl xl:text-2xl font-extrabold text-brand-dark">Agency Business</h3>
+                    </div>
+                    <p class="text-sm text-[#4A4A4A] leading-relaxed">
+                        We offer a no-obligation business analysis process, 360 degree technology consultation,
+                        go-to-market strategy, and tailored services to help agencies scale efficiently. We offer
+                        flexible engagement models and a capable in-house development team that power design,
+                        development and marketing agencies globally. Partnering with us helps unlock untapped potential
+                        of your offerings for maximizing value to the end customer.
+                    </p>
+                </div>
+
+                <!-- Bringing Innovation Together -->
+                <div
+                    class="bg-brand-dark p-8 md:p-10 rounded-[32px] flex flex-col justify-between hover:shadow-xl hover:shadow-[#1F3D5A]/20 transition-all duration-300">
+                    <div>
+                        <h3 class="text-xl xl:text-2xl font-extrabold text-white mb-6">Bringing Innovation Together</h3>
+                        <p class="text-sm text-white/80 leading-relaxed">
+                            Our R&D team keeps us ahead of the curve in technology adoption and execution, ensuring our
+                            clients always benefit from the latest innovations and cutting-edge solutions.
+                        </p>
+                    </div>
+                    <div class="mt-8">
+                        <a href="#contact"
+                            class="inline-flex items-center gap-2 px-6 py-3 bg-white text-brand-dark font-bold text-sm rounded-xl hover:bg-gray-100 transition-colors w-fit">
+                            Get in Touch! <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Processes Section -->
+    <section class="py-24 bg-[#FAFAFA] overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 md:px-10">
+            <div class="grid lg:grid-cols-12 gap-12 lg:gap-16">
+                <!-- Left Column (Sticky) -->
+                <div class="lg:col-span-4">
+                    <div class="lg:sticky lg:top-36">
+                        <h2 class="text-3xl md:text-5xl font-black text-brand-dark mb-6">Our Processes</h2>
+                        <p class="text-base md:text-lg text-[#4A4A4A] mb-10 leading-relaxed">We deliver a structured
+                            process for seamless project execution. From understanding your requirements to delivering
+                            the final solution, we ensure proactive technology services based on your business needs.
+                        </p>
+
+                        <div class="flex flex-col gap-4">
+                            <!-- Active Button -->
+                            <button
+                                class="w-full text-left px-6 py-4 rounded-2xl bg-brand-dark text-white font-extrabold flex justify-between items-center transition-all shadow-md group border border-brand-dark">
+                                Fixed Cost Project
+                                <i data-lucide="chevron-right"
+                                    class="w-5 h-5 text-white/70 group-hover:text-white transition-colors"></i>
+                            </button>
+                            <!-- Inactive Button 1 -->
+                            <button
+                                class="w-full text-left px-6 py-4 rounded-2xl bg-white border border-[#EDEDED] text-[#4A4A4A] font-extrabold flex justify-between items-center hover:border-[#1F3D5A] hover:text-[#1F3D5A] transition-all group">
+                                Hire Dedicated Developer(s)
+                                <i data-lucide="chevron-right"
+                                    class="w-5 h-5 text-[#4A4A4A]/40 group-hover:text-[#1F3D5A] transition-colors"></i>
+                            </button>
+                            <!-- Inactive Button 2 -->
+                            <button
+                                class="w-full text-left px-6 py-4 rounded-2xl bg-white border border-[#EDEDED] text-[#4A4A4A] font-extrabold flex justify-between items-center hover:border-[#1F3D5A] hover:text-[#1F3D5A] transition-all group">
+                                Agile Development Process
+                                <i data-lucide="chevron-right"
+                                    class="w-5 h-5 text-[#4A4A4A]/40 group-hover:text-[#1F3D5A] transition-colors"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column (Timeline) -->
+                <div class="lg:col-span-8">
+                    <div class="relative">
+                        <!-- Timeline Track Line -->
+                        <div class="absolute left-[11px] top-6 bottom-6 w-0.5 bg-[#EDEDED] z-0"></div>
+
+                        <div class="space-y-4 md:space-y-5">
+                            <!-- Step 1 -->
+                            <div class="relative pl-10 md:pl-12 group">
+                                <div
+                                    class="absolute left-[5px] top-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-white border-[3px] border-brand-base rounded-full z-20 group-hover:border-[#1F3D5A] group-hover:scale-[1.3] transition-all duration-300">
+                                </div>
+                                <div
+                                    class="relative bg-white border border-[#EDEDED] rounded-3xl p-6 md:p-8 flex items-center overflow-hidden shadow-sm hover:shadow-xl hover:shadow-[#1F3D5A]/5 transition-all duration-300 group-hover:border-[#1F3D5A]/20">
+                                    <div class="relative z-10 flex-1 pr-6 md:pr-10">
+                                        <h4 class="text-lg md:text-xl font-extrabold text-brand-dark mb-2">Discovery
+                                            Meeting</h4>
+                                        <p class="text-sm md:text-base text-[#4A4A4A] leading-relaxed">The process
+                                            begins with a discovery meeting discussing the client's goals and
+                                            expectations in detail.</p>
+                                    </div>
+                                    <div
+                                        class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-7xl md:text-8xl font-black text-[#F4F4F4] select-none pointer-events-none z-0 tracking-tighter transition-all duration-500 group-hover:text-[#FAFAFA] group-hover:-translate-x-2">
+                                        1</div>
+                                </div>
+                            </div>
+
+                            <!-- Step 2 -->
+                            <div class="relative pl-10 md:pl-12 group">
+                                <div
+                                    class="absolute left-[5px] top-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-white border-[3px] border-brand-base rounded-full z-20 group-hover:border-[#1F3D5A] group-hover:scale-[1.3] transition-all duration-300">
+                                </div>
+                                <div
+                                    class="relative bg-white border border-[#EDEDED] rounded-3xl p-6 md:p-8 flex items-center overflow-hidden shadow-sm hover:shadow-xl hover:shadow-[#1F3D5A]/5 transition-all duration-300 group-hover:border-[#1F3D5A]/20">
+                                    <div class="relative z-10 flex-1 pr-6 md:pr-10">
+                                        <h4 class="text-lg md:text-xl font-extrabold text-brand-dark mb-2">Requirement
+                                            Gathering</h4>
+                                        <p class="text-sm md:text-base text-[#4A4A4A] leading-relaxed">Detailed
+                                            requirements are systematically collected to ensure that the project's scope
+                                            aligns precisely with the client's project needs.</p>
+                                    </div>
+                                    <div
+                                        class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-7xl md:text-8xl font-black text-[#F4F4F4] select-none pointer-events-none z-0 tracking-tighter transition-all duration-500 group-hover:text-[#FAFAFA] group-hover:-translate-x-2">
+                                        2</div>
+                                </div>
+                            </div>
+
+                            <!-- Step 3 -->
+                            <div class="relative pl-10 md:pl-12 group">
+                                <div
+                                    class="absolute left-[5px] top-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-white border-[3px] border-brand-base rounded-full z-20 group-hover:border-[#1F3D5A] group-hover:scale-[1.3] transition-all duration-300">
+                                </div>
+                                <div
+                                    class="relative bg-white border border-[#EDEDED] rounded-3xl p-6 md:p-8 flex items-center overflow-hidden shadow-sm hover:shadow-xl hover:shadow-[#1F3D5A]/5 transition-all duration-300 group-hover:border-[#1F3D5A]/20">
+                                    <div class="relative z-10 flex-1 pr-6 md:pr-10">
+                                        <h4 class="text-lg md:text-xl font-extrabold text-brand-dark mb-2">Technical
+                                            Consultation</h4>
+                                        <p class="text-sm md:text-base text-[#4A4A4A] leading-relaxed">Our subject
+                                            matter experts (SMEs) provide an overview of the technical roadmap,
+                                            outlining most suitable technologies to achieve the desired outcome.</p>
+                                    </div>
+                                    <div
+                                        class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-7xl md:text-8xl font-black text-[#F4F4F4] select-none pointer-events-none z-0 tracking-tighter transition-all duration-500 group-hover:text-[#FAFAFA] group-hover:-translate-x-2">
+                                        3</div>
+                                </div>
+                            </div>
+
+                            <!-- Step 4 -->
+                            <div class="relative pl-10 md:pl-12 group">
+                                <div
+                                    class="absolute left-[5px] top-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-white border-[3px] border-brand-base rounded-full z-20 group-hover:border-[#1F3D5A] group-hover:scale-[1.3] transition-all duration-300">
+                                </div>
+                                <div
+                                    class="relative bg-white border border-[#EDEDED] rounded-3xl p-6 md:p-8 flex items-center overflow-hidden shadow-sm hover:shadow-xl hover:shadow-[#1F3D5A]/5 transition-all duration-300 group-hover:border-[#1F3D5A]/20">
+                                    <div class="relative z-10 flex-1 pr-6 md:pr-10">
+                                        <h4 class="text-lg md:text-xl font-extrabold text-brand-dark mb-2">Scope
+                                            Document</h4>
+                                        <p class="text-sm md:text-base text-[#4A4A4A] leading-relaxed">A detailed scope
+                                            specification document is created based on project requirements, detailing
+                                            key deliverables, methodologies, along with detailed mind maps, activity
+                                            diagrams, user role definitions, and a breakdown of functional and technical
+                                            requirements.</p>
+                                    </div>
+                                    <div
+                                        class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-7xl md:text-8xl font-black text-[#F4F4F4] select-none pointer-events-none z-0 tracking-tighter transition-all duration-500 group-hover:text-[#FAFAFA] group-hover:-translate-x-2">
+                                        4</div>
+                                </div>
+                            </div>
+
+                            <!-- Step 5 -->
+                            <div class="relative pl-10 md:pl-12 group">
+                                <div
+                                    class="absolute left-[5px] top-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-white border-[3px] border-brand-base rounded-full z-20 group-hover:border-[#1F3D5A] group-hover:scale-[1.3] transition-all duration-300">
+                                </div>
+                                <div
+                                    class="relative bg-white border border-[#EDEDED] rounded-3xl p-6 md:p-8 flex items-center overflow-hidden shadow-sm hover:shadow-xl hover:shadow-[#1F3D5A]/5 transition-all duration-300 group-hover:border-[#1F3D5A]/20">
+                                    <div class="relative z-10 flex-1 pr-6 md:pr-10">
+                                        <h4 class="text-lg md:text-xl font-extrabold text-brand-dark mb-2">Iterative
+                                            Scope Refinement</h4>
+                                        <p class="text-sm md:text-base text-[#4A4A4A] leading-relaxed">The scope
+                                            document undergoes iterative refinements based on clients feedback to ensure
+                                            complete alignment with the client's expectations and vision.</p>
+                                    </div>
+                                    <div
+                                        class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-7xl md:text-8xl font-black text-[#F4F4F4] select-none pointer-events-none z-0 tracking-tighter transition-all duration-500 group-hover:text-[#FAFAFA] group-hover:-translate-x-2">
+                                        5</div>
+                                </div>
+                            </div>
+
+                            <!-- Step 6 -->
+                            <div class="relative pl-10 md:pl-12 group">
+                                <div
+                                    class="absolute left-[5px] top-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-white border-[3px] border-brand-base rounded-full z-20 group-hover:border-[#1F3D5A] group-hover:scale-[1.3] transition-all duration-300">
+                                </div>
+                                <div
+                                    class="relative bg-white border border-[#EDEDED] rounded-3xl p-6 md:p-8 flex items-center overflow-hidden shadow-sm hover:shadow-xl hover:shadow-[#1F3D5A]/5 transition-all duration-300 group-hover:border-[#1F3D5A]/20">
+                                    <div class="relative z-10 flex-1 pr-6 md:pr-10">
+                                        <h4 class="text-lg md:text-xl font-extrabold text-brand-dark mb-2">Project
+                                            Proposal</h4>
+                                        <p class="text-sm md:text-base text-[#4A4A4A] leading-relaxed">We present a
+                                            final formal project proposal outlining the specifications, costs,
+                                            timelines, key milestones and other deliverables of the project.</p>
+                                    </div>
+                                    <div
+                                        class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-7xl md:text-8xl font-black text-[#F4F4F4] select-none pointer-events-none z-0 tracking-tighter transition-all duration-500 group-hover:text-[#FAFAFA] group-hover:-translate-x-2">
+                                        6</div>
+                                </div>
+                            </div>
+
+                            <!-- Step 7 -->
+                            <div class="relative pl-10 md:pl-12 group">
+                                <div
+                                    class="absolute left-[5px] top-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-white border-[3px] border-brand-base rounded-full z-20 group-hover:border-[#1F3D5A] group-hover:scale-[1.3] transition-all duration-300">
+                                </div>
+                                <div
+                                    class="relative bg-white border border-[#EDEDED] rounded-3xl p-6 md:p-8 flex items-center overflow-hidden shadow-sm hover:shadow-xl hover:shadow-[#1F3D5A]/5 transition-all duration-300 group-hover:border-[#1F3D5A]/20">
+                                    <div class="relative z-10 flex-1 pr-6 md:pr-10">
+                                        <h4 class="text-lg md:text-xl font-extrabold text-brand-dark mb-2">Agreement &
+                                            Contract Signing</h4>
+                                        <p class="text-sm md:text-base text-[#4A4A4A] leading-relaxed">Once the proposal
+                                            is approved, the terms are finalized and the contract is executed to
+                                            formalize the engagement.</p>
+                                    </div>
+                                    <div
+                                        class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-7xl md:text-8xl font-black text-[#F4F4F4] select-none pointer-events-none z-0 tracking-tighter transition-all duration-500 group-hover:text-[#FAFAFA] group-hover:-translate-x-2">
+                                        7</div>
+                                </div>
+                            </div>
+
+                            <!-- Step 8 -->
+                            <div class="relative pl-10 md:pl-12 group">
+                                <div
+                                    class="absolute left-[5px] top-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-white border-[3px] border-brand-base rounded-full z-20 group-hover:border-[#1F3D5A] group-hover:scale-[1.3] transition-all duration-300">
+                                </div>
+                                <div
+                                    class="relative bg-white border border-[#EDEDED] rounded-3xl p-6 md:p-8 flex items-center overflow-hidden shadow-sm hover:shadow-xl hover:shadow-[#1F3D5A]/5 transition-all duration-300 group-hover:border-[#1F3D5A]/20">
+                                    <div class="relative z-10 flex-1 pr-6 md:pr-10">
+                                        <h4 class="text-lg md:text-xl font-extrabold text-brand-dark mb-2">Project
+                                            Onboarding</h4>
+                                        <p class="text-sm md:text-base text-[#4A4A4A] leading-relaxed">The project gets
+                                            initiated with a clearly defined roadmap and a technical project manager who
+                                            oversees the execution process.</p>
+                                    </div>
+                                    <div
+                                        class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-7xl md:text-8xl font-black text-[#F4F4F4] select-none pointer-events-none z-0 tracking-tighter transition-all duration-500 group-hover:text-[#FAFAFA] group-hover:-translate-x-2">
+                                        8</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Lead Capture Section -->
+    <section id="contact" class="relative py-16 bg-brand-dark overflow-hidden">
+        <!-- Enhanced Premium Background Glows matching Hero -->
+        <div
+            class="absolute inset-0 bg-gradient-to-br from-[#1F3D5A] via-[#2F6F73]/20 to-[#1F3D5A] z-0 pointer-events-none">
+        </div>
+        <div
+            class="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-[#7FB8B4]/20 rounded-full blur-[100px] pointer-events-none">
+        </div>
+        <div
+            class="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[#E5B93C]/10 rounded-full blur-[120px] pointer-events-none">
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-10">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+
+                <!-- Left Column -->
+                <div class="space-y-8 pr-0 lg:pr-10 text-left">
+                    <!-- Header Area -->
+                    <div>
+                        <p class="text-[#E5B93C] font-bold tracking-[0.2em] uppercase text-xs sm:text-sm mb-3">
+                            How it works
+                        </p>
+                        <h2
+                            class="text-3xl md:text-5xl font-extrabold text-white leading-tight mb-6 tracking-tight uppercase">
+                            Get an IT solutions quote
+                        </h2>
+                        <p class="text-white/70 leading-relaxed text-lg max-w-lg">
+                            Please contact our team or complete the form. A representative will reach out shortly.
+                        </p>
+                    </div>
+
+                    <!-- Contact Cards (Modern Grid) -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <!-- Card 1 -->
+                        <a href="mailto:anand@acedigital.io"
+                            class="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group">
+                            <div
+                                class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white group-hover:scale-110 group-hover:bg-[#E5B93C] group-hover:text-[#1F3D5A] transition-all">
+                                <svg class="w-5 h-5 fill-current transform -ml-1" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-white/50 text-xs font-bold uppercase tracking-wider mb-1">Write to us</p>
+                                <p
+                                    class="text-white font-semibold text-sm group-hover:text-[#E5B93C] transition-colors">
+                                    anand@acedigital.io
+                                </p>
+                            </div>
+                        </a>
+
+                        <!-- Card 2 -->
+                        <a href="tel:+919978433805"
+                            class="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors group">
+                            <div
+                                class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white group-hover:scale-110 group-hover:bg-[#E5B93C] group-hover:text-[#1F3D5A] transition-all">
+                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-white/50 text-xs font-bold uppercase tracking-wider mb-1">Let's Talk</p>
+                                <p
+                                    class="text-white font-semibold text-sm group-hover:text-[#E5B93C] transition-colors">
+                                    +91 99784-33805
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Workflow Timeline -->
+                    <div class="pt-2">
+                        <h3 class="text-2xl font-bold text-white mb-6">What happens next?</h3>
+
+                        <ul class="space-y-8 relative">
+                            <!-- connecting line -->
+                            <div class="absolute left-[1.15rem] top-3 bottom-8 w-[2px] bg-white/10 z-0 hidden sm:block">
+                            </div>
+
+                            <li class="relative z-10 flex gap-6 mt-0 items-start">
+                                <div
+                                    class="flex-shrink-0 w-10 h-10 rounded-full bg-[#1F3D5A] border-2 border-white/20 flex items-center justify-center font-bold text-white shadow-[0_0_0_4px_rgba(31,61,90,1)] z-10">
+                                    1
+                                </div>
+                                <div class="pt-2">
+                                    <p class="text-white/90 text-lg font-medium leading-snug">We schedule a call at your
+                                        convenience</p>
+                                </div>
+                            </li>
+                            <li class="relative z-10 flex gap-6 items-start">
+                                <div
+                                    class="flex-shrink-0 w-10 h-10 rounded-full bg-[#1F3D5A] border-2 border-white/20 flex items-center justify-center font-bold text-white shadow-[0_0_0_4px_rgba(31,61,90,1)] z-10">
+                                    2
+                                </div>
+                                <div class="pt-2">
+                                    <p class="text-white/90 text-lg font-medium leading-snug">We do a discovery and
+                                        consulting meeting</p>
+                                </div>
+                            </li>
+                            <li class="relative z-10 flex gap-6 items-start">
+                                <div
+                                    class="flex-shrink-0 w-10 h-10 rounded-full bg-[#E5B93C] flex items-center justify-center font-bold text-[#1F3D5A] shadow-[0_0_0_4px_rgba(31,61,90,1)] z-10 border-2 border-[#E5B93C]">
+                                    3
+                                </div>
+                                <div class="pt-2">
+                                    <p class="text-white font-bold text-lg leading-snug">We prepare a proposal</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Right Column (Form Box) -->
+                <div class="relative">
+                    <div class="bg-[#F3F4F6] rounded-[3rem] p-6 lg:p-10 border border-white">
+                        <div class="mb-8">
+                            <h2 class="text-4xl md:text-5xl font-extrabold text-[#1F3D5A] mb-2 tracking-tight">Let's
+                                Talk</h2>
+                            <p class="text-sm font-medium text-[#4A4A4A] opacity-80">Bring Your Vision to Life with
+                                Cutting-Edge Tech.</p>
+                        </div>
+
+                        <form class="space-y-6">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6">
+                                <div class="relative group">
+                                    <label class="block text-[11px] font-bold text-[#4A4A4A] mb-2 px-1">Full Name
+                                        *</label>
+                                    <input type="text" required placeholder="e.g., John Doe*"
+                                        class="w-full bg-transparent border-b border-[#D1D5DB] py-3 px-1 text-sm outline-none focus:border-brand-base transition-colors placeholder:text-neutral-400">
+                                </div>
+
+                                <div class="relative group">
+                                    <label
+                                        class="block text-[11px] font-bold text-[#4A4A4A] mb-2 px-1">Organization</label>
+                                    <input type="text" placeholder="Company Name*"
+                                        class="w-full bg-transparent border-b border-[#D1D5DB] py-3 px-1 text-sm outline-none focus:border-brand-base transition-colors placeholder:text-neutral-400">
+                                </div>
+
+                                <div class="relative group">
+                                    <label class="block text-[11px] font-bold text-[#4A4A4A] mb-2 px-1">Email address
+                                        *</label>
+                                    <input type="email" required placeholder="name@company.com*"
+                                        class="w-full bg-transparent border-b border-[#D1D5DB] py-3 px-1 text-sm outline-none focus:border-brand-base transition-colors placeholder:text-neutral-400">
+                                </div>
+
+                                <div class="relative group">
+                                    <label class="block text-[11px] font-bold text-[#4A4A4A] mb-2 px-1">Phone number
+                                        *</label>
+                                    <input type="tel" required placeholder="Full Number (incl. prefix)*"
+                                        class="w-full bg-transparent border-b border-[#D1D5DB] py-3 px-1 text-sm outline-none focus:border-brand-base transition-colors placeholder:text-neutral-400">
+                                </div>
+
+                                <div class="relative group">
+                                    <label class="block text-[11px] font-bold text-[#4A4A4A] mb-2 px-1">Website</label>
+                                    <input type="url" placeholder="www.website.com*"
+                                        class="w-full bg-transparent border-b border-[#D1D5DB] py-3 px-1 text-sm outline-none focus:border-brand-base transition-colors placeholder:text-neutral-400">
+                                </div>
+
+                                <div class="relative group">
+                                    <label class="block text-[11px] font-bold text-[#4A4A4A] mb-2 px-1">What is your
+                                        inquiry about? *</label>
+                                    <input type="text" required placeholder="Search Service"
+                                        class="w-full bg-transparent border-b border-[#D1D5DB] py-3 px-1 text-sm outline-none focus:border-brand-base transition-colors placeholder:text-neutral-400">
+                                </div>
+                            </div>
+
+                            <div class="relative group">
+                                <label class="block text-[11px] font-bold text-[#4A4A4A] mb-2 px-1">How we can help you?
+                                    *</label>
+                                <textarea rows="2" required placeholder="Let us know what you need.*"
+                                    class="w-full bg-transparent border-b border-[#D1D5DB] py-3 px-1 text-sm outline-none focus:border-brand-base transition-colors placeholder:text-neutral-400 resize-none"></textarea>
+                            </div>
+
+                            <div class="flex items-start gap-3 py-2">
+                                <input type="checkbox" id="privacy-policy" required
+                                    class="mt-1 w-4 h-4 rounded border-[#D1D5DB] text-brand-base focus:ring-brand-base bg-transparent cursor-pointer">
+                                <label for="privacy-policy"
+                                    class="text-[13px] text-[#4A4A4A] leading-relaxed cursor-pointer font-medium">
+                                    I have read the <a href="#"
+                                        class="text-brand-base hover:underline font-bold">privacy policy</a> and
+                                    understand how you use and protect the information that we provide to you.
+                                </label>
+                            </div>
+
+                            <div class="pt-2 flex justify-end">
+                                <button type="submit"
+                                    class="w-full sm:w-auto px-12 py-4 bg-brand-dark text-white font-bold rounded-2xl hover:bg-brand-base transition-all shadow-xl shadow-brand-dark/20 uppercase tracking-widest text-xs">
+                                    Hear from an expert
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="pt-20 bg-[#EAF0F2] border-t border-[#EDEDED]">
+        <div class="max-w-7xl mx-auto px-6 md:px-10 pb-16">
+            <div class="flex flex-col lg:flex-row gap-16 mb-12">
+
+                <!-- Left Column -->
+                <div class="lg:w-1/4 space-y-8">
+                    <div>
+                        <img src="assets/logo.png" alt="Kritox Digital Logo" class="h-18 w-auto mb-3">
+                        <p class="text-xs font-bold text-[#2F6F73]">Turning your vision into reality</p>
+                    </div>
+
+                    <p class="text-[13px] text-[#4A4A4A] leading-relaxed">
+                        Contact us to work with a results-driven digital marketing agency
+                    </p>
+
+                    <div class="flex items-center gap-4">
+                        <h4 class="font-bold text-[#1F3D5A] text-sm">Follow us:</h4>
+                        <div class="flex gap-4">
+                            <a href="#" class="text-[#1F3D5A] hover:text-[#2F6F73] transition-colors"><i
+                                    data-lucide="facebook" class="w-4 h-4"></i></a>
+                            <a href="#" class="text-[#1F3D5A] hover:text-[#2F6F73] transition-colors"><i
+                                    data-lucide="twitter" class="w-4 h-4"></i></a>
+                            <a href="#" class="text-[#1F3D5A] hover:text-[#2F6F73] transition-colors"><i
+                                    data-lucide="instagram" class="w-4 h-4"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Drop us a Line -->
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-[#1F3D5A] text-sm">Drop us a Line</h4>
+                        <div class="space-y-2 text-[13px]">
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="mail" class="w-4 h-4 text-[#2F6F73]"></i>
+                                <span class="font-bold text-[#1F3D5A]">HR:</span>
+                                <a href="mailto:info@acedigital.io"
+                                    class="text-[#4A4A4A] hover:text-[#2F6F73] transition-colors">info@acedigital.io</a>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="mail" class="w-4 h-4 text-[#2F6F73]"></i>
+                                <span class="font-bold text-[#1F3D5A]">Sales:</span>
+                                <a href="mailto:sales.acedigital@gmail.com"
+                                    class="text-[#4A4A4A] hover:text-[#2F6F73] transition-colors">sales.acedigital@gmail.com</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Let's Talk -->
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-[#1F3D5A] text-sm">Let's Talk</h4>
+                        <div class="space-y-2 text-[13px]">
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="phone" class="w-4 h-4 text-[#2F6F73]"></i>
+                                <span class="font-bold text-[#1F3D5A]">HR:</span>
+                                <a href="tel:+919978843805"
+                                    class="text-[#4A4A4A] hover:text-[#2F6F73] transition-colors">+91 99788 43805</a>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="phone" class="w-4 h-4 text-[#2F6F73]"></i>
+                                <span class="font-bold text-[#1F3D5A]">Sales:</span>
+                                <a href="tel:+918866081327"
+                                    class="text-[#4A4A4A] hover:text-[#2F6F73] transition-colors">+91 886-608-1327</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column (Links Groups) -->
+                <div class="lg:w-3/4 flex flex-col gap-8">
+
+                    <!-- Group 1 -->
+                    <div class="border-b border-[#D5E0E2] pb-8">
+                        <h4 class="font-bold text-[#1F3D5A] text-base mb-5">Software Engineering</h4>
+                        <div class="grid md:grid-cols-3 gap-y-3 gap-x-6">
+                            <ul class="space-y-3 text-[13px] text-[#4A4A4A]">
+                                <li><a href="#"
+                                        class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Software
+                                        Development Services</a></li>
+                                <li><a href="#"
+                                        class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">SaaS
+                                        Development</a></li>
+                                <li><a href="#"
+                                        class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Low
+                                        Code No Code Development</a></li>
+                            </ul>
+                            <ul class="space-y-3 text-[13px] text-[#4A4A4A]">
+                                <li><a href="#"
+                                        class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Custom
+                                        Software Development</a></li>
+                                <li><a href="#"
+                                        class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Software
+                                        Integration Services</a></li>
+                                <li><a href="#"
+                                        class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Digital
+                                        Transformation</a></li>
+                            </ul>
+                            <ul class="space-y-3 text-[13px] text-[#4A4A4A]">
+                                <li><a href="#"
+                                        class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Software
+                                        Product Development</a></li>
+                                <li><a href="#"
+                                        class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">MVP
+                                        Development</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Group 2 -->
+                    <div class="border-b border-[#D5E0E2] pb-8">
+                        <h4 class="font-bold text-[#1F3D5A] text-base mb-5">Application Development</h4>
+                        <div class="grid md:grid-cols-3 gap-y-3 gap-x-6">
+                            <ul class="space-y-3 text-[13px] text-[#4A4A4A]">
+                                <li><a href="#"
+                                        class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Web
+                                        Development</a></li>
+                                <li><a href="#"
+                                        class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Mobile
+                                        App Development</a></li>
+                                <li><a href="#"
+                                        class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">CTO
+                                        as a Service</a></li>
+                            </ul>
+                            <ul class="space-y-3 text-[13px] text-[#4A4A4A]">
+                                <li><a href="#"
+                                        class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Web
+                                        Application Development</a></li>
+                                <li><a href="#"
+                                        class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">eCommerce
+                                        Development</a></li>
+                                <li><a href="#"
+                                        class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">PWA
+                                        Development</a></li>
+                            </ul>
+                            <ul class="space-y-3 text-[13px] text-[#4A4A4A]">
+                                <li><a href="#"
+                                        class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Application
+                                        Modernization</a></li>
+                                <li><a href="#"
+                                        class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Dedicated
+                                        Development Team</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Group 3 -->
+                    <div class="border-b border-[#D5E0E2] pb-8">
+                        <h4 class="font-bold text-[#1F3D5A] text-base mb-5">Generative AI Solutions</h4>
+                        <div class="grid md:grid-cols-3 gap-y-3 gap-x-6">
+                            <ul class="space-y-3 text-[13px] text-[#4A4A4A]">
+                                <li><a href="#"
+                                        class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Generative
+                                        AI Development</a></li>
+                                <li><a href="#"
+                                        class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">AI
+                                        Copilot Development</a></li>
+                                <li><a href="#"
+                                        class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Hire
+                                        Generative AI Engineer</a></li>
+                            </ul>
+                            <ul class="space-y-3 text-[13px] text-[#4A4A4A]">
+                                <li><a href="#"
+                                        class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Generative
+                                        AI Integration</a></li>
+                                <li><a href="#"
+                                        class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">AI
+                                        Agent Development</a></li>
+                                <li><a href="#"
+                                        class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Adaptive
+                                        AI Development</a></li>
+                            </ul>
+                            <ul class="space-y-3 text-[13px] text-[#4A4A4A]">
+                                <li><a href="#"
+                                        class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Generative
+                                        AI Consulting</a></li>
+                                <li><a href="#"
+                                        class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Generative
+                                        AI on AWS</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Group 4 -->
+                    <div class="pb-2">
+                        <h4 class="font-bold text-[#1F3D5A] text-base mb-5">About Us</h4>
+                        <div class="grid md:grid-cols-3 gap-y-3 gap-x-6">
+                            <ul class="space-y-3 text-[13px] text-[#4A4A4A]">
+                                <li><a href="#"
+                                        class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Why
+                                        Ace</a></li>
+                                <li><a href="#"
+                                        class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Blog</a>
+                                </li>
+                                <li><a href="#"
+                                        class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Sitemap</a>
+                                </li>
+                            </ul>
+                            <ul class="space-y-3 text-[13px] text-[#4A4A4A]">
+                                <li><a href="#"
+                                        class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Careers</a>
+                                </li>
+                                <li><a href="#"
+                                        class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Engagement
+                                        Model</a></li>
+                            </ul>
+                            <ul class="space-y-3 text-[13px] text-[#4A4A4A]">
+                                <li><a href="#"
+                                        class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Testimonials</a>
+                                </li>
+                                <li><a href="#"
+                                        class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Q&A</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Certifications Banner -->
+            <div class="bg-[#1F3D5A] rounded-2xl p-8 mt-4 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-xl">
+                <div class="text-center lg:text-left shrink-0">
+                    <h4 class="text-white font-bold text-lg mb-1.5">Our Certifications</h4>
+                    <p class="text-white/60 text-[13px]">Recognized globally for excellence and security.</p>
+                </div>
+                <div class="flex flex-wrap justify-center lg:justify-end items-center gap-6 md:gap-10">
+                    <img src="assets/cer/expert.png" alt="Microsoft Certified Expert" class="h-14 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity">
+                    <img src="assets/cer/ISO-27001-Information-Security-1.png" alt="ISO 27001 Information Security" class="h-14 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity">
+                    <img src="assets/cer/iso.png" alt="ISO" class="h-14 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity">
+                    <img src="assets/cer/microsoft-partner.png" alt="Microsoft Partner" class="h-14 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity">
+                    <img src="assets/cer/associate.png" alt="Microsoft Certified Associate" class="h-14 w-auto object-contain opacity-90 hover:opacity-100 transition-opacity">
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="bg-[#1F3D5A] py-6">
+            <div
+                class="max-w-7xl mx-auto px-6 md:px-10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-medium text-white/70">
+                <p>Copyright © Kritox Digital 2026</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Lucide icons init
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+
+        // Navbar Scroll Effect
+        const nav = document.getElementById('main-nav');
+        if (nav) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    nav.classList.add('nav-scrolled');
+                } else {
+                    nav.classList.remove('nav-scrolled');
+                }
+            });
+        }
+
+        // --- Carousel pause registry (keyed by element id) ---
+        const _carouselPause = {};
+
+        // --- Global Scroll Helper for Arrows ---
+        function scrollCarousel(id, direction) {
+            const carousel = document.getElementById(id);
+            if (!carousel) return;
+
+            // Pause auto-scroll for 1.5 s so arrow scroll can complete
+            _carouselPause[id] = true;
+            clearTimeout(carousel._arrowTimer);
+            carousel._arrowTimer = setTimeout(() => { _carouselPause[id] = false; }, 1500);
+
+            const cardWidth = carousel.querySelector(':scope > div')?.offsetWidth || carousel.clientWidth * 0.30;
+            const gap = 24; // gap-6 = 1.5rem = 24px
+            carousel.scrollBy({ left: direction * (cardWidth + gap), behavior: 'smooth' });
+        }
+
+        /** Seamless infinite loop: duplicate track is exactly half of scrollWidth */
+        function normalizeSeamlessScroll(carousel) {
+            if (!carousel.classList.contains('carousel-seamless')) return;
+            const total = carousel.scrollWidth;
+            if (total < 2) return;
+            const loopWidth = total / 2;
+            if (loopWidth < 1) return;
+            if (carousel.scrollLeft >= loopWidth) {
+                carousel.scrollLeft -= loopWidth;
+            }
+        }
+
+        // Industry carousel: prevent image drag stealing the gesture
+        document.querySelectorAll('#industry-carousel img').forEach((img) => {
+            img.setAttribute('draggable', 'false');
+            img.classList.add('select-none');
+        });
+
+        // Arrow buttons (avoid inline onclick + Lucide dependency)
+        const industryPrev = document.getElementById('industry-carousel-prev');
+        const industryNext = document.getElementById('industry-carousel-next');
+        if (industryPrev) industryPrev.addEventListener('click', () => scrollCarousel('industry-carousel', -1));
+        if (industryNext) industryNext.addEventListener('click', () => scrollCarousel('industry-carousel', 1));
+
+        // --- Carousel Logic (Pointer drag + Auto) ---
+        document.querySelectorAll('.carousel-container').forEach((carousel) => {
+            const id = carousel.id;
+            if (id) _carouselPause[id] = false;
+
+            let isPointerDown = false;
+            let dragStartX = 0;
+            let dragStartScrollLeft = 0;
+            let autoScrollSpeed = 0.65;
+            let isHovered = false;
+            const hoverPausesAutoplay = !carousel.classList.contains('carousel-no-hover-pause');
+
+            if (carousel.classList.contains('carousel-seamless')) {
+                carousel.addEventListener('scroll', () => normalizeSeamlessScroll(carousel));
+            }
+
+            function endDrag(e) {
+                if (!isPointerDown) return;
+                isPointerDown = false;
+                carousel.classList.remove('active', 'is-dragging');
+                try {
+                    if (e && e.pointerId != null) carousel.releasePointerCapture(e.pointerId);
+                } catch (_) { /* ignore */ }
+            }
+
+            carousel.addEventListener('pointerdown', (e) => {
+                if (e.pointerType === 'mouse' && e.button !== 0) return;
+                isPointerDown = true;
+                dragStartX = e.clientX;
+                dragStartScrollLeft = carousel.scrollLeft;
+                carousel.classList.add('active', 'is-dragging');
+                try {
+                    carousel.setPointerCapture(e.pointerId);
+                } catch (_) { /* ignore */ }
+            });
+
+            carousel.addEventListener('pointermove', (e) => {
+                if (!isPointerDown) return;
+                e.preventDefault();
+                const dx = e.clientX - dragStartX;
+                carousel.scrollLeft = dragStartScrollLeft - dx;
+            }, { passive: false });
+
+            carousel.addEventListener('pointerup', endDrag);
+            carousel.addEventListener('pointercancel', endDrag);
+            carousel.addEventListener('lostpointercapture', () => {
+                isPointerDown = false;
+                carousel.classList.remove('active', 'is-dragging');
+            });
+
+            if (hoverPausesAutoplay) {
+                carousel.addEventListener('mouseenter', () => { isHovered = true; });
+                carousel.addEventListener('mouseleave', () => {
+                    isHovered = false;
+                });
+            }
+
+            // Infinite auto-scroll loop via rAF
+            function scrollLoop() {
+                const paused = id ? _carouselPause[id] : false;
+                const hoverBlocks = hoverPausesAutoplay && isHovered;
+                if (!isPointerDown && !hoverBlocks && !paused) {
+                    carousel.scrollLeft += autoScrollSpeed;
+                    if (carousel.classList.contains('carousel-seamless')) {
+                        normalizeSeamlessScroll(carousel);
+                    } else {
+                        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+                        if (carousel.scrollLeft >= maxScroll - 2) {
+                            carousel.scrollLeft = 2;
+                        }
+                    }
+                }
+                requestAnimationFrame(scrollLoop);
+            }
+            requestAnimationFrame(scrollLoop);
+        });
+    </script>
+    <script src="js/main.js" defer></script>
+</body>
+
+</html>

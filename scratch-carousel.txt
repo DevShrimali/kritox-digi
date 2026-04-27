@@ -1,0 +1,325 @@
+                <!-- Track A (visible loop) -->
+                <!-- Item 1 -->
+                <div class="snap-start shrink-0 w-[85%] sm:w-[50%] md:w-[42%] lg:w-[32%] xl:w-[28%] min-h-[460px] bg-[#F4F4F5] rounded-[1rem] border border-[#EDEDED] shadow-[0_8px_28px_rgba(31,61,90,0.08)] overflow-hidden group flex flex-col cursor-pointer hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
+                    <div class="relative h-[220px] shrink-0 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/1371360/pexels-photo-1371360.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Tours & Travels" draggable="false" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 select-none">
+                        <div class="absolute top-5 left-5 bg-white text-[#1F3D5A] text-[13px] font-bold px-4 py-1.5 rounded-full shadow-sm">
+                            Industry
+                        </div>
+                    </div>
+                    <div class="p-6 md:p-8 flex flex-col flex-1 bg-[#F4F4F5] relative">
+                        <h4 class="text-sm font-bold text-[#1F3D5A] mb-3">ACE Digital</h4>
+                        <h3 class="text-[26px] md:text-3xl font-black text-[#1F3D5A] leading-tight mb-8">
+                            Tours & Travels
+                        </h3>
+                        <div class="space-y-2 mb-8 flex-1">
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">CUSTOM BOOKING SYSTEMS</p>
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">ITINERARY FLOWS</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto pt-4 relative">
+                            <span class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW DETAILS</span>
+                            <div class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
+                                <div class="w-10 sm:w-16 h-[2px] bg-[#1F3D5A] -mr-1"></div>
+                                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="snap-start shrink-0 w-[85%] sm:w-[50%] md:w-[42%] lg:w-[32%] xl:w-[28%] min-h-[460px] bg-[#F4F4F5] rounded-[1rem] border border-[#EDEDED] shadow-[0_8px_28px_rgba(31,61,90,0.08)] overflow-hidden group flex flex-col cursor-pointer hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
+                    <div class="relative h-[220px] shrink-0 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Healthcare" draggable="false" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 select-none">
+                        <div class="absolute top-5 left-5 bg-white text-[#1F3D5A] text-[13px] font-bold px-4 py-1.5 rounded-full shadow-sm">
+                            Industry
+                        </div>
+                    </div>
+                    <div class="p-6 md:p-8 flex flex-col flex-1 bg-[#F4F4F5] relative">
+                        <h4 class="text-sm font-bold text-[#1F3D5A] mb-3">ACE Digital</h4>
+                        <h3 class="text-[26px] md:text-3xl font-black text-[#1F3D5A] leading-tight mb-8">
+                            Healthcare
+                        </h3>
+                        <div class="space-y-2 mb-8 flex-1">
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">SECURE PATIENT PORTALS</p>
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">TELEMEDICINE EXPERIENCES</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto pt-4 relative">
+                            <span class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW DETAILS</span>
+                            <div class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
+                                <div class="w-10 sm:w-16 h-[2px] bg-[#1F3D5A] -mr-1"></div>
+                                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="snap-start shrink-0 w-[85%] sm:w-[50%] md:w-[42%] lg:w-[32%] xl:w-[28%] min-h-[460px] bg-[#F4F4F5] rounded-[1rem] border border-[#EDEDED] shadow-[0_8px_28px_rgba(31,61,90,0.08)] overflow-hidden group flex flex-col cursor-pointer hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
+                    <div class="relative h-[220px] shrink-0 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/256490/pexels-photo-256490.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Education & LMS" draggable="false" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 select-none">
+                        <div class="absolute top-5 left-5 bg-white text-[#1F3D5A] text-[13px] font-bold px-4 py-1.5 rounded-full shadow-sm">
+                            Industry
+                        </div>
+                    </div>
+                    <div class="p-6 md:p-8 flex flex-col flex-1 bg-[#F4F4F5] relative">
+                        <h4 class="text-sm font-bold text-[#1F3D5A] mb-3">ACE Digital</h4>
+                        <h3 class="text-[26px] md:text-3xl font-black text-[#1F3D5A] leading-tight mb-8">
+                            Education & LMS
+                        </h3>
+                        <div class="space-y-2 mb-8 flex-1">
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">INTERACTIVE PLATFORMS</p>
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">EDTECH SOLUTIONS</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto pt-4 relative">
+                            <span class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW DETAILS</span>
+                            <div class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
+                                <div class="w-10 sm:w-16 h-[2px] bg-[#1F3D5A] -mr-1"></div>
+                                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="snap-start shrink-0 w-[85%] sm:w-[50%] md:w-[42%] lg:w-[32%] xl:w-[28%] min-h-[460px] bg-[#F4F4F5] rounded-[1rem] border border-[#EDEDED] shadow-[0_8px_28px_rgba(31,61,90,0.08)] overflow-hidden group flex flex-col cursor-pointer hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
+                    <div class="relative h-[220px] shrink-0 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Retail & Ecommerce" draggable="false" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 select-none">
+                        <div class="absolute top-5 left-5 bg-white text-[#1F3D5A] text-[13px] font-bold px-4 py-1.5 rounded-full shadow-sm">
+                            Industry
+                        </div>
+                    </div>
+                    <div class="p-6 md:p-8 flex flex-col flex-1 bg-[#F4F4F5] relative">
+                        <h4 class="text-sm font-bold text-[#1F3D5A] mb-3">ACE Digital</h4>
+                        <h3 class="text-[26px] md:text-3xl font-black text-[#1F3D5A] leading-tight mb-8">
+                            Retail & Ecommerce
+                        </h3>
+                        <div class="space-y-2 mb-8 flex-1">
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">OMNICHANNEL STOREFRONTS</p>
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">OPTIMIZED CHECKOUTS</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto pt-4 relative">
+                            <span class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW DETAILS</span>
+                            <div class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
+                                <div class="w-10 sm:w-16 h-[2px] bg-[#1F3D5A] -mr-1"></div>
+                                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="snap-start shrink-0 w-[85%] sm:w-[50%] md:w-[42%] lg:w-[32%] xl:w-[28%] min-h-[460px] bg-[#F4F4F5] rounded-[1rem] border border-[#EDEDED] shadow-[0_8px_28px_rgba(31,61,90,0.08)] overflow-hidden group flex flex-col cursor-pointer hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
+                    <div class="relative h-[220px] shrink-0 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/280229/pexels-photo-280229.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Real Estate" draggable="false" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 select-none">
+                        <div class="absolute top-5 left-5 bg-white text-[#1F3D5A] text-[13px] font-bold px-4 py-1.5 rounded-full shadow-sm">
+                            Industry
+                        </div>
+                    </div>
+                    <div class="p-6 md:p-8 flex flex-col flex-1 bg-[#F4F4F5] relative">
+                        <h4 class="text-sm font-bold text-[#1F3D5A] mb-3">ACE Digital</h4>
+                        <h3 class="text-[26px] md:text-3xl font-black text-[#1F3D5A] leading-tight mb-8">
+                            Real Estate
+                        </h3>
+                        <div class="space-y-2 mb-8 flex-1">
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">PROPERTY PLATFORMS</p>
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">BROKER WORKFLOWS</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto pt-4 relative">
+                            <span class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW DETAILS</span>
+                            <div class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
+                                <div class="w-10 sm:w-16 h-[2px] bg-[#1F3D5A] -mr-1"></div>
+                                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="snap-start shrink-0 w-[85%] sm:w-[50%] md:w-[42%] lg:w-[32%] xl:w-[28%] min-h-[460px] bg-[#F4F4F5] rounded-[1rem] border border-[#EDEDED] shadow-[0_8px_28px_rgba(31,61,90,0.08)] overflow-hidden group flex flex-col cursor-pointer hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
+                    <div class="relative h-[220px] shrink-0 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Restaurant & Ordering" draggable="false" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 select-none">
+                        <div class="absolute top-5 left-5 bg-white text-[#1F3D5A] text-[13px] font-bold px-4 py-1.5 rounded-full shadow-sm">
+                            Industry
+                        </div>
+                    </div>
+                    <div class="p-6 md:p-8 flex flex-col flex-1 bg-[#F4F4F5] relative">
+                        <h4 class="text-sm font-bold text-[#1F3D5A] mb-3">ACE Digital</h4>
+                        <h3 class="text-[26px] md:text-3xl font-black text-[#1F3D5A] leading-tight mb-8">
+                            Restaurant & Ordering
+                        </h3>
+                        <div class="space-y-2 mb-8 flex-1">
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">CUSTOM DELIVERY APPS</p>
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">POS INTEGRATIONS</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto pt-4 relative">
+                            <span class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW DETAILS</span>
+                            <div class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
+                                <div class="w-10 sm:w-16 h-[2px] bg-[#1F3D5A] -mr-1"></div>
+                                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Track B (duplicate for seamless infinite scroll; hidden from AT) -->
+                <!-- Item 1 -->
+                <div aria-hidden="true" class="snap-start shrink-0 w-[85%] sm:w-[50%] md:w-[42%] lg:w-[32%] xl:w-[28%] min-h-[460px] bg-[#F4F4F5] rounded-[1rem] border border-[#EDEDED] shadow-[0_8px_28px_rgba(31,61,90,0.08)] overflow-hidden group flex flex-col cursor-pointer hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
+                    <div class="relative h-[220px] shrink-0 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/1371360/pexels-photo-1371360.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Tours & Travels" draggable="false" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 select-none">
+                        <div class="absolute top-5 left-5 bg-white text-[#1F3D5A] text-[13px] font-bold px-4 py-1.5 rounded-full shadow-sm">
+                            Industry
+                        </div>
+                    </div>
+                    <div class="p-6 md:p-8 flex flex-col flex-1 bg-[#F4F4F5] relative">
+                        <h4 class="text-sm font-bold text-[#1F3D5A] mb-3">ACE Digital</h4>
+                        <h3 class="text-[26px] md:text-3xl font-black text-[#1F3D5A] leading-tight mb-8">
+                            Tours & Travels
+                        </h3>
+                        <div class="space-y-2 mb-8 flex-1">
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">CUSTOM BOOKING SYSTEMS</p>
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">ITINERARY FLOWS</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto pt-4 relative">
+                            <span class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW DETAILS</span>
+                            <div class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
+                                <div class="w-10 sm:w-16 h-[2px] bg-[#1F3D5A] -mr-1"></div>
+                                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div aria-hidden="true" class="snap-start shrink-0 w-[85%] sm:w-[50%] md:w-[42%] lg:w-[32%] xl:w-[28%] min-h-[460px] bg-[#F4F4F5] rounded-[1rem] border border-[#EDEDED] shadow-[0_8px_28px_rgba(31,61,90,0.08)] overflow-hidden group flex flex-col cursor-pointer hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
+                    <div class="relative h-[220px] shrink-0 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/40568/medical-appointment-doctor-healthcare-40568.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Healthcare" draggable="false" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 select-none">
+                        <div class="absolute top-5 left-5 bg-white text-[#1F3D5A] text-[13px] font-bold px-4 py-1.5 rounded-full shadow-sm">
+                            Industry
+                        </div>
+                    </div>
+                    <div class="p-6 md:p-8 flex flex-col flex-1 bg-[#F4F4F5] relative">
+                        <h4 class="text-sm font-bold text-[#1F3D5A] mb-3">ACE Digital</h4>
+                        <h3 class="text-[26px] md:text-3xl font-black text-[#1F3D5A] leading-tight mb-8">
+                            Healthcare
+                        </h3>
+                        <div class="space-y-2 mb-8 flex-1">
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">SECURE PATIENT PORTALS</p>
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">TELEMEDICINE EXPERIENCES</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto pt-4 relative">
+                            <span class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW DETAILS</span>
+                            <div class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
+                                <div class="w-10 sm:w-16 h-[2px] bg-[#1F3D5A] -mr-1"></div>
+                                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div aria-hidden="true" class="snap-start shrink-0 w-[85%] sm:w-[50%] md:w-[42%] lg:w-[32%] xl:w-[28%] min-h-[460px] bg-[#F4F4F5] rounded-[1rem] border border-[#EDEDED] shadow-[0_8px_28px_rgba(31,61,90,0.08)] overflow-hidden group flex flex-col cursor-pointer hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
+                    <div class="relative h-[220px] shrink-0 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/256490/pexels-photo-256490.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Education & LMS" draggable="false" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 select-none">
+                        <div class="absolute top-5 left-5 bg-white text-[#1F3D5A] text-[13px] font-bold px-4 py-1.5 rounded-full shadow-sm">
+                            Industry
+                        </div>
+                    </div>
+                    <div class="p-6 md:p-8 flex flex-col flex-1 bg-[#F4F4F5] relative">
+                        <h4 class="text-sm font-bold text-[#1F3D5A] mb-3">ACE Digital</h4>
+                        <h3 class="text-[26px] md:text-3xl font-black text-[#1F3D5A] leading-tight mb-8">
+                            Education & LMS
+                        </h3>
+                        <div class="space-y-2 mb-8 flex-1">
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">INTERACTIVE PLATFORMS</p>
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">EDTECH SOLUTIONS</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto pt-4 relative">
+                            <span class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW DETAILS</span>
+                            <div class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
+                                <div class="w-10 sm:w-16 h-[2px] bg-[#1F3D5A] -mr-1"></div>
+                                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div aria-hidden="true" class="snap-start shrink-0 w-[85%] sm:w-[50%] md:w-[42%] lg:w-[32%] xl:w-[28%] min-h-[460px] bg-[#F4F4F5] rounded-[1rem] border border-[#EDEDED] shadow-[0_8px_28px_rgba(31,61,90,0.08)] overflow-hidden group flex flex-col cursor-pointer hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
+                    <div class="relative h-[220px] shrink-0 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Retail & Ecommerce" draggable="false" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 select-none">
+                        <div class="absolute top-5 left-5 bg-white text-[#1F3D5A] text-[13px] font-bold px-4 py-1.5 rounded-full shadow-sm">
+                            Industry
+                        </div>
+                    </div>
+                    <div class="p-6 md:p-8 flex flex-col flex-1 bg-[#F4F4F5] relative">
+                        <h4 class="text-sm font-bold text-[#1F3D5A] mb-3">ACE Digital</h4>
+                        <h3 class="text-[26px] md:text-3xl font-black text-[#1F3D5A] leading-tight mb-8">
+                            Retail & Ecommerce
+                        </h3>
+                        <div class="space-y-2 mb-8 flex-1">
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">OMNICHANNEL STOREFRONTS</p>
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">OPTIMIZED CHECKOUTS</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto pt-4 relative">
+                            <span class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW DETAILS</span>
+                            <div class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
+                                <div class="w-10 sm:w-16 h-[2px] bg-[#1F3D5A] -mr-1"></div>
+                                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div aria-hidden="true" class="snap-start shrink-0 w-[85%] sm:w-[50%] md:w-[42%] lg:w-[32%] xl:w-[28%] min-h-[460px] bg-[#F4F4F5] rounded-[1rem] border border-[#EDEDED] shadow-[0_8px_28px_rgba(31,61,90,0.08)] overflow-hidden group flex flex-col cursor-pointer hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
+                    <div class="relative h-[220px] shrink-0 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/280229/pexels-photo-280229.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Real Estate" draggable="false" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 select-none">
+                        <div class="absolute top-5 left-5 bg-white text-[#1F3D5A] text-[13px] font-bold px-4 py-1.5 rounded-full shadow-sm">
+                            Industry
+                        </div>
+                    </div>
+                    <div class="p-6 md:p-8 flex flex-col flex-1 bg-[#F4F4F5] relative">
+                        <h4 class="text-sm font-bold text-[#1F3D5A] mb-3">ACE Digital</h4>
+                        <h3 class="text-[26px] md:text-3xl font-black text-[#1F3D5A] leading-tight mb-8">
+                            Real Estate
+                        </h3>
+                        <div class="space-y-2 mb-8 flex-1">
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">PROPERTY PLATFORMS</p>
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">BROKER WORKFLOWS</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto pt-4 relative">
+                            <span class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW DETAILS</span>
+                            <div class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
+                                <div class="w-10 sm:w-16 h-[2px] bg-[#1F3D5A] -mr-1"></div>
+                                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 6 -->
+                <div aria-hidden="true" class="snap-start shrink-0 w-[85%] sm:w-[50%] md:w-[42%] lg:w-[32%] xl:w-[28%] min-h-[460px] bg-[#F4F4F5] rounded-[1rem] border border-[#EDEDED] shadow-[0_8px_28px_rgba(31,61,90,0.08)] overflow-hidden group flex flex-col cursor-pointer hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
+                    <div class="relative h-[220px] shrink-0 overflow-hidden">
+                        <img src="https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Restaurant & Ordering" draggable="false" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 select-none">
+                        <div class="absolute top-5 left-5 bg-white text-[#1F3D5A] text-[13px] font-bold px-4 py-1.5 rounded-full shadow-sm">
+                            Industry
+                        </div>
+                    </div>
+                    <div class="p-6 md:p-8 flex flex-col flex-1 bg-[#F4F4F5] relative">
+                        <h4 class="text-sm font-bold text-[#1F3D5A] mb-3">ACE Digital</h4>
+                        <h3 class="text-[26px] md:text-3xl font-black text-[#1F3D5A] leading-tight mb-8">
+                            Restaurant & Ordering
+                        </h3>
+                        <div class="space-y-2 mb-8 flex-1">
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">CUSTOM DELIVERY APPS</p>
+                            <p class="text-[14px] font-extrabold text-[#1F3D5A] tracking-wider uppercase">POS INTEGRATIONS</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto pt-4 relative">
+                            <span class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW DETAILS</span>
+                            <div class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
+                                <div class="w-10 sm:w-16 h-[2px] bg-[#1F3D5A] -mr-1"></div>
+                                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
