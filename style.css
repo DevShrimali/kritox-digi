@@ -1,0 +1,175 @@
+/* ─── Kritox Digital Design System ─────────────────────── */
+:root {
+    --primary-dark: #1F3D5A;
+    --primary-base: #2F6F73;
+    --teal-light: #7FB8B4;
+    --accent-yellow: #E5B93C;
+    --neutral-black: #1A1A1A;
+    --neutral-dark: #4A4A4A;
+    --neutral-light: #EDEDED;
+    --white: #FFFFFF;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    scroll-behavior: smooth;
+    color: var(--neutral-dark);
+}
+
+/* ─── Utility helpers ───────────────────────────────────── */
+.brand-primary {
+    color: var(--primary-dark);
+}
+
+.brand-teal {
+    color: var(--primary-base);
+}
+
+.brand-accent {
+    color: var(--accent-yellow);
+}
+
+.bg-brand-primary {
+    background-color: var(--primary-dark);
+}
+
+.bg-brand-teal {
+    background-color: var(--primary-base);
+}
+
+.bg-brand-light {
+    background-color: var(--neutral-light);
+}
+
+.bg-brand-icn {
+    background-color: rgba(47, 111, 115, 0.08);
+}
+
+/* Legacy aliases so existing Tailwind JIT refs still work */
+.teal-primary {
+    color: var(--primary-base);
+}
+
+.bg-teal-primary {
+    background-color: var(--primary-base);
+}
+
+.bg-teal-light {
+    background-color: rgba(47, 111, 115, 0.08);
+}
+
+.selection-style::selection {
+    background-color: rgba(47, 111, 115, 0.12);
+    color: var(--primary-base);
+}
+
+/* ─── Mega Menu ─────────────────────────────────────────── */
+.mega-menu-panel {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
+}
+
+.nav-item:hover .mega-menu-panel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.nav-item-full {
+    position: static;
+}
+
+.mega-menu-full {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    border-radius: 0;
+}
+
+/* ─── Mobile menu ───────────────────────────────────────── */
+.mobile-menu {
+    transition: transform 0.3s ease-in-out;
+}
+
+/* ─── Scrolled nav ──────────────────────────────────────── */
+.nav-scrolled {
+    background-color: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(12px);
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--neutral-light);
+}
+
+/* ─── Nav link hover: subtle bg pill, no underline ───────── */
+.nav-link-item {
+    border-radius: 8px;
+    transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+.nav-link-item:hover {
+    background-color: rgba(31, 61, 90, 0.06);
+    color: var(--primary-dark);
+}
+
+/* ─── Carousel Helpers ───────────────────────────────────── */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    scroll-behavior: auto;
+}
+
+/* Precise Alignment for Bleed Carousels */
+.bleed-carousel-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .bleed-carousel-container {
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .bleed-carousel-container {
+        padding-left: 2.5rem;
+        padding-right: 0;
+    }
+}
+
+@media (min-width: 1280px) {
+    .bleed-carousel-container {
+        /* Aligns card left edge with max-w-7xl heading above */
+        padding-left: max(2.5rem, calc((100vw - 80rem) / 2 + 2.5rem));
+        padding-right: 0;
+    }
+}
+
+.carousel-arrow i {
+    stroke-linecap: square !important;
+    stroke-linejoin: miter !important;
+}
+
+.carousel-container.active {
+    cursor: grabbing;
+    cursor: -webkit-grabbing;
+}
+
+/* Smooth horizontal drag; snap fights continuous drag */
+.carousel-container {
+    touch-action: pan-x;
+    -webkit-overflow-scrolling: touch;
+}
+.carousel-container.is-dragging {
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+}

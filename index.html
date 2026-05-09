@@ -5,207 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kritox Digital | Responsive Website Design &amp; Development</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'brand-dark': '#1F3D5A',
-                        'brand-base': '#2F6F73',
-                        'brand-light': '#7FB8B4',
-                        'brand-accent': '#E5B93C',
-                        'neutral-black': '#1A1A1A',
-                        'neutral-dark': '#4A4A4A',
-                        'neutral-light': '#EDEDED',
-                    }
-                }
-            }
-        }
-    </script>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script src="js/tailwind-config.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
-    <style>
-        /* ─── Kritox Digital Design System ─────────────────────── */
-        :root {
-            --primary-dark: #1F3D5A;
-            --primary-base: #2F6F73;
-            --teal-light: #7FB8B4;
-            --accent-yellow: #E5B93C;
-            --neutral-black: #1A1A1A;
-            --neutral-dark: #4A4A4A;
-            --neutral-light: #EDEDED;
-            --white: #FFFFFF;
-        }
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            scroll-behavior: smooth;
-            color: var(--neutral-dark);
-        }
-
-        /* ─── Utility helpers ───────────────────────────────────── */
-        .brand-primary {
-            color: var(--primary-dark);
-        }
-
-        .brand-teal {
-            color: var(--primary-base);
-        }
-
-        .brand-accent {
-            color: var(--accent-yellow);
-        }
-
-        .bg-brand-primary {
-            background-color: var(--primary-dark);
-        }
-
-        .bg-brand-teal {
-            background-color: var(--primary-base);
-        }
-
-        .bg-brand-light {
-            background-color: var(--neutral-light);
-        }
-
-        .bg-brand-icn {
-            background-color: rgba(47, 111, 115, 0.08);
-        }
-
-        /* Legacy aliases so existing Tailwind JIT refs still work */
-        .teal-primary {
-            color: var(--primary-base);
-        }
-
-        .bg-teal-primary {
-            background-color: var(--primary-base);
-        }
-
-        .bg-teal-light {
-            background-color: rgba(47, 111, 115, 0.08);
-        }
-
-        .selection-style::selection {
-            background-color: rgba(47, 111, 115, 0.12);
-            color: var(--primary-base);
-        }
-
-        /* ─── Mega Menu ─────────────────────────────────────────── */
-        .mega-menu-panel {
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(8px);
-            transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
-        }
-
-        .nav-item:hover .mega-menu-panel {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .nav-item-full {
-            position: static;
-        }
-
-        .mega-menu-full {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            width: 100%;
-            border-radius: 0;
-        }
-
-        /* ─── Mobile menu ───────────────────────────────────────── */
-        .mobile-menu {
-            transition: transform 0.3s ease-in-out;
-        }
-
-        /* ─── Scrolled nav ──────────────────────────────────────── */
-        .nav-scrolled {
-            background-color: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(12px);
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--neutral-light);
-        }
-
-        /* ─── Nav link hover: subtle bg pill, no underline ───────── */
-        .nav-link-item {
-            border-radius: 8px;
-            transition: background-color 0.18s ease, color 0.18s ease;
-        }
-
-        .nav-link-item:hover {
-            background-color: rgba(31, 61, 90, 0.06);
-            color: var(--primary-dark);
-        }
-
-        /* ─── Carousel Helpers ───────────────────────────────────── */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-            scroll-behavior: auto;
-        }
-
-        /* Precise Alignment for Bleed Carousels */
-        .bleed-carousel-container {
-            padding-left: 1.5rem;
-            padding-right: 1.5rem;
-        }
-
-        @media (min-width: 768px) {
-            .bleed-carousel-container {
-                padding-left: 2.5rem;
-                padding-right: 2.5rem;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .bleed-carousel-container {
-                padding-left: 2.5rem;
-                padding-right: 0;
-            }
-        }
-
-        @media (min-width: 1280px) {
-            .bleed-carousel-container {
-                /* Aligns card left edge with max-w-7xl heading above */
-                padding-left: max(2.5rem, calc((100vw - 80rem) / 2 + 2.5rem));
-                padding-right: 0;
-            }
-        }
-
-        .carousel-arrow i {
-            stroke-linecap: square !important;
-            stroke-linejoin: miter !important;
-        }
-
-        .carousel-container.active {
-            cursor: grabbing;
-            cursor: -webkit-grabbing;
-        }
-
-        /* Smooth horizontal drag; snap fights continuous drag */
-        .carousel-container {
-            touch-action: pan-x;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .carousel-container.is-dragging {
-            scroll-snap-type: none;
-            scroll-behavior: auto;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
 </head>
 
 <body class="bg-white text-brand-dark selection-style">
@@ -215,7 +23,7 @@
         class="fixed top-0 w-full z-50 transition-all duration-300 bg-white border-b border-[#EDEDED] py-3">
         <div class="max-w-7xl mx-auto px-6 md:px-10 flex items-center justify-between">
             <!-- Logo -->
-            <a href="#" class="flex items-center shrink-0">
+            <a href="index.html" class="flex items-center shrink-0">
                 <img src="assets/logo.png" alt="Kritox Digital Logo" class="h-12 w-auto">
             </a>
 
@@ -233,67 +41,67 @@
                             <div class="bg-brand-dark rounded-2xl p-7 mr-6 flex flex-col justify-between min-h-[200px]">
                                 <div>
                                     <p class="text-white font-black text-2xl leading-snug mb-3">Get Free Consultation</p>
-                                    <p class="text-teal-50 text-lg leading-relaxed">Let's discuss your idea for project
+                                    <p class="text-teal-50 text-[14px] leading-relaxed">Let's discuss your idea for project
                                         plan, budget and timeline</p>
                                 </div>
-                                <a href="#contact"
-                                    class="mt-6 inline-block bg-white text-brand-base font-bold text-lg px-6 py-3 rounded-xl hover:bg-brand-base/10 transition-colors text-center">Get
+                                <a href="contact.html"
+                                    class="mt-6 inline-block bg-white text-brand-base font-bold text-[14px] px-6 py-3 rounded-xl hover:bg-brand-base/10 transition-colors text-center">Get
                                     Quote</a>
                             </div>
                             <div class="flex flex-col gap-6 pr-8 border-r border-[#EDEDED]">
-                                <a href="#" class="group flex gap-4 items-start">
+                                <a href="about.html" class="group flex gap-4 items-start">
                                     <div
                                         class="bg-white p-2 rounded-lg text-brand-base shrink-0 mt-0.5 border border-neutral-light">
                                         <i data-lucide="info" class="w-4 h-4"></i>
                                     </div>
                                     <div>
                                         <p
-                                            class="font-bold text-brand-dark text-lg group-hover:text-brand-base transition-colors">
+                                            class="font-bold text-brand-dark text-[14px] group-hover:text-brand-base transition-colors">
                                             About Us</p>
-                                        <p class="text-base text-neutral-dark mt-1 leading-relaxed">Find out who we are,
+                                        <p class="text-[12px] text-neutral-dark mt-1 leading-relaxed">Find out who we are,
                                             what we do, and how we deliver software services.</p>
                                     </div>
                                 </a>
-                                <a href="#" class="group flex gap-4 items-start">
+                                <a href="blog/index.html" class="group flex gap-4 items-start">
                                     <div
                                         class="bg-white p-2 rounded-lg text-brand-base shrink-0 mt-0.5 border border-neutral-light">
                                         <i data-lucide="newspaper" class="w-4 h-4"></i>
                                     </div>
                                     <div>
                                         <p
-                                            class="font-bold text-brand-dark text-lg group-hover:text-brand-base transition-colors">
+                                            class="font-bold text-brand-dark text-[14px] group-hover:text-brand-base transition-colors">
                                             Blog</p>
-                                        <p class="text-base text-neutral-dark mt-1 leading-relaxed">Insights into current
+                                        <p class="text-[12px] text-neutral-dark mt-1 leading-relaxed">Insights into current
                                             tech trends and news, crafted by our techies!</p>
                                     </div>
                                 </a>
                             </div>
                             <div class="flex flex-col gap-6 px-8 border-r border-[#EDEDED]">
-                                <a href="#" class="group flex gap-4 items-start">
+                                <a href="services.html" class="group flex gap-4 items-start">
                                     <div
                                         class="bg-white p-2 rounded-lg text-brand-base shrink-0 mt-0.5 border border-neutral-light">
                                         <i data-lucide="layers" class="w-4 h-4"></i>
                                     </div>
                                     <div>
                                         <p
-                                            class="font-bold text-brand-dark text-lg group-hover:text-brand-base transition-colors">
+                                            class="font-bold text-brand-dark text-[14px] group-hover:text-brand-base transition-colors">
                                             Engagement Model</p>
-                                        <p class="text-base text-neutral-dark mt-1 leading-relaxed">Our hiring model
+                                        <p class="text-[12px] text-neutral-dark mt-1 leading-relaxed">Our hiring model
                                             ensures modern businesses meet advanced solutions.</p>
                                     </div>
                                 </a>
                             </div>
                             <div class="flex flex-col gap-6 pl-8">
-                                <a href="#" class="group flex gap-4 items-start">
+                                <a href="life-at-kritox.html" class="group flex gap-4 items-start">
                                     <div
                                         class="bg-white p-2 rounded-lg text-brand-base shrink-0 mt-0.5 border border-neutral-light">
                                         <i data-lucide="heart" class="w-4 h-4"></i>
                                     </div>
                                     <div>
                                         <p
-                                            class="font-bold text-brand-dark text-lg group-hover:text-brand-base transition-colors">
+                                            class="font-bold text-brand-dark text-[14px] group-hover:text-brand-base transition-colors">
                                             Life @ Kritox</p>
-                                        <p class="text-base text-neutral-dark mt-1 leading-relaxed">Kritox values people —
+                                        <p class="text-[12px] text-neutral-dark mt-1 leading-relaxed">Kritox values people —
                                             each member is part of our family.</p>
                                     </div>
                                 </a>
@@ -313,88 +121,88 @@
                             <div class="bg-brand-dark rounded-2xl p-7 mr-6 flex flex-col justify-between min-h-[200px]">
                                 <div>
                                     <p class="text-white font-black text-2xl leading-snug mb-3">What We Build</p>
-                                    <p class="text-teal-50 text-lg leading-relaxed">End-to-end digital solutions from
+                                    <p class="text-teal-50 text-[14px] leading-relaxed">End-to-end digital solutions from
                                         strategy to launch.</p>
                                 </div>
-                                <a href="#contact"
-                                    class="mt-6 inline-block bg-white text-[#2F6F73] font-bold text-lg px-6 py-3 rounded-xl hover:bg-[#2F6F73]/10 transition-colors text-center">Start
+                                <a href="contact.html"
+                                    class="mt-6 inline-block bg-white text-[#2F6F73] font-bold text-[14px] px-6 py-3 rounded-xl hover:bg-[#2F6F73]/10 transition-colors text-center">Start
                                     Project</a>
                             </div>
                             <div class="flex flex-col gap-5 pr-8 border-r border-[#EDEDED]">
-                                <a href="#" class="group flex gap-3 items-start">
+                                <a href="services.html" class="group flex gap-3 items-start">
                                     <div
                                         class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
                                         <i data-lucide="monitor" class="w-4 h-4"></i>
                                     </div>
                                     <div>
                                         <p
-                                            class="font-bold text-[#1F3D5A] text-lg group-hover:text-[#2F6F73] transition-colors">
+                                            class="font-bold text-[#1F3D5A] text-[14px] group-hover:text-[#2F6F73] transition-colors">
                                             Web Development</p>
-                                        <p class="text-base text-[#4A4A4A] mt-0.5">Scalable, high-performance web apps</p>
+                                        <p class="text-[12px] text-[#4A4A4A] mt-0.5">Scalable, high-performance web apps</p>
                                     </div>
                                 </a>
-                                <a href="#" class="group flex gap-3 items-start">
+                                <a href="services.html" class="group flex gap-3 items-start">
                                     <div
                                         class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
                                         <i data-lucide="layout" class="w-4 h-4"></i>
                                     </div>
                                     <div>
                                         <p
-                                            class="font-bold text-[#1F3D5A] text-lg group-hover:text-[#2F6F73] transition-colors">
+                                            class="font-bold text-[#1F3D5A] text-[14px] group-hover:text-[#2F6F73] transition-colors">
                                             UI/UX Design</p>
-                                        <p class="text-base text-[#4A4A4A] mt-0.5">User-centered, conversion-focused</p>
+                                        <p class="text-[12px] text-[#4A4A4A] mt-0.5">User-centered, conversion-focused</p>
                                     </div>
                                 </a>
                             </div>
                             <div class="flex flex-col gap-5 px-8 border-r border-[#EDEDED]">
-                                <a href="#" class="group flex gap-3 items-start">
+                                <a href="services.html" class="group flex gap-3 items-start">
                                     <div
                                         class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
                                         <i data-lucide="smartphone" class="w-4 h-4"></i>
                                     </div>
                                     <div>
                                         <p
-                                            class="font-bold text-[#1F3D5A] text-lg group-hover:text-[#2F6F73] transition-colors">
+                                            class="font-bold text-[#1F3D5A] text-[14px] group-hover:text-[#2F6F73] transition-colors">
                                             Mobile Apps</p>
-                                        <p class="text-base text-[#4A4A4A] mt-0.5">iOS & Android native experiences</p>
+                                        <p class="text-[12px] text-[#4A4A4A] mt-0.5">iOS & Android native experiences</p>
                                     </div>
                                 </a>
-                                <a href="#" class="group flex gap-3 items-start">
+                                <a href="services.html" class="group flex gap-3 items-start">
                                     <div
                                         class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
                                         <i data-lucide="bar-chart-3" class="w-4 h-4"></i>
                                     </div>
                                     <div>
                                         <p
-                                            class="font-bold text-[#1F3D5A] text-lg group-hover:text-[#2F6F73] transition-colors">
+                                            class="font-bold text-[#1F3D5A] text-[14px] group-hover:text-[#2F6F73] transition-colors">
                                             Digital Marketing</p>
-                                        <p class="text-base text-[#4A4A4A] mt-0.5">Growth, SEO & brand positioning</p>
+                                        <p class="text-[12px] text-[#4A4A4A] mt-0.5">Growth, SEO & brand positioning</p>
                                     </div>
                                 </a>
                             </div>
                             <div class="flex flex-col gap-5 pl-8">
-                                <a href="#" class="group flex gap-3 items-start">
+                                <a href="services.html" class="group flex gap-3 items-start">
                                     <div
                                         class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
                                         <i data-lucide="zap" class="w-4 h-4"></i>
                                     </div>
                                     <div>
                                         <p
-                                            class="font-bold text-[#1F3D5A] text-lg group-hover:text-[#2F6F73] transition-colors">
+                                            class="font-bold text-[#1F3D5A] text-[14px] group-hover:text-[#2F6F73] transition-colors">
                                             Brand Strategy</p>
-                                        <p class="text-base text-[#4A4A4A] mt-0.5">Identity, positioning & messaging</p>
+                                        <p class="text-[12px] text-[#4A4A4A] mt-0.5">Identity, positioning & messaging</p>
                                     </div>
                                 </a>
-                                <a href="#" class="group flex gap-3 items-start">
+                                <a href="services.html" class="group flex gap-3 items-start">
                                     <div
                                         class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
                                         <i data-lucide="cloud" class="w-4 h-4"></i>
                                     </div>
                                     <div>
                                         <p
-                                            class="font-bold text-[#1F3D5A] text-lg group-hover:text-[#2F6F73] transition-colors">
+                                            class="font-bold text-[#1F3D5A] text-[14px] group-hover:text-[#2F6F73] transition-colors">
                                             Cloud Solutions</p>
-                                        <p class="text-base text-[#4A4A4A] mt-0.5">Infrastructure & DevOps</p>
+                                        <p class="text-[12px] text-[#4A4A4A] mt-0.5">Infrastructure & DevOps</p>
                                     </div>
                                 </a>
                             </div>
@@ -409,92 +217,118 @@
                         Technologies <i data-lucide="chevron-down" class="w-3 h-3"></i>
                     </button>
                     <div class="mega-menu-panel mega-menu-full bg-[#FAFAFA] border-b border-neutral-light py-8">
-                        <div class="max-w-7xl mx-auto px-10 grid grid-cols-4 gap-0">
+                        <div class="max-w-7xl mx-auto px-10 grid grid-cols-5 gap-0">
                             <div class="bg-brand-dark rounded-2xl p-7 mr-6 flex flex-col justify-between min-h-[200px]">
                                 <div>
                                     <p class="text-white font-black text-2xl leading-snug mb-3">Our Tech Stack</p>
-                                    <p class="text-teal-50 text-lg leading-relaxed">Modern, battle-tested platforms for
+                                    <p class="text-teal-50 text-[14px] leading-relaxed">Modern, battle-tested platforms for
                                         every scale.</p>
                                 </div>
-                                <a href="#contact"
-                                    class="mt-6 inline-block bg-white text-[#2F6F73] font-bold text-lg px-6 py-3 rounded-xl hover:bg-[#2F6F73]/10 transition-colors text-center">Discuss
+                                <a href="contact.html"
+                                    class="mt-6 inline-block bg-white text-[#2F6F73] font-bold text-[14px] px-6 py-3 rounded-xl hover:bg-[#2F6F73]/10 transition-colors text-center">Discuss
                                     Stack</a>
                             </div>
                             <div class="flex flex-col gap-5 pr-8 border-r border-[#EDEDED]">
-                                <a href="#" class="group flex gap-3 items-start">
+                                <a href="tech/react.html" class="group flex gap-3 items-start">
                                     <div
                                         class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
                                         <i data-lucide="code-2" class="w-4 h-4"></i>
                                     </div>
                                     <div>
                                         <p
-                                            class="font-bold text-[#1F3D5A] text-lg group-hover:text-[#2F6F73] transition-colors">
+                                            class="font-bold text-[#1F3D5A] text-[14px] group-hover:text-[#2F6F73] transition-colors">
                                             React & Next.js</p>
-                                        <p class="text-base text-[#4A4A4A] mt-0.5">Frontend excellence</p>
+                                        <p class="text-[12px] text-[#4A4A4A] mt-0.5">Frontend excellence</p>
                                     </div>
                                 </a>
-                                <a href="#" class="group flex gap-3 items-start">
+                                <a href="tech/node.html" class="group flex gap-3 items-start">
                                     <div
                                         class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
                                         <i data-lucide="server" class="w-4 h-4"></i>
                                     </div>
                                     <div>
                                         <p
-                                            class="font-bold text-[#1F3D5A] text-lg group-hover:text-[#2F6F73] transition-colors">
+                                            class="font-bold text-[#1F3D5A] text-[14px] group-hover:text-[#2F6F73] transition-colors">
                                             Node & Go</p>
-                                        <p class="text-base text-[#4A4A4A] mt-0.5">Backend architecture</p>
+                                        <p class="text-[12px] text-[#4A4A4A] mt-0.5">Backend architecture</p>
                                     </div>
                                 </a>
                             </div>
                             <div class="flex flex-col gap-5 px-8 border-r border-[#EDEDED]">
-                                <a href="#" class="group flex gap-3 items-start">
+                                <a href="tech/databases.html" class="group flex gap-3 items-start">
                                     <div
                                         class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
                                         <i data-lucide="database" class="w-4 h-4"></i>
                                     </div>
                                     <div>
                                         <p
-                                            class="font-bold text-[#1F3D5A] text-lg group-hover:text-[#2F6F73] transition-colors">
+                                            class="font-bold text-[#1F3D5A] text-[14px] group-hover:text-[#2F6F73] transition-colors">
                                             Databases</p>
-                                        <p class="text-base text-[#4A4A4A] mt-0.5">PostgreSQL, MongoDB</p>
+                                        <p class="text-[12px] text-[#4A4A4A] mt-0.5">PostgreSQL, MongoDB</p>
                                     </div>
                                 </a>
-                                <a href="#" class="group flex gap-3 items-start">
+                                <a href="tech/aws.html" class="group flex gap-3 items-start">
                                     <div
                                         class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
                                         <i data-lucide="cloud" class="w-4 h-4"></i>
                                     </div>
                                     <div>
                                         <p
-                                            class="font-bold text-[#1F3D5A] text-lg group-hover:text-[#2F6F73] transition-colors">
+                                            class="font-bold text-[#1F3D5A] text-[14px] group-hover:text-[#2F6F73] transition-colors">
                                             AWS & GCP</p>
-                                        <p class="text-base text-[#4A4A4A] mt-0.5">Cloud infrastructure</p>
+                                        <p class="text-[12px] text-[#4A4A4A] mt-0.5">Cloud infrastructure</p>
                                     </div>
                                 </a>
                             </div>
                             <div class="flex flex-col gap-5 pl-8">
-                                <a href="#" class="group flex gap-3 items-start">
+                                <a href="tech/mobile.html" class="group flex gap-3 items-start">
                                     <div
                                         class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
                                         <i data-lucide="smartphone" class="w-4 h-4"></i>
                                     </div>
                                     <div>
                                         <p
-                                            class="font-bold text-[#1F3D5A] text-lg group-hover:text-[#2F6F73] transition-colors">
-                                            React Native</p>
-                                        <p class="text-base text-[#4A4A4A] mt-0.5">Cross-platform mobile</p>
+                                            class="font-bold text-[#1F3D5A] text-[14px] group-hover:text-[#2F6F73] transition-colors">
+                                            React Native & Flutter</p>
+                                        <p class="text-[12px] text-[#4A4A4A] mt-0.5">Cross-platform mobile</p>
                                     </div>
                                 </a>
-                                <a href="#" class="group flex gap-3 items-start">
+                                <a href="tech/ai.html" class="group flex gap-3 items-start">
                                     <div
                                         class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
                                         <i data-lucide="cpu" class="w-4 h-4"></i>
                                     </div>
                                     <div>
                                         <p
-                                            class="font-bold text-[#1F3D5A] text-lg group-hover:text-[#2F6F73] transition-colors">
+                                            class="font-bold text-[#1F3D5A] text-[14px] group-hover:text-[#2F6F73] transition-colors">
                                             AI & ML</p>
-                                        <p class="text-base text-[#4A4A4A] mt-0.5">Intelligent systems</p>
+                                        <p class="text-[12px] text-[#4A4A4A] mt-0.5">Intelligent systems</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="flex flex-col gap-5 pl-8 border-l border-[#EDEDED]">
+                                <a href="tech/docker.html" class="group flex gap-3 items-start">
+                                    <div
+                                        class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
+                                        <i data-lucide="box" class="w-4 h-4"></i>
+                                    </div>
+                                    <div>
+                                        <p
+                                            class="font-bold text-[#1F3D5A] text-[14px] group-hover:text-[#2F6F73] transition-colors">
+                                            Docker & Kubernetes</p>
+                                        <p class="text-[12px] text-[#4A4A4A] mt-0.5">Containerised deployments</p>
+                                    </div>
+                                </a>
+                                <a href="tech/cicd.html" class="group flex gap-3 items-start">
+                                    <div
+                                        class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
+                                        <i data-lucide="git-branch" class="w-4 h-4"></i>
+                                    </div>
+                                    <div>
+                                        <p
+                                            class="font-bold text-[#1F3D5A] text-[14px] group-hover:text-[#2F6F73] transition-colors">
+                                            CI/CD & DevOps</p>
+                                        <p class="text-[12px] text-[#4A4A4A] mt-0.5">Automated pipelines</p>
                                     </div>
                                 </a>
                             </div>
@@ -513,62 +347,62 @@
                             <div class="bg-brand-dark rounded-2xl p-7 mr-6 flex flex-col justify-between min-h-[200px]">
                                 <div>
                                     <p class="text-white font-black text-2xl leading-snug mb-3">Elite Talent, Fast</p>
-                                    <p class="text-teal-50 text-lg leading-relaxed">Hire pre-vetted developers in days,
+                                    <p class="text-teal-50 text-[14px] leading-relaxed">Hire pre-vetted developers in days,
                                         not months.</p>
                                 </div>
-                                <a href="#contact"
-                                    class="mt-6 inline-block bg-white text-[#2F6F73] font-bold text-lg px-6 py-3 rounded-xl hover:bg-[#2F6F73]/10 transition-colors text-center">Book
+                                <a href="contact.html"
+                                    class="mt-6 inline-block bg-white text-[#2F6F73] font-bold text-[14px] px-6 py-3 rounded-xl hover:bg-[#2F6F73]/10 transition-colors text-center">Book
                                     a Call</a>
                             </div>
                             <div class="flex flex-col gap-5 pr-8 border-r border-[#EDEDED]">
-                                <a href="#" class="group flex gap-3 items-start">
+                                <a href="career.html" class="group flex gap-3 items-start">
                                     <div
                                         class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
                                         <i data-lucide="user-check" class="w-4 h-4"></i>
                                     </div>
                                     <div>
                                         <p
-                                            class="font-bold text-[#1F3D5A] text-lg group-hover:text-[#2F6F73] transition-colors">
+                                            class="font-bold text-[#1F3D5A] text-[14px] group-hover:text-[#2F6F73] transition-colors">
                                             Dedicated Developer</p>
-                                        <p class="text-base text-[#4A4A4A] mt-0.5">Full-time embedded talent</p>
+                                        <p class="text-[12px] text-[#4A4A4A] mt-0.5">Full-time embedded talent</p>
                                     </div>
                                 </a>
-                                <a href="#" class="group flex gap-3 items-start">
+                                <a href="career.html" class="group flex gap-3 items-start">
                                     <div
                                         class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
                                         <i data-lucide="users" class="w-4 h-4"></i>
                                     </div>
                                     <div>
                                         <p
-                                            class="font-bold text-[#1F3D5A] text-lg group-hover:text-[#2F6F73] transition-colors">
+                                            class="font-bold text-[#1F3D5A] text-[14px] group-hover:text-[#2F6F73] transition-colors">
                                             Team Extension</p>
-                                        <p class="text-base text-[#4A4A4A] mt-0.5">Scale your engineering team</p>
+                                        <p class="text-[12px] text-[#4A4A4A] mt-0.5">Scale your engineering team</p>
                                     </div>
                                 </a>
                             </div>
                             <div class="flex flex-col gap-5 px-8 border-r border-[#EDEDED]">
-                                <a href="#" class="group flex gap-3 items-start">
+                                <a href="services.html" class="group flex gap-3 items-start">
                                     <div
                                         class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
                                         <i data-lucide="clock" class="w-4 h-4"></i>
                                     </div>
                                     <div>
                                         <p
-                                            class="font-bold text-[#1F3D5A] text-lg group-hover:text-[#2F6F73] transition-colors">
+                                            class="font-bold text-[#1F3D5A] text-[14px] group-hover:text-[#2F6F73] transition-colors">
                                             Part-time Experts</p>
-                                        <p class="text-base text-[#4A4A4A] mt-0.5">Flexible engagement model</p>
+                                        <p class="text-[12px] text-[#4A4A4A] mt-0.5">Flexible engagement model</p>
                                     </div>
                                 </a>
-                                <a href="#" class="group flex gap-3 items-start">
+                                <a href="contact.html" class="group flex gap-3 items-start">
                                     <div
                                         class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
                                         <i data-lucide="briefcase" class="w-4 h-4"></i>
                                     </div>
                                     <div>
                                         <p
-                                            class="font-bold text-[#1F3D5A] text-lg group-hover:text-[#2F6F73] transition-colors">
+                                            class="font-bold text-[#1F3D5A] text-[14px] group-hover:text-[#2F6F73] transition-colors">
                                             Project-based</p>
-                                        <p class="text-base text-[#4A4A4A] mt-0.5">End-to-end delivery</p>
+                                        <p class="text-[12px] text-[#4A4A4A] mt-0.5">End-to-end delivery</p>
                                     </div>
                                 </a>
                             </div>
@@ -577,19 +411,19 @@
                                     Roles</p>
                                 <div class="flex flex-wrap gap-2">
                                     <span
-                                        class="px-3 py-1 bg-white border border-[#EDEDED] text-slate-700 text-base font-semibold rounded-full">React
+                                        class="px-3 py-1 bg-white border border-[#EDEDED] text-slate-700 text-[12px] font-semibold rounded-full">React
                                         Dev</span>
                                     <span
-                                        class="px-3 py-1 bg-white border border-[#EDEDED] text-slate-700 text-base font-semibold rounded-full">Node.js</span>
+                                        class="px-3 py-1 bg-white border border-[#EDEDED] text-slate-700 text-[12px] font-semibold rounded-full">Node.js</span>
                                     <span
-                                        class="px-3 py-1 bg-white border border-[#EDEDED] text-slate-700 text-base font-semibold rounded-full">UI
+                                        class="px-3 py-1 bg-white border border-[#EDEDED] text-slate-700 text-[12px] font-semibold rounded-full">UI
                                         Designer</span>
                                     <span
-                                        class="px-3 py-1 bg-white border border-[#EDEDED] text-slate-700 text-base font-semibold rounded-full">Flutter</span>
+                                        class="px-3 py-1 bg-white border border-[#EDEDED] text-slate-700 text-[12px] font-semibold rounded-full">Flutter</span>
                                     <span
-                                        class="px-3 py-1 bg-white border border-[#EDEDED] text-slate-700 text-base font-semibold rounded-full">DevOps</span>
+                                        class="px-3 py-1 bg-white border border-[#EDEDED] text-slate-700 text-[12px] font-semibold rounded-full">DevOps</span>
                                     <span
-                                        class="px-3 py-1 bg-white border border-[#EDEDED] text-slate-700 text-base font-semibold rounded-full">Python</span>
+                                        class="px-3 py-1 bg-white border border-[#EDEDED] text-slate-700 text-[12px] font-semibold rounded-full">Python</span>
                                 </div>
                             </div>
                         </div>
@@ -607,62 +441,50 @@
                             <div class="bg-brand-dark rounded-2xl p-7 mr-6 flex flex-col justify-between min-h-[200px]">
                                 <div>
                                     <p class="text-white font-black text-2xl leading-snug mb-3">See Our Work</p>
-                                    <p class="text-teal-50 text-lg leading-relaxed">Real projects, real results —
+                                    <p class="text-teal-50 text-[14px] leading-relaxed">Real projects, real results —
                                         worldwide.</p>
                                 </div>
-                                <a href="#portfolio"
-                                    class="mt-6 inline-block bg-white text-[#2F6F73] font-bold text-lg px-6 py-3 rounded-xl hover:bg-[#2F6F73]/10 transition-colors text-center">View
-                                    Portfolio</a>
+                                <a href="case-studies/index.html"
+                                    class="mt-6 inline-block bg-white text-[#2F6F73] font-bold text-[14px] px-6 py-3 rounded-xl hover:bg-[#2F6F73]/10 transition-colors text-center">View
+                                    Case Studies</a>
                             </div>
                             <div class="flex flex-col gap-5 pr-8 border-r border-[#EDEDED]">
-                                <a href="#portfolio" class="group flex gap-3 items-start">
+                                <a href="case-studies/index.html" class="group flex gap-3 items-start">
                                     <div
                                         class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
                                         <i data-lucide="layout-grid" class="w-4 h-4"></i>
                                     </div>
                                     <div>
                                         <p
-                                            class="font-bold text-[#1F3D5A] text-lg group-hover:text-[#2F6F73] transition-colors">
+                                            class="font-bold text-[#1F3D5A] text-[14px] group-hover:text-[#2F6F73] transition-colors">
                                             Case Studies</p>
-                                        <p class="text-base text-[#4A4A4A] mt-0.5">Deep-dive project reviews</p>
-                                    </div>
-                                </a>
-                                <a href="#" class="group flex gap-3 items-start">
-                                    <div
-                                        class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
-                                        <i data-lucide="image" class="w-4 h-4"></i>
-                                    </div>
-                                    <div>
-                                        <p
-                                            class="font-bold text-[#1F3D5A] text-lg group-hover:text-[#2F6F73] transition-colors">
-                                            Portfolio</p>
-                                        <p class="text-base text-[#4A4A4A] mt-0.5">Browse all projects</p>
+                                        <p class="text-[12px] text-[#4A4A4A] mt-0.5">Deep-dive project reviews</p>
                                     </div>
                                 </a>
                             </div>
                             <div class="flex flex-col gap-5 px-8 border-r border-[#EDEDED]">
-                                <a href="#" class="group flex gap-3 items-start">
+                                <a href="testimonials.html" class="group flex gap-3 items-start">
                                     <div
                                         class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
                                         <i data-lucide="star" class="w-4 h-4"></i>
                                     </div>
                                     <div>
                                         <p
-                                            class="font-bold text-[#1F3D5A] text-lg group-hover:text-[#2F6F73] transition-colors">
+                                            class="font-bold text-[#1F3D5A] text-[14px] group-hover:text-[#2F6F73] transition-colors">
                                             Testimonials</p>
-                                        <p class="text-base text-[#4A4A4A] mt-0.5">What clients say</p>
+                                        <p class="text-[12px] text-[#4A4A4A] mt-0.5">What clients say</p>
                                     </div>
                                 </a>
-                                <a href="#" class="group flex gap-3 items-start">
+                                <a href="about.html" class="group flex gap-3 items-start">
                                     <div
                                         class="bg-white p-2 rounded-lg text-[#2F6F73] shrink-0 mt-0.5 border border-[#EDEDED]">
                                         <i data-lucide="award" class="w-4 h-4"></i>
                                     </div>
                                     <div>
                                         <p
-                                            class="font-bold text-[#1F3D5A] text-lg group-hover:text-[#2F6F73] transition-colors">
+                                            class="font-bold text-[#1F3D5A] text-[14px] group-hover:text-[#2F6F73] transition-colors">
                                             Achievements</p>
-                                        <p class="text-base text-[#4A4A4A] mt-0.5">Awards & recognition</p>
+                                        <p class="text-[12px] text-[#4A4A4A] mt-0.5">Awards & recognition</p>
                                     </div>
                                 </a>
                             </div>
@@ -671,15 +493,15 @@
                                     Served</p>
                                 <div class="flex flex-wrap gap-2">
                                     <span
-                                        class="px-3 py-1 bg-white border border-[#EDEDED] text-slate-700 text-base font-semibold rounded-full">Fintech</span>
+                                        class="px-3 py-1 bg-white border border-[#EDEDED] text-slate-700 text-[12px] font-semibold rounded-full">Fintech</span>
                                     <span
-                                        class="px-3 py-1 bg-white border border-[#EDEDED] text-slate-700 text-base font-semibold rounded-full">Healthcare</span>
+                                        class="px-3 py-1 bg-white border border-[#EDEDED] text-slate-700 text-[12px] font-semibold rounded-full">Healthcare</span>
                                     <span
-                                        class="px-3 py-1 bg-white border border-[#EDEDED] text-slate-700 text-base font-semibold rounded-full">E-commerce</span>
+                                        class="px-3 py-1 bg-white border border-[#EDEDED] text-slate-700 text-[12px] font-semibold rounded-full">E-commerce</span>
                                     <span
-                                        class="px-3 py-1 bg-white border border-[#EDEDED] text-slate-700 text-base font-semibold rounded-full">SaaS</span>
+                                        class="px-3 py-1 bg-white border border-[#EDEDED] text-slate-700 text-[12px] font-semibold rounded-full">SaaS</span>
                                     <span
-                                        class="px-3 py-1 bg-white border border-[#EDEDED] text-slate-700 text-base font-semibold rounded-full">EdTech</span>
+                                        class="px-3 py-1 bg-white border border-[#EDEDED] text-slate-700 text-[12px] font-semibold rounded-full">EdTech</span>
                                 </div>
                             </div>
                         </div>
@@ -687,14 +509,13 @@
                 </div>
 
                 <!-- Career (no mega menu) -->
-                <a href="#"
-                    class="nav-link-item py-2 px-3 text-[16px] text-neutral-dark font-semibold hover:text-brand-base transition-colors">Career</a>
+                <a href="career.html" class="nav-link-item flex items-center gap-1 py-2 px-3 text-[16px] text-neutral-dark font-semibold hover:text-brand-base transition-colors">Career</a>
 
             </div>
 
             <!-- CTA -->
             <div class="hidden lg:flex items-center">
-                <a href="#"
+                <a href="contact.html"
                     class="px-5 py-2.5 bg-brand-dark text-white text-[16px] font-bold rounded-xl hover:brightness-110 transition-colors">
                     Get a Quote
                 </a>
@@ -721,11 +542,11 @@
                         class="w-5 h-5 text-[#4A4A4A] transition-transform group-open:rotate-180"></i>
                 </summary>
                 <div class="mt-3 space-y-2 pl-1">
-                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">About Us</a>
-                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Blog</a>
-                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Engagement
+                    <a href="about.html" class="block text-[12px] font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">About Us</a>
+                    <a href="blog/index.html" class="block text-[12px] font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Blog</a>
+                    <a href="services.html" class="block text-[12px] font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Engagement
                         Model</a>
-                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Life @
+                    <a href="life-at-kritox.html" class="block text-[12px] font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Life @
                         Kritox</a>
                 </div>
             </details>
@@ -737,17 +558,17 @@
                         class="w-5 h-5 text-[#4A4A4A] transition-transform group-open:rotate-180"></i>
                 </summary>
                 <div class="mt-3 space-y-2 pl-1">
-                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Web
+                    <a href="services.html" class="block text-[12px] font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Web
                         Development</a>
-                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">UI/UX
+                    <a href="services.html" class="block text-[12px] font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">UI/UX
                         Design</a>
-                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Mobile
+                    <a href="services.html" class="block text-[12px] font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Mobile
                         Apps</a>
-                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Digital
+                    <a href="services.html" class="block text-[12px] font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Digital
                         Marketing</a>
-                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Brand
+                    <a href="services.html" class="block text-[12px] font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Brand
                         Strategy</a>
-                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Cloud
+                    <a href="services.html" class="block text-[12px] font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Cloud
                         Solutions</a>
                 </div>
             </details>
@@ -759,16 +580,16 @@
                         class="w-5 h-5 text-[#4A4A4A] transition-transform group-open:rotate-180"></i>
                 </summary>
                 <div class="mt-3 space-y-2 pl-1">
-                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">React &
+                    <a href="services.html" class="block text-[12px] font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">React &
                         Next.js</a>
-                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Node &
+                    <a href="services.html" class="block text-[12px] font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Node &
                         Go</a>
-                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Databases</a>
-                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">AWS &
+                    <a href="services.html" class="block text-[12px] font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Databases</a>
+                    <a href="services.html" class="block text-[12px] font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">AWS &
                         GCP</a>
-                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">React
+                    <a href="services.html" class="block text-[12px] font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">React
                         Native</a>
-                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">AI &
+                    <a href="services.html" class="block text-[12px] font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">AI &
                         ML</a>
                 </div>
             </details>
@@ -780,14 +601,14 @@
                         class="w-5 h-5 text-[#4A4A4A] transition-transform group-open:rotate-180"></i>
                 </summary>
                 <div class="mt-3 space-y-2 pl-1">
-                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Dedicated
+                    <a href="career.html" class="block text-[12px] font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Dedicated
                         Developer</a>
-                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Team
+                    <a href="career.html" class="block text-[12px] font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Team
                         Extension</a>
-                    <a href="#" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Part-time
+                    <a href="contact.html" class="block text-[12px] font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Part-time
                         Experts</a>
-                    <a href="#"
-                        class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Project-based</a>
+                    <a href="contact.html"
+                        class="block text-[12px] font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Project-based</a>
                 </div>
             </details>
             <details class="group border-b border-[#EDEDED] pb-4">
@@ -798,20 +619,17 @@
                         class="w-5 h-5 text-[#4A4A4A] transition-transform group-open:rotate-180"></i>
                 </summary>
                 <div class="mt-3 space-y-2 pl-1">
-                    <a href="#portfolio" class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Case
+                    <a href="case-studies/index.html" class="block text-[12px] font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Case
                         Studies</a>
-                    <a href="#portfolio"
-                        class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Portfolio</a>
-                    <a href="#"
-                        class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Testimonials</a>
-                    <a href="#"
-                        class="block text-base font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Achievements</a>
+                    <a href="testimonials.html" class="block text-[13px] font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Testimonials</a>
+                    <a href="about.html"
+                        class="block text-[12px] font-semibold text-[#4A4A4A] hover:text-[#2F6F73]">Achievements</a>
                 </div>
             </details>
-            <a href="#" class="block text-xl font-bold text-[#1F3D5A]">Career</a>
+            <a href="career.html" class="block text-xl font-bold text-[#1F3D5A] py-2">Career</a>
             <div class="pt-6">
-                <a href="#"
-                    class="block w-full py-4 bg-[#1F3D5A] text-white font-bold rounded-2xl text-center text-lg hover:brightness-110 transition-all">Get
+                <a href="contact.html"
+                    class="block w-full py-4 bg-[#1F3D5A] text-white font-bold rounded-2xl text-center text-[14px] hover:brightness-110 transition-all">Get
                     a Quote</a>
             </div>
         </div>
@@ -862,7 +680,7 @@
             </p>
 
             <!-- CTA Button -->
-            <a href="#contact"
+            <a href="contact.html"
                 class="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#2F6F73] font-bold text-base rounded-2xl hover:bg-[#F0F4F8] transition-colors">
                 Get Started Now
                 <i data-lucide="arrow-right" class="w-4 h-4"></i>
@@ -1132,7 +950,7 @@
                         </div>
                         <div class="flex items-center justify-between mt-auto pt-4 relative">
                             <span
-                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW
+                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[12px] md:text-sm">VIEW
                                 DETAILS</span>
                             <div
                                 class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
@@ -1163,7 +981,7 @@
                         </div>
                         <div class="flex items-center justify-between mt-auto pt-4 relative">
                             <span
-                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW
+                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[12px] md:text-sm">VIEW
                                 DETAILS</span>
                             <div
                                 class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
@@ -1194,7 +1012,7 @@
                         </div>
                         <div class="flex items-center justify-between mt-auto pt-4 relative">
                             <span
-                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW
+                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[12px] md:text-sm">VIEW
                                 DETAILS</span>
                             <div
                                 class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
@@ -1225,7 +1043,7 @@
                         </div>
                         <div class="flex items-center justify-between mt-auto pt-4 relative">
                             <span
-                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW
+                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[12px] md:text-sm">VIEW
                                 DETAILS</span>
                             <div
                                 class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
@@ -1256,7 +1074,7 @@
                         </div>
                         <div class="flex items-center justify-between mt-auto pt-4 relative">
                             <span
-                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW
+                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[12px] md:text-sm">VIEW
                                 DETAILS</span>
                             <div
                                 class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
@@ -1287,7 +1105,7 @@
                         </div>
                         <div class="flex items-center justify-between mt-auto pt-4 relative">
                             <span
-                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW
+                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[12px] md:text-sm">VIEW
                                 DETAILS</span>
                             <div
                                 class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
@@ -1319,7 +1137,7 @@
                         </div>
                         <div class="flex items-center justify-between mt-auto pt-4 relative">
                             <span
-                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW
+                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[12px] md:text-sm">VIEW
                                 DETAILS</span>
                             <div
                                 class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
@@ -1350,7 +1168,7 @@
                         </div>
                         <div class="flex items-center justify-between mt-auto pt-4 relative">
                             <span
-                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW
+                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[12px] md:text-sm">VIEW
                                 DETAILS</span>
                             <div
                                 class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
@@ -1381,7 +1199,7 @@
                         </div>
                         <div class="flex items-center justify-between mt-auto pt-4 relative">
                             <span
-                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW
+                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[12px] md:text-sm">VIEW
                                 DETAILS</span>
                             <div
                                 class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
@@ -1412,7 +1230,7 @@
                         </div>
                         <div class="flex items-center justify-between mt-auto pt-4 relative">
                             <span
-                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW
+                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[12px] md:text-sm">VIEW
                                 DETAILS</span>
                             <div
                                 class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
@@ -1443,7 +1261,7 @@
                         </div>
                         <div class="flex items-center justify-between mt-auto pt-4 relative">
                             <span
-                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW
+                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[12px] md:text-sm">VIEW
                                 DETAILS</span>
                             <div
                                 class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
@@ -1474,7 +1292,7 @@
                         </div>
                         <div class="flex items-center justify-between mt-auto pt-4 relative">
                             <span
-                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[13px] md:text-sm">VIEW
+                                class="font-black text-[#1F3D5A] uppercase tracking-widest text-[12px] md:text-sm">VIEW
                                 DETAILS</span>
                             <div
                                 class="flex items-center text-[#1F3D5A] group-hover:translate-x-3 transition-transform duration-300">
@@ -1662,7 +1480,7 @@
         <div class="max-w-7xl mx-auto px-6 md:px-10 mb-16">
             <!-- Header -->
             <div class="text-center max-w-2xl mx-auto">
-                <p class="text-[13px] font-black text-brand-dark uppercase tracking-[0.2em] mb-4">TESTIMONIALS</p>
+                <p class="text-[12px] font-black text-brand-dark uppercase tracking-[0.2em] mb-4">TESTIMONIALS</p>
                 <h2 class="text-4xl md:text-5xl font-extrabold mb-6">Real stories from <br /><span class="teal-primary">happy clients.</span></h2>
             </div>
         </div>
@@ -1676,10 +1494,10 @@
 
                 <!-- Item 1 -->
                 <div class="snap-start shrink-0 w-[85%] sm:w-[50%] md:w-[42%] lg:w-[32%] xl:w-[28%] min-h-[380px] bg-[#F4F4F4] p-8 md:p-10 flex flex-col rounded-[1rem] cursor-pointer border border-[#E5E5E5] hover:shadow-md transition-shadow">
-                    <p class="text-[#4CAF50] italic font-semibold text-[15px] mb-6">Transformed our digital presence!</p>
+                    <p class="text-[#2F6F73] italic font-semibold text-[15px] mb-6">Transformed our digital presence!</p>
                     <div class="flex items-center gap-4 mb-6">
                         <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop" alt="Michael Reynolds" draggable="false" class="w-14 h-14 rounded-full object-cover select-none">
-                        <div class="flex text-[#F5B015]">
+                        <div class="flex text-[#E5B93C]">
                             <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                             <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                             <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -1698,10 +1516,10 @@
 
                 <!-- Item 2 -->
                 <div class="snap-start shrink-0 w-[85%] sm:w-[50%] md:w-[42%] lg:w-[32%] xl:w-[28%] min-h-[380px] bg-[#F4F4F4] p-8 md:p-10 flex flex-col rounded-[1rem] cursor-pointer border border-[#E5E5E5] hover:shadow-md transition-shadow">
-                    <p class="text-[#4CAF50] italic font-semibold text-[15px] mb-6">Scaled our platform flawlessly!</p>
+                    <p class="text-[#2F6F73] italic font-semibold text-[15px] mb-6">Scaled our platform flawlessly!</p>
                     <div class="flex items-center gap-4 mb-6">
                         <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="Sarah Jenkins" draggable="false" class="w-14 h-14 rounded-full object-cover select-none">
-                        <div class="flex text-[#F5B015]">
+                        <div class="flex text-[#E5B93C]">
                             <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                             <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                             <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -1720,10 +1538,10 @@
 
                 <!-- Item 3 -->
                 <div class="snap-start shrink-0 w-[85%] sm:w-[50%] md:w-[42%] lg:w-[32%] xl:w-[28%] min-h-[380px] bg-[#F4F4F4] p-8 md:p-10 flex flex-col rounded-[1rem] cursor-pointer border border-[#E5E5E5] hover:shadow-md transition-shadow">
-                    <p class="text-[#4CAF50] italic font-semibold text-[15px] mb-6">Doubled our e-commerce sales!</p>
+                    <p class="text-[#2F6F73] italic font-semibold text-[15px] mb-6">Doubled our e-commerce sales!</p>
                     <div class="flex items-center gap-4 mb-6">
                         <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="David Chen" draggable="false" class="w-14 h-14 rounded-full object-cover select-none">
-                        <div class="flex text-[#F5B015]">
+                        <div class="flex text-[#E5B93C]">
                             <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                             <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                             <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -1742,10 +1560,10 @@
 
                 <!-- Item 4 -->
                 <div class="snap-start shrink-0 w-[85%] sm:w-[50%] md:w-[42%] lg:w-[32%] xl:w-[28%] min-h-[380px] bg-[#F4F4F4] p-8 md:p-10 flex flex-col rounded-[1rem] cursor-pointer border border-[#E5E5E5] hover:shadow-md transition-shadow">
-                    <p class="text-[#4CAF50] italic font-semibold text-[15px] mb-6">A true technology partner.</p>
+                    <p class="text-[#2F6F73] italic font-semibold text-[15px] mb-6">A true technology partner.</p>
                     <div class="flex items-center gap-4 mb-6">
                         <img src="https://images.unsplash.com/photo-1531123897727-8f129e1bf98c?w=100&h=100&fit=crop" alt="Elena Rodriguez" draggable="false" class="w-14 h-14 rounded-full object-cover select-none">
-                        <div class="flex text-[#F5B015]">
+                        <div class="flex text-[#E5B93C]">
                             <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                             <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                             <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -1787,12 +1605,12 @@
         </div>
     </section>
 
-    <!-- Portfolio Section -->
+    <!-- Case Studies Section -->
     <section id="portfolio" class="py-24 bg-white overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 md:px-10 mb-16">
             <!-- Header -->
             <div class="text-center max-w-4xl mx-auto">
-                <p class="text-[13px] font-black text-brand-dark uppercase tracking-[0.2em] mb-4">PORTFOLIO</p>
+                <p class="text-[12px] font-black text-brand-dark uppercase tracking-[0.2em] mb-4">CASE STUDIES</p>
                 <h2 class="text-3xl md:text-5xl font-black text-brand-dark mb-6 tracking-tight">Our Recent Work</h2>
                 <p class="text-lg text-[#4A4A4A] leading-relaxed max-w-3xl mx-auto">
                     Explore our latest projects and see how we've helped businesses achieve their digital goals through
@@ -1819,7 +1637,7 @@
                             <p class="text-[14px]"><span class="font-bold text-[16px]">$5B+</span> <span class="text-white/80">Transactions Processed</span></p>
                             <p class="text-[14px]"><span class="font-bold text-[16px]">99.99%</span> <span class="text-white/80">Downtime Achieved</span></p>
                         </div>
-                        <div class="flex items-center uppercase tracking-widest text-[13px] font-bold">
+                        <div class="flex items-center uppercase tracking-widest text-[12px] font-bold">
                             EXPLORE NOW
                             <div class="flex items-center ml-4 group-hover:translate-x-2 transition-transform duration-300">
                                 <div class="w-8 h-[2px] bg-white -mr-1"></div>
@@ -1840,7 +1658,7 @@
                             <p class="text-[14px]"><span class="font-bold text-[16px]">10M+</span> <span class="text-white/80">Daily API Calls</span></p>
                             <p class="text-[14px]"><span class="font-bold text-[16px]">3x</span> <span class="text-white/80">Operational Efficiency</span></p>
                         </div>
-                        <div class="flex items-center uppercase tracking-widest text-[13px] font-bold">
+                        <div class="flex items-center uppercase tracking-widest text-[12px] font-bold">
                             EXPLORE NOW
                             <div class="flex items-center ml-4 group-hover:translate-x-2 transition-transform duration-300">
                                 <div class="w-8 h-[2px] bg-white -mr-1"></div>
@@ -1861,7 +1679,7 @@
                             <p class="text-[14px]"><span class="font-bold text-[16px]">1.5s</span> <span class="text-white/80">Average Load Time</span></p>
                             <p class="text-[14px]"><span class="font-bold text-[16px]">45%</span> <span class="text-white/80">Conversion Increase</span></p>
                         </div>
-                        <div class="flex items-center uppercase tracking-widest text-[13px] font-bold">
+                        <div class="flex items-center uppercase tracking-widest text-[12px] font-bold">
                             EXPLORE NOW
                             <div class="flex items-center ml-4 group-hover:translate-x-2 transition-transform duration-300">
                                 <div class="w-8 h-[2px] bg-white -mr-1"></div>
@@ -1882,7 +1700,7 @@
                             <p class="text-[14px]"><span class="font-bold text-[16px]">Zero</span> <span class="text-white/80">Downtime Achieved</span></p>
                             <p class="text-[14px]"><span class="font-bold text-[16px]">10M+</span> <span class="text-white/80">Infrastructure Saved</span></p>
                         </div>
-                        <div class="flex items-center uppercase tracking-widest text-[13px] font-bold">
+                        <div class="flex items-center uppercase tracking-widest text-[12px] font-bold">
                             EXPLORE NOW
                             <div class="flex items-center ml-4 group-hover:translate-x-2 transition-transform duration-300">
                                 <div class="w-8 h-[2px] bg-white -mr-1"></div>
@@ -1914,10 +1732,7 @@
                     </button>
                 </div>
                 
-                <a href="#"
-                    class="inline-flex items-center justify-center gap-2 px-8 py-3 bg-brand-dark text-white font-bold rounded-2xl hover:bg-brand-base transition-colors shadow-lg shadow-brand-dark/20 text-sm">
-                    View All Projects <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><path d="m9 18 6-6-6-6"/></svg>
-                </a>
+                <a href="case-studies/index.html" class="inline-flex items-center justify-center gap-2 px-8 py-3 bg-brand-dark text-white font-bold rounded-2xl hover:bg-brand-base transition-colors shadow-lg shadow-brand-dark/20 text-sm">View All Projects <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white"><path d="m9 18 6-6-6-6"/></svg></a>
             </div>
         </div>
     </section>
@@ -1928,7 +1743,7 @@
         <div class="max-w-7xl mx-auto px-6 md:px-10">
             <!-- Header -->
             <div class="text-center max-w-4xl mx-auto mb-16">
-                <p class="text-[13px] font-black text-brand-dark uppercase tracking-[0.2em] mb-4">BLOGS</p>
+                <p class="text-[12px] font-black text-brand-dark uppercase tracking-[0.2em] mb-4">BLOGS</p>
                 <h2 class="text-3xl md:text-5xl font-black text-brand-dark mb-6 tracking-tight">The latest News,
                     Developments and Insights</h2>
                 <p class="text-lg text-[#4A4A4A] leading-relaxed max-w-3xl mx-auto">
@@ -1962,7 +1777,7 @@
                         <p class="text-[15px] text-[#4A4A4A] leading-relaxed mb-6 line-clamp-3">Lorem Ipsum is simply
                             dummy text of the printing and typesetting industry. Lorem Ipsum has been...</p>
                         <div class="mt-auto pt-2">
-                            <a href="#"
+                            <a href="blog/template.html"
                                 class="inline-flex items-center gap-2 font-bold text-brand-dark group-hover:text-brand-base transition-colors text-sm">
                                 Read More <i data-lucide="arrow-right" class="w-4 h-4"></i>
                             </a>
@@ -1992,7 +1807,7 @@
                         <p class="text-[15px] text-[#4A4A4A] leading-relaxed mb-6 line-clamp-3">Lorem Ipsum is simply
                             dummy text of the printing and typesetting industry. Lorem Ipsum has been...</p>
                         <div class="mt-auto pt-2">
-                            <a href="#"
+                            <a href="blog/template.html"
                                 class="inline-flex items-center gap-2 font-bold text-brand-dark group-hover:text-brand-base transition-colors text-sm">
                                 Read More <i data-lucide="arrow-right" class="w-4 h-4"></i>
                             </a>
@@ -2022,7 +1837,7 @@
                         <p class="text-[15px] text-[#4A4A4A] leading-relaxed mb-6 line-clamp-3">Should your mobile app
                             be designed for better user experience or just to ensure the...</p>
                         <div class="mt-auto pt-2">
-                            <a href="#"
+                            <a href="blog/template.html"
                                 class="inline-flex items-center gap-2 font-bold text-brand-dark group-hover:text-brand-base transition-colors text-sm">
                                 Read More <i data-lucide="arrow-right" class="w-4 h-4"></i>
                             </a>
@@ -2141,7 +1956,7 @@
                         </p>
                     </div>
                     <div class="mt-8">
-                        <a href="#contact"
+                        <a href="contact.html"
                             class="inline-flex items-center gap-2 px-6 py-3 bg-white text-brand-dark font-bold text-sm rounded-xl hover:bg-gray-100 transition-colors w-fit">
                             Get in Touch! <i data-lucide="arrow-right" class="w-4 h-4"></i>
                         </a>
@@ -2516,7 +2331,7 @@
                             How it works
                         </p>
                         <h2
-                            class="text-3xl md:text-5xl font-extrabold text-white leading-tight mb-6 tracking-tight uppercase">
+                            class="text-3xl md:text-5xl font-extrabold text-white leading-tight mb-6 tracking-tight">
                             Get an IT solutions quote
                         </h2>
                         <p class="text-white/70 leading-relaxed text-lg max-w-lg">
@@ -2673,7 +2488,7 @@
                                 <input type="checkbox" id="privacy-policy" required
                                     class="mt-1 w-4 h-4 rounded border-[#D1D5DB] text-brand-base focus:ring-brand-base bg-transparent cursor-pointer">
                                 <label for="privacy-policy"
-                                    class="text-[13px] text-[#4A4A4A] leading-relaxed cursor-pointer font-medium">
+                                    class="text-[12px] text-[#4A4A4A] leading-relaxed cursor-pointer font-medium">
                                     I have read the <a href="#"
                                         class="text-brand-base hover:underline font-bold">privacy policy</a> and
                                     understand how you use and protect the information that we provide to you.
@@ -2769,21 +2584,21 @@
                         <h4 class="font-bold text-[#1F3D5A] text-xl mb-5">AI Services</h4>
                         <div class="grid md:grid-cols-3 gap-y-3 gap-x-6">
                             <ul class="space-y-3 text-[16px] text-[#4A4A4A]">
-                                <li><a href="#"
+                                <li><a href="services.html"
                                         class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Artificial Intelligence</a></li>
-                                <li><a href="#"
+                                <li><a href="services.html"
                                         class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Generative AI</a></li>
                             </ul>
                             <ul class="space-y-3 text-[16px] text-[#4A4A4A]">
-                                <li><a href="#"
+                                <li><a href="services.html"
                                         class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Generative AI Integration</a></li>
-                                <li><a href="#"
+                                <li><a href="services.html"
                                         class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">AI Consulting</a></li>
                             </ul>
                             <ul class="space-y-3 text-[16px] text-[#4A4A4A]">
-                                <li><a href="#"
+                                <li><a href="services.html"
                                         class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">AI Model Fine-Tuning</a></li>
-                                <li><a href="#"
+                                <li><a href="services.html"
                                         class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">AI Proof-of-Concept (POC)</a></li>
                             </ul>
                         </div>
@@ -2794,21 +2609,21 @@
                         <h4 class="font-bold text-[#1F3D5A] text-xl mb-5">Development Services</h4>
                         <div class="grid md:grid-cols-3 gap-y-3 gap-x-6">
                             <ul class="space-y-3 text-[16px] text-[#4A4A4A]">
-                                <li><a href="#"
+                                <li><a href="services.html"
                                         class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Enterprise Software</a></li>
-                                <li><a href="#"
+                                <li><a href="services.html"
                                         class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Mobile App Development</a></li>
                             </ul>
                             <ul class="space-y-3 text-[16px] text-[#4A4A4A]">
-                                <li><a href="#"
+                                <li><a href="services.html"
                                         class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Web Development</a></li>
-                                <li><a href="#"
+                                <li><a href="services.html"
                                         class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">MVP Development</a></li>
                             </ul>
                             <ul class="space-y-3 text-[16px] text-[#4A4A4A]">
-                                <li><a href="#"
+                                <li><a href="services.html"
                                         class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Software Product Development</a></li>
-                                <li><a href="#"
+                                <li><a href="services.html"
                                         class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">eCommerce Development</a></li>
                             </ul>
                         </div>
@@ -2819,21 +2634,21 @@
                         <h4 class="font-bold text-[#1F3D5A] text-xl mb-5">Hire Developers</h4>
                         <div class="grid md:grid-cols-3 gap-y-3 gap-x-6">
                             <ul class="space-y-3 text-[16px] text-[#4A4A4A]">
-                                <li><a href="#"
+                                <li><a href="services.html"
                                         class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">MEAN Stack Developers</a></li>
-                                <li><a href="#"
+                                <li><a href="services.html"
                                         class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">MERN Stack Developers</a></li>
                             </ul>
                             <ul class="space-y-3 text-[16px] text-[#4A4A4A]">
-                                <li><a href="#"
+                                <li><a href="services.html"
                                         class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Full Stack Developers</a></li>
-                                <li><a href="#"
+                                <li><a href="services.html"
                                         class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Python Developers</a></li>
                             </ul>
                             <ul class="space-y-3 text-[16px] text-[#4A4A4A]">
-                                <li><a href="#"
+                                <li><a href="services.html"
                                         class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Web Developers</a></li>
-                                <li><a href="#"
+                                <li><a href="services.html"
                                         class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Mobile Developers</a></li>
                             </ul>
                         </div>
@@ -2844,19 +2659,19 @@
                         <h4 class="font-bold text-[#1F3D5A] text-xl mb-5">Company</h4>
                         <div class="grid md:grid-cols-3 gap-y-3 gap-x-6">
                             <ul class="space-y-3 text-[16px] text-[#4A4A4A]">
-                                <li><a href="#"
+                                <li><a href="about.html"
                                         class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">About Us</a></li>
-                                <li><a href="#"
+                                <li><a href="career.html"
                                         class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Career</a></li>
                             </ul>
                             <ul class="space-y-3 text-[16px] text-[#4A4A4A]">
-                                <li><a href="#"
+                                <li><a href="blog/index.html"
                                         class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Blog</a></li>
-                                <li><a href="#"
-                                        class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Portfolio</a></li>
+                                <li><a href="case-studies/index.html"
+                                        class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Case Studies</a></li>
                             </ul>
                             <ul class="space-y-3 text-[16px] text-[#4A4A4A]">
-                                <li><a href="#"
+                                <li><a href="faq.html"
                                         class="hover:text-[#2F6F73] hover:translate-x-1 transition-all inline-block">Q&A</a></li>
                             </ul>
                         </div>
@@ -2893,212 +2708,20 @@
                 class="max-w-7xl mx-auto px-6 md:px-10 flex flex-col md:flex-row justify-between items-center gap-4 text-base font-medium text-white/70">
                 <p>Copyright © Kritox Digital 2026</p>
                 <div class="flex gap-6">
-                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
-                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                    <a href="sitemap.html" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="sitemap.html" class="hover:text-white transition-colors">Terms of Service</a>
+                    <a href="sitemap.html" class="hover:text-white transition-colors">Sitemap</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Lucide icons init
-        if (typeof lucide !== 'undefined') lucide.createIcons();
+    
+    
 
-        // Navbar Scroll Effect
-        const nav = document.getElementById('main-nav');
-        if (nav) {
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    nav.classList.add('nav-scrolled');
-                } else {
-                    nav.classList.remove('nav-scrolled');
-                }
-            });
-        }
+    
 
-        // --- Carousel pause registry (keyed by element id) ---
-        const _carouselPause = {};
-
-        // --- Global Scroll Helper for Arrows ---
-        function scrollCarousel(id, direction) {
-            const carousel = document.getElementById(id);
-            if (!carousel) return;
-
-            // Pause auto-scroll for 1.5 s so arrow scroll can complete
-            _carouselPause[id] = true;
-            clearTimeout(carousel._arrowTimer);
-            carousel._arrowTimer = setTimeout(() => { _carouselPause[id] = false; }, 1500);
-
-            const cardWidth = carousel.querySelector(':scope > div')?.offsetWidth || carousel.clientWidth * 0.30;
-            const gap = 24; // gap-6 = 1.5rem = 24px
-            carousel.scrollBy({ left: direction * (cardWidth + gap), behavior: 'smooth' });
-        }
-
-        /** Seamless infinite loop: duplicate track is exactly half of scrollWidth */
-        function normalizeSeamlessScroll(carousel) {
-            if (!carousel.classList.contains('carousel-seamless')) return;
-            const total = carousel.scrollWidth;
-            if (total < 2) return;
-            const loopWidth = total / 2;
-            if (loopWidth < 1) return;
-            if (carousel.scrollLeft >= loopWidth) {
-                carousel.scrollLeft -= loopWidth;
-            }
-        }
-
-        // Industry carousel: prevent image drag stealing the gesture
-        
-        
-        document.querySelectorAll('#testimonial-carousel img').forEach((img) => {
-            img.setAttribute('draggable', 'false');
-            img.classList.add('select-none');
-        });
-
-        document.querySelectorAll('#portfolio-carousel img').forEach((img) => {
-            img.setAttribute('draggable', 'false');
-            img.classList.add('select-none');
-        });
-
-        document.querySelectorAll('#industry-carousel img').forEach((img) => {
-            img.setAttribute('draggable', 'false');
-            img.classList.add('select-none');
-        });
-
-        // Arrow buttons (avoid inline onclick + Lucide dependency)
-        const industryPrev = document.getElementById('industry-carousel-prev');
-        const industryNext = document.getElementById('industry-carousel-next');
-        if (industryPrev) industryPrev.addEventListener('click', () => scrollCarousel('industry-carousel', -1));
-        if (industryNext) industryNext.addEventListener('click', () => scrollCarousel('industry-carousel', 1));
-        const portfolioPrev = document.getElementById('portfolio-carousel-prev');
-        const portfolioNext = document.getElementById('portfolio-carousel-next');
-        if (portfolioPrev) portfolioPrev.addEventListener('click', () => scrollCarousel('portfolio-carousel', -1));
-        if (portfolioNext) portfolioNext.addEventListener('click', () => scrollCarousel('portfolio-carousel', 1));
-        const testimonialPrev = document.getElementById('testimonial-carousel-prev');
-        const testimonialNext = document.getElementById('testimonial-carousel-next');
-        if (testimonialPrev) testimonialPrev.addEventListener('click', () => scrollCarousel('testimonial-carousel', -1));
-        if (testimonialNext) testimonialNext.addEventListener('click', () => scrollCarousel('testimonial-carousel', 1));
-
-
-
-        // --- Carousel Logic (Pointer drag + Auto) ---
-        document.querySelectorAll('.carousel-container').forEach((carousel) => {
-            const id = carousel.id;
-            if (id) _carouselPause[id] = false;
-
-            let isPointerDown = false;
-            let dragStartX = 0;
-            let dragStartScrollLeft = 0;
-            let autoScrollSpeed = 0.65;
-            let isHovered = false;
-            const hoverPausesAutoplay = !carousel.classList.contains('carousel-no-hover-pause');
-
-            if (carousel.classList.contains('carousel-seamless')) {
-                carousel.addEventListener('scroll', () => normalizeSeamlessScroll(carousel));
-            }
-
-            function endDrag(e) {
-                if (!isPointerDown) return;
-                isPointerDown = false;
-                carousel.classList.remove('active', 'is-dragging');
-                try {
-                    if (e && e.pointerId != null) carousel.releasePointerCapture(e.pointerId);
-                } catch (_) { /* ignore */ }
-            }
-
-            carousel.addEventListener('pointerdown', (e) => {
-                if (e.pointerType === 'mouse' && e.button !== 0) return;
-                isPointerDown = true;
-                dragStartX = e.clientX;
-                dragStartScrollLeft = carousel.scrollLeft;
-                carousel.classList.add('active', 'is-dragging');
-                try {
-                    carousel.setPointerCapture(e.pointerId);
-                } catch (_) { /* ignore */ }
-            });
-
-            carousel.addEventListener('pointermove', (e) => {
-                if (!isPointerDown) return;
-                e.preventDefault();
-                const dx = e.clientX - dragStartX;
-                carousel.scrollLeft = dragStartScrollLeft - dx;
-            }, { passive: false });
-
-            carousel.addEventListener('pointerup', endDrag);
-            carousel.addEventListener('pointercancel', endDrag);
-            carousel.addEventListener('lostpointercapture', () => {
-                isPointerDown = false;
-                carousel.classList.remove('active', 'is-dragging');
-            });
-
-            if (hoverPausesAutoplay) {
-                carousel.addEventListener('mouseenter', () => { isHovered = true; });
-                carousel.addEventListener('mouseleave', () => {
-                    isHovered = false;
-                });
-            }
-
-            // Infinite auto-scroll loop via rAF
-            function scrollLoop() {
-                const paused = id ? _carouselPause[id] : false;
-                const hoverBlocks = hoverPausesAutoplay && isHovered;
-                if (!isPointerDown && !hoverBlocks && !paused) {
-                    carousel.scrollLeft += autoScrollSpeed;
-                    if (carousel.classList.contains('carousel-seamless')) {
-                        normalizeSeamlessScroll(carousel);
-                    } else {
-                        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-                        if (carousel.scrollLeft >= maxScroll - 2) {
-                            carousel.scrollLeft = 2;
-                        }
-                    }
-                }
-                requestAnimationFrame(scrollLoop);
-            }
-            requestAnimationFrame(scrollLoop);
-        });
-    </script>
     <script src="js/main.js" defer></script>
-
-    <script>
-        function switchTab(tabId) {
-            // Update buttons
-            const tabs = ['fixed', 'hire', 'agile'];
-            tabs.forEach(t => {
-                const btn = document.getElementById('btn-process-' + t);
-                const timeline = document.getElementById('timeline-' + t);
-                const icon = btn.querySelector('svg') || btn.querySelector('i');
-                
-                if (t === tabId) {
-                    btn.className = "w-full text-left px-6 py-4 rounded-2xl bg-brand-dark text-white font-extrabold flex justify-between items-center transition-all shadow-md group border border-brand-dark";
-                    if (icon) icon.setAttribute('class', "w-5 h-5 text-white/70 group-hover:text-white transition-colors lucide lucide-chevron-right");
-                    timeline.classList.remove('hidden');
-                } else {
-                    btn.className = "w-full text-left px-6 py-4 rounded-2xl bg-white border border-[#EDEDED] text-[#4A4A4A] font-extrabold flex justify-between items-center hover:border-[#1F3D5A] hover:text-[#1F3D5A] transition-all group";
-                    if (icon) icon.setAttribute('class', "w-5 h-5 text-[#4A4A4A]/40 group-hover:text-[#1F3D5A] transition-colors lucide lucide-chevron-right");
-                    timeline.classList.add('hidden');
-                }
-            });
-            
-            // Update description
-            const descEl = document.getElementById('process-description');
-            if (descEl) {
-                // fade out
-                descEl.style.opacity = 0;
-                setTimeout(() => {
-                    if (tabId === 'fixed') {
-                        descEl.innerText = "We deliver a structured process for seamless project execution. From understanding your requirements to delivering the final solution, we ensure proactive technology services based on your business needs.";
-                    } else if (tabId === 'hire') {
-                        descEl.innerText = "Scale your team with top-tier talent. Our streamlined onboarding process ensures you get the right expertise seamlessly integrated into your workflows, giving you full control and visibility.";
-                    } else if (tabId === 'agile') {
-                        descEl.innerText = "Embrace flexibility and continuous improvement. Our agile methodology ensures iterative delivery, constant feedback loops, and rapid adaptation to your evolving business needs.";
-                    }
-                    // fade in
-                    descEl.style.opacity = 1;
-                }, 150);
-            }
-        }
-    </script>
-
 </body>
 
 </html>
