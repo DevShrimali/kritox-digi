@@ -173,13 +173,18 @@ document.querySelectorAll('.carousel-container').forEach((carousel) => {
         dragStartX = e.clientX;
         dragStartScrollLeft = carousel.scrollLeft;
         carousel.classList.add('active', 'is-dragging');
-        try {
-            carousel.setPointerCapture(e.pointerId);
-        } catch (_) { /* ignore */ }
     });
 
     carousel.addEventListener('pointermove', (e) => {
         if (!isPointerDown) return;
+        
+        // Capture pointer only when actually dragging to allow clicks to pass through
+        if (!carousel.hasPointerCapture(e.pointerId)) {
+            try {
+                carousel.setPointerCapture(e.pointerId);
+            } catch (_) { /* ignore */ }
+        }
+        
         e.preventDefault();
         const dx = e.clientX - dragStartX;
         carousel.scrollLeft = dragStartScrollLeft - dx;
@@ -296,3 +301,68 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// Testimonial Modal Logic
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('testimonial-modal');
+    if (!modal) return;
+    
+    const modalContent = modal.querySelector('div');
+    const closeBtn = document.getElementById('close-modal');
+    
+    const mTagline = document.getElementById('modal-tagline');
+    const mImage = document.getElementById('modal-image');
+    const mName = document.getElementById('modal-name');
+    const mRole = document.getElementById('modal-role');
+    const mLocation = document.getElementById('modal-location');
+    const mReview = document.getElementById('modal-review');
+    
+    document.querySelectorAll('.testimonial-card').forEach(card => {
+        card.addEventListener('click', () => {
+            if (mTagline) mTagline.textContent = card.getAttribute('data-tagline') || '';
+            if (mImage) mImage.src = card.getAttribute('data-image') || '';
+            if (mName) mName.textContent = card.getAttribute('data-name') || '';
+            if (mRole) mRole.textContent = card.getAttribute('data-role') || '';
+            if (mLocation) mLocation.textContent = card.getAttribute('data-location') || '';
+            if (mReview) mReview.textContent = card.getAttribute('data-full-review') || '';
+            
+            // Show modal
+            modal.classList.remove('hidden');
+            // Small delay to allow display:block to apply before animating opacity
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+            }, 10);
+            
+            // Re-render lucide icons
+            const starsContainer = document.getElementById('modal-stars');
+            if(starsContainer && window.lucide) {
+                starsContainer.innerHTML = `
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                    <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                `;
+                lucide.createIcons({ root: starsContainer });
+            }
+        });
+    });
+    
+    function closeModal() {
+        modal.classList.add('opacity-0');
+        modalContent.classList.add('scale-95');
+        setTimeout(() => {
+            modal.classList.add('hidden');
+        }, 300);
+    }
+    
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+    }
+    
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+});
+
