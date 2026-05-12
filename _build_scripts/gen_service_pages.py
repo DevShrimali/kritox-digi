@@ -365,6 +365,14 @@ def make_page(s):
     html = html.replace("Node.js", f'{s["h1_plain"]} {s["h1_grad"].rstrip(".")}')
     html = html.replace("node.html", f'{s["slug"]}.html')
 
+    # --- Ensure main.js is present (template may be missing it) ---
+    placeholder = '    <!-- Footer placeholder, will be replaced by actual footer or kept simple here for the script to use existing footer from index -->'
+    script_tag = '    <script src="../js/main.js" defer></script>'
+    if placeholder in html:
+        html = html.replace(placeholder, script_tag)
+    elif script_tag not in html:
+        html = html.replace('</body>', f'{script_tag}\n</body>', 1)
+
     return html
 
 
