@@ -267,11 +267,12 @@ window.switchTab = function(tabId) {
 
 // FAQ Accordion Logic
 document.addEventListener('DOMContentLoaded', () => {
-    const items = document.querySelectorAll('.group.cursor-pointer');
+    // Specifically target accordion items inside the FAQ panels
+    const items = document.querySelectorAll('.faq-content-pane .group.cursor-pointer');
     items.forEach(item => {
         item.addEventListener('click', () => {
+            // Find the paragraph that is meant to be hidden/shown
             const p = item.querySelector('p');
-            const icon = item.querySelector('i');
             const iconDiv = item.querySelector('.w-8.h-8');
             
             if (p && p.classList.contains('hidden')) {
@@ -279,8 +280,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 p.classList.remove('hidden');
                 item.classList.add('border-[#2F6F73]', 'shadow-md');
                 item.classList.remove('border-[#EDEDED]');
-                if (icon) icon.setAttribute('data-lucide', 'minus');
                 if (iconDiv) {
+                    iconDiv.innerHTML = '<i data-lucide="minus" class="w-4 h-4"></i>';
                     iconDiv.classList.add('bg-[#2F6F73]', 'text-white');
                     iconDiv.classList.remove('bg-[#FAFAFA]', 'text-[#1F3D5A]', 'group-hover:bg-[#2F6F73]', 'group-hover:text-white');
                 }
@@ -289,14 +290,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 p.classList.add('hidden');
                 item.classList.remove('border-[#2F6F73]', 'shadow-md');
                 item.classList.add('border-[#EDEDED]');
-                if (icon) icon.setAttribute('data-lucide', 'plus');
                 if (iconDiv) {
+                    iconDiv.innerHTML = '<i data-lucide="plus" class="w-4 h-4"></i>';
                     iconDiv.classList.remove('bg-[#2F6F73]', 'text-white');
                     iconDiv.classList.add('bg-[#FAFAFA]', 'text-[#1F3D5A]', 'group-hover:bg-[#2F6F73]', 'group-hover:text-white');
                 }
             }
-            if (window.lucide && icon) {
-                lucide.createIcons();
+            if (window.lucide && iconDiv) {
+                lucide.createIcons({ root: iconDiv });
             }
         });
     });
