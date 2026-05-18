@@ -275,31 +275,99 @@ document.addEventListener('DOMContentLoaded', () => {
             const p = item.querySelector('p');
             const iconDiv = item.querySelector('.w-8.h-8');
             
-            if (p && p.classList.contains('hidden')) {
-                // Open
-                p.classList.remove('hidden');
-                item.classList.add('border-[#2F6F73]', 'shadow-md');
-                item.classList.remove('border-[#EDEDED]');
-                if (iconDiv) {
-                    iconDiv.innerHTML = '<i data-lucide="minus" class="w-4 h-4"></i>';
-                    iconDiv.classList.add('bg-[#2F6F73]', 'text-white');
-                    iconDiv.classList.remove('bg-[#FAFAFA]', 'text-[#1F3D5A]', 'group-hover:bg-[#2F6F73]', 'group-hover:text-white');
-                }
-            } else if (p) {
-                // Close
-                p.classList.add('hidden');
-                item.classList.remove('border-[#2F6F73]', 'shadow-md');
-                item.classList.add('border-[#EDEDED]');
-                if (iconDiv) {
-                    iconDiv.innerHTML = '<i data-lucide="plus" class="w-4 h-4"></i>';
-                    iconDiv.classList.remove('bg-[#2F6F73]', 'text-white');
-                    iconDiv.classList.add('bg-[#FAFAFA]', 'text-[#1F3D5A]', 'group-hover:bg-[#2F6F73]', 'group-hover:text-white');
+            if (p) {
+                const isClosed = p.classList.contains('hidden') || p.style.display === 'none' || p.style.maxHeight === '0px';
+                
+                if (isClosed) {
+                    // Open
+                    p.classList.remove('hidden');
+                    p.style.display = 'block';
+                    p.style.overflow = 'hidden';
+                    
+                    // Add margin top if missing, so we get correct height
+                    if (!p.classList.contains('mt-4')) {
+                        p.classList.add('mt-4');
+                    }
+                    
+                    const scrollHeight = p.scrollHeight;
+                    p.style.maxHeight = '0px';
+                    p.style.opacity = '0';
+                    p.style.transition = 'max-height 0.4s ease, opacity 0.4s ease, margin-top 0.4s ease';
+                    
+                    // Trigger reflow
+                    p.offsetHeight;
+                    
+                    p.style.maxHeight = scrollHeight + 'px';
+                    p.style.opacity = '1';
+                    
+                    item.classList.add('border-[#2F6F73]', 'shadow-md');
+                    item.classList.remove('border-[#EDEDED]');
+                    if (iconDiv) {
+                        iconDiv.innerHTML = '<i data-lucide="minus" class="w-4 h-4"></i>';
+                        iconDiv.classList.add('bg-[#2F6F73]', 'text-white');
+                        iconDiv.classList.remove('bg-[#FAFAFA]', 'text-[#1F3D5A]', 'group-hover:bg-[#2F6F73]', 'group-hover:text-white');
+                    }
+                    
+                    // Clean up max-height after transition so resizing works
+                    setTimeout(() => {
+                        if (p.style.maxHeight !== '0px') {
+                            p.style.maxHeight = 'none';
+                        }
+                    }, 400);
+                    
+                } else {
+                    // Close
+                    p.style.maxHeight = p.scrollHeight + 'px';
+                    p.style.overflow = 'hidden';
+                    p.style.transition = 'max-height 0.4s ease, opacity 0.4s ease, margin-top 0.4s ease';
+                    
+                    // Trigger reflow
+                    p.offsetHeight;
+                    
+                    p.style.maxHeight = '0px';
+                    p.style.opacity = '0';
+                    p.classList.remove('mt-4');
+                    
+                    item.classList.remove('border-[#2F6F73]', 'shadow-md');
+                    item.classList.add('border-[#EDEDED]');
+                    if (iconDiv) {
+                        iconDiv.innerHTML = '<i data-lucide="plus" class="w-4 h-4"></i>';
+                        iconDiv.classList.remove('bg-[#2F6F73]', 'text-white');
+                        iconDiv.classList.add('bg-[#FAFAFA]', 'text-[#1F3D5A]', 'group-hover:bg-[#2F6F73]', 'group-hover:text-white');
+                    }
+                    
+                    setTimeout(() => {
+                        if (p.style.maxHeight === '0px') {
+                            p.style.display = 'none';
+                            p.classList.add('hidden');
+                        }
+                    }, 400);
                 }
             }
             if (window.lucide && iconDiv) {
                 lucide.createIcons({ root: iconDiv });
             }
         });
+        
+        // Initialize state for already hidden or shown items
+        const p = item.querySelector('p');
+        if (p) {
+            if (p.classList.contains('hidden')) {
+                p.style.display = 'none';
+                p.style.maxHeight = '0px';
+                p.style.opacity = '0';
+                p.style.overflow = 'hidden';
+                p.classList.remove('mt-4');
+            } else {
+                p.style.display = 'block';
+                p.style.maxHeight = 'none';
+                p.style.opacity = '1';
+                p.style.overflow = 'hidden';
+                if (!p.classList.contains('mt-4')) {
+                    p.classList.add('mt-4');
+                }
+            }
+        }
     });
 });
 
@@ -367,3 +435,104 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+
+// Image Gallery Modal Logic
+document.addEventListener("DOMContentLoaded", () => {
+    const galleryGrid = document.getElementById("joy-gallery-grid");
+    const galleryModal = document.getElementById("gallery-modal");
+    if (!galleryGrid || !galleryModal) return;
+    
+    const modalImg = document.getElementById("gallery-modal-img");
+    const closeBtn = document.getElementById("close-gallery");
+    
+    // Add click event to all images in the grid
+    const images = galleryGrid.querySelectorAll("img");
+    images.forEach(img => {
+        img.addEventListener("click", () => {
+            modalImg.src = img.src;
+            modalImg.alt = img.alt;
+            
+            galleryModal.classList.remove("hidden");
+            setTimeout(() => {
+                galleryModal.classList.remove("opacity-0");
+                modalImg.classList.remove("scale-95");
+            }, 10);
+        });
+    });
+    
+    function closeGallery() {
+        galleryModal.classList.add("opacity-0");
+        modalImg.classList.add("scale-95");
+        setTimeout(() => {
+            galleryModal.classList.add("hidden");
+        }, 300);
+    }
+    
+    if (closeBtn) {
+        closeBtn.addEventListener("click", closeGallery);
+    }
+    
+    galleryModal.addEventListener("click", (e) => {
+        if (e.target === galleryModal) closeGallery();
+    });
+    
+    // Close on escape key
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !galleryModal.classList.contains("hidden")) {
+            closeGallery();
+        }
+    });
+});
+
+// KPI Numbering Counter Animation
+document.addEventListener("DOMContentLoaded", () => {
+    const potentialKpis = document.querySelectorAll('p.text-5xl.font-black, h2.text-5xl.font-black, p.text-4xl.font-black, h2.text-4xl.font-black');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                const targetText = el.getAttribute('data-target');
+                const target = parseFloat(targetText.replace(/[^0-9.]/g, ''));
+                const suffix = targetText.replace(/[0-9.]/g, '');
+                
+                let start = 0;
+                const duration = 2000;
+                let startTime = null;
+
+                function animation(currentTime) {
+                    if (startTime === null) startTime = currentTime;
+                    const timeElapsed = currentTime - startTime;
+                    const progress = Math.min(timeElapsed / duration, 1);
+                    
+                    const easeOut = 1 - Math.pow(1 - progress, 3);
+                    const currentVal = start + (target - start) * easeOut;
+                    
+                    if (target % 1 === 0) {
+                        el.innerText = Math.round(currentVal) + suffix;
+                    } else {
+                        el.innerText = currentVal.toFixed(1) + suffix;
+                    }
+
+                    if (progress < 1) {
+                        requestAnimationFrame(animation);
+                    } else {
+                        el.innerText = targetText;
+                    }
+                }
+                
+                requestAnimationFrame(animation);
+                observer.unobserve(el);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    potentialKpis.forEach(el => {
+        const text = el.innerText.trim();
+        if (/^[0-9]+(\.[0-9]+)?[+%]?$/.test(text)) {
+            el.setAttribute('data-target', text);
+            el.innerText = '0' + text.replace(/[0-9.]/g, '');
+            observer.observe(el);
+        }
+    });
+});

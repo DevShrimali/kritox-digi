@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kritox Digital | Responsive Website Design &amp; Development</title>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script src="js/tailwind-config.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+</head>
+
+<body class="bg-white text-brand-dark selection-style">
+
+    <!-- Navbar -->
+    <nav id="navbar"
+        class="fixed top-0 w-full z-50 transition-all duration-300 bg-white border-b border-[#EDEDED] py-3">
+        <div class="max-w-7xl mx-auto px-6 md:px-10 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center shrink-0">
+                <img src="assets/logo.png" alt="Kritox Digital Logo" class="h-12 w-auto">
+            </a>
+
+        </div>
+    </nav>
+
+
+    <!-- Contact Section -->
+    <section class="bg-white py-24 border-t border-[#EDEDED]" style="padding-top: 120px;">
+        <div class="max-w-7xl mx-auto px-6 md:px-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <!-- Left: Info & Value Props -->
+                <div class="flex flex-col justify-start">
+                    <h2 class="text-3xl md:text-5xl font-black text-[#1F3D5A] mb-6 tracking-tight">Let’s Build Something
+                        Great Together</h2>
+                    <p class="text-lg text-[#4A4A4A] mb-12 leading-relaxed">
+                        We combine your imagination with our technical expertise and bring your project to life,
+                        exceeding expectations every time. Just drop your details for a free consultation, and we’ll be
+                        in touch within one or two working days.<br><br>
+                        <strong>Monday-Friday 09:00 AM - 06:00 PM (IST)</strong>
+                    </p>
+
+                    <div class="space-y-8">
+                        <!-- NDA -->
+                        <div>
+                            <h4 class="text-xl font-bold text-[#1F3D5A] mb-2">100% NDA-protected</h4>
+                            <p class="text-[#4A4A4A] leading-relaxed">Your ideas are safe with us. We sign a strict
+                                Non-Disclosure Agreement to ensure complete confidentiality.</p>
+                        </div>
+
+                        <!-- Trial -->
+                        <div>
+                            <h4 class="text-xl font-bold text-[#1F3D5A] mb-2">15 Days Risk-Free Trial</h4>
+                            <p class="text-[#4A4A4A] leading-relaxed">Try us out with no long-term commitment.
+                                Experience our process and quality before moving forward.</p>
+                        </div>
+
+                        <!-- Hours -->
+                        <div>
+                            <h4 class="text-xl font-bold text-[#1F3D5A] mb-2">160 Working Hours</h4>
+                            <p class="text-[#4A4A4A] leading-relaxed">Our developers put in focused time and effort to
+                                deliver consistent, high-quality results every month.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Form -->
+                <div class="bg-[#FAFAFA] border border-[#EDEDED] rounded-3xl p-8 md:p-12">
+                    <h3 class="text-2xl font-bold text-[#1F3D5A] mb-8">Have a project in mind? Contact us now!</h3>
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-bold text-[#1F3D5A] mb-2">First Name*</label>
+                                <input type="text"
+                                    class="w-full bg-white border border-[#EDEDED] px-4 py-3.5 text-[#1F3D5A] placeholder-[#4A4A4A]/50 focus:outline-none focus:border-[#2F6F73] focus:ring-1 focus:ring-[#2F6F73] rounded-xl transition-all"
+                                    placeholder="John" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-[#1F3D5A] mb-2">Last Name*</label>
+                                <input type="text"
+                                    class="w-full bg-white border border-[#EDEDED] px-4 py-3.5 text-[#1F3D5A] placeholder-[#4A4A4A]/50 focus:outline-none focus:border-[#2F6F73] focus:ring-1 focus:ring-[#2F6F73] rounded-xl transition-all"
+                                    placeholder="Doe" required>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-bold text-[#1F3D5A] mb-2">Email Address*</label>
+                                <input type="email"
+                                    class="w-full bg-white border border-[#EDEDED] px-4 py-3.5 text-[#1F3D5A] placeholder-[#4A4A4A]/50 focus:outline-none focus:border-[#2F6F73] focus:ring-1 focus:ring-[#2F6F73] rounded-xl transition-all"
+                                    placeholder="john@example.com" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-[#1F3D5A] mb-2">Phone Number</label>
+                                <input type="tel"
+                                    class="w-full bg-white border border-[#EDEDED] px-4 py-3.5 text-[#1F3D5A] placeholder-[#4A4A4A]/50 focus:outline-none focus:border-[#2F6F73] focus:ring-1 focus:ring-[#2F6F73] rounded-xl transition-all"
+                                    placeholder="+1 (555) 000-0000">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-[#1F3D5A] mb-2">Company Name</label>
+                            <input type="text"
+                                class="w-full bg-white border border-[#EDEDED] px-4 py-3.5 text-[#1F3D5A] placeholder-[#4A4A4A]/50 focus:outline-none focus:border-[#2F6F73] focus:ring-1 focus:ring-[#2F6F73] rounded-xl transition-all"
+                                placeholder="Your Company">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-[#1F3D5A] mb-3">What services are you looking
+                                for?</label>
+                            <div class="flex flex-wrap gap-3">
+                                <label class="cursor-pointer">
+                                    <input type="checkbox" class="peer sr-only" name="service" value="web">
+                                    <span
+                                        class="px-4 py-2 border border-[#EDEDED] rounded-full text-sm font-semibold text-[#4A4A4A] peer-checked:bg-[#2F6F73] peer-checked:text-white peer-checked:border-[#2F6F73] transition-colors inline-block">Web
+                                        Development</span>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="checkbox" class="peer sr-only" name="service" value="mobile">
+                                    <span
+                                        class="px-4 py-2 border border-[#EDEDED] rounded-full text-sm font-semibold text-[#4A4A4A] peer-checked:bg-[#2F6F73] peer-checked:text-white peer-checked:border-[#2F6F73] transition-colors inline-block">Mobile
+                                        Apps</span>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="checkbox" class="peer sr-only" name="service" value="uiux">
+                                    <span
+                                        class="px-4 py-2 border border-[#EDEDED] rounded-full text-sm font-semibold text-[#4A4A4A] peer-checked:bg-[#2F6F73] peer-checked:text-white peer-checked:border-[#2F6F73] transition-colors inline-block">UI/UX
+                                        Design</span>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="checkbox" class="peer sr-only" name="service" value="ai">
+                                    <span
+                                        class="px-4 py-2 border border-[#EDEDED] rounded-full text-sm font-semibold text-[#4A4A4A] peer-checked:bg-[#2F6F73] peer-checked:text-white peer-checked:border-[#2F6F73] transition-colors inline-block">AI
+                                        & ML</span>
+                                </label>
+                                <label class="cursor-pointer">
+                                    <input type="checkbox" class="peer sr-only" name="service" value="other">
+                                    <span
+                                        class="px-4 py-2 border border-[#EDEDED] rounded-full text-sm font-semibold text-[#4A4A4A] peer-checked:bg-[#2F6F73] peer-checked:text-white peer-checked:border-[#2F6F73] transition-colors inline-block">Other</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-[#1F3D5A] mb-2">Project Details*</label>
+                            <textarea rows="4"
+                                class="w-full bg-white border border-[#EDEDED] px-4 py-3.5 text-[#1F3D5A] placeholder-[#4A4A4A]/50 focus:outline-none focus:border-[#2F6F73] focus:ring-1 focus:ring-[#2F6F73] rounded-xl transition-all resize-none"
+                                placeholder="Tell us about your project requirements, timeline, and budget..."
+                                required></textarea>
+                        </div>
+
+                        <!-- Upload File (Optional) -->
+                        <div class="mt-4">
+                            <label class="flex items-center gap-2 cursor-pointer group w-max">
+                                <input type="file" class="hidden">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-[#EDEDED] group-hover:bg-[#E5B93C] flex items-center justify-center transition-colors">
+                                    <i data-lucide="paperclip" class="w-4 h-4 text-[#1F3D5A]"></i>
+                                </div>
+                                <span
+                                    class="text-sm font-semibold text-[#4A4A4A] group-hover:text-[#1F3D5A] transition-colors">Attach
+                                    a file (Max 10MB)</span>
+                            </label>
+                        </div>
+
+                        <button type="button"
+                            class="w-full py-4 mt-6 bg-[#2F6F73] text-white font-bold text-lg rounded-xl hover:bg-[#1F3D5A] transition-all flex items-center justify-center gap-2 shadow-lg shadow-[#2F6F73]/20">
+                            Send Message <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+    <!-- Footer Stats Section -->
+    <footer class="bg-[#FAFAFA] pt-20 border-t border-[#EDEDED]">
+        <div class="max-w-7xl mx-auto px-6 md:px-10 pb-16">
+            <!-- Connect Instantly -->
+            <div class="flex flex-col items-center mb-16">
+                <h3 class="text-xl font-bold text-[#1F3D5A] mb-6">Connect Instantly: Mobile or Email</h3>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="tel:+13232879242"
+                        class="flex items-center gap-3 bg-[#E5B93C]/10 px-6 py-3 rounded-full text-[#1F3D5A] font-bold hover:bg-[#E5B93C]/20 transition-colors border border-[#E5B93C]/20">
+                        <i data-lucide="phone" class="w-5 h-5 text-[#E5B93C]"></i> +1 (323) 287-9242
+                    </a>
+                    <a href="mailto:sales@esparkinfo.com"
+                        class="flex items-center gap-3 bg-[#E5B93C]/10 px-6 py-3 rounded-full text-[#1F3D5A] font-bold hover:bg-[#E5B93C]/20 transition-colors border border-[#E5B93C]/20">
+                        <i data-lucide="mail" class="w-5 h-5 text-[#E5B93C]"></i> sales@esparkinfo.com
+                    </a>
+                </div>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="bg-white border border-[#EDEDED] rounded-3xl p-6 md:p-10 shadow-sm">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-6">
+                    <!-- Stat 1 -->
+                    <div
+                        class="flex flex-col items-center text-center px-4 md:border-r border-[#EDEDED] md:last:border-r-0">
+                        <div class="w-14 h-14 bg-[#FAFAFA] rounded-xl flex items-center justify-center mb-4">
+                            <i data-lucide="award" class="w-7 h-7 text-[#2F6F73]"></i>
+                        </div>
+                        <h4 class="text-3xl font-black text-[#1F3D5A] mb-2 flex items-center gap-1">15<span
+                                class="text-[#E5B93C]">+</span></h4>
+                        <p class="text-sm font-semibold text-[#4A4A4A]">Years of Experience</p>
+                    </div>
+
+                    <!-- Stat 2 -->
+                    <div
+                        class="flex flex-col items-center text-center px-4 md:border-r border-[#EDEDED] md:last:border-r-0">
+                        <div class="w-14 h-14 bg-[#FAFAFA] rounded-xl flex items-center justify-center mb-4">
+                            <i data-lucide="building-2" class="w-7 h-7 text-[#2F6F73]"></i>
+                        </div>
+                        <h4 class="text-3xl font-black text-[#1F3D5A] mb-2 flex items-center gap-1">45,000<span
+                                class="text-[#E5B93C]">+</span></h4>
+                        <p class="text-sm font-semibold text-[#4A4A4A]">Sq.ft. Development Center</p>
+                    </div>
+
+                    <!-- Stat 3 -->
+                    <div
+                        class="flex flex-col items-center text-center px-4 md:border-r border-[#EDEDED] md:last:border-r-0">
+                        <div class="w-14 h-14 bg-[#FAFAFA] rounded-xl flex items-center justify-center mb-4">
+                            <i data-lucide="users" class="w-7 h-7 text-[#2F6F73]"></i>
+                        </div>
+                        <h4 class="text-3xl font-black text-[#1F3D5A] mb-2 flex items-center gap-1">400<span
+                                class="text-[#E5B93C]">+</span></h4>
+                        <p class="text-sm font-semibold text-[#4A4A4A]">In-house Skilled Talent</p>
+                    </div>
+
+                    <!-- Stat 4 -->
+                    <div
+                        class="flex flex-col items-center text-center px-4 md:border-r border-[#EDEDED] md:last:border-r-0">
+                        <div class="w-14 h-14 bg-[#FAFAFA] rounded-xl flex items-center justify-center mb-4">
+                            <i data-lucide="check-circle-2" class="w-7 h-7 text-[#2F6F73]"></i>
+                        </div>
+                        <h4 class="text-3xl font-black text-[#1F3D5A] mb-2 flex items-center gap-1">1,000<span
+                                class="text-[#E5B93C]">+</span></h4>
+                        <p class="text-sm font-semibold text-[#4A4A4A]">Projects Delivered</p>
+                    </div>
+                </div>
+
+                <div class="w-full h-px bg-[#EDEDED] my-10 hidden md:block"></div>
+
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-y-10 gap-x-6">
+                    <!-- Stat 5 -->
+                    <div
+                        class="flex flex-col items-center text-center px-4 md:border-r border-[#EDEDED] md:last:border-r-0">
+                        <div class="w-14 h-14 bg-[#FAFAFA] rounded-xl flex items-center justify-center mb-4">
+                            <i data-lucide="heart" class="w-7 h-7 text-[#2F6F73]"></i>
+                        </div>
+                        <h4 class="text-3xl font-black text-[#1F3D5A] mb-2 flex items-center gap-1">95<span
+                                class="text-[#E5B93C]">%</span></h4>
+                        <p class="text-sm font-semibold text-[#4A4A4A]">Customer Satisfaction</p>
+                    </div>
+
+                    <!-- Stat 6 -->
+                    <div
+                        class="flex flex-col items-center text-center px-4 md:border-r border-[#EDEDED] md:last:border-r-0">
+                        <div class="w-14 h-14 bg-[#FAFAFA] rounded-xl flex items-center justify-center mb-4">
+                            <i data-lucide="thumbs-up" class="w-7 h-7 text-[#2F6F73]"></i>
+                        </div>
+                        <h4 class="text-3xl font-black text-[#1F3D5A] mb-2 flex items-center gap-1">45<span
+                                class="text-[#E5B93C]">+</span></h4>
+                        <p class="text-sm font-semibold text-[#4A4A4A]">Reviews on Clutch & Google</p>
+                    </div>
+
+                    <!-- Stat 7 -->
+                    <div
+                        class="flex flex-col items-center text-center px-4 md:border-r border-[#EDEDED] md:last:border-r-0">
+                        <div class="w-14 h-14 bg-[#FAFAFA] rounded-xl flex items-center justify-center mb-4">
+                            <i data-lucide="file-lock-2" class="w-7 h-7 text-[#2F6F73]"></i>
+                        </div>
+                        <h4 class="text-3xl font-black text-[#1F3D5A] mb-2 flex items-center gap-1">100<span
+                                class="text-[#E5B93C]">%</span></h4>
+                        <p class="text-sm font-semibold text-[#4A4A4A]">NDA-protected Contract</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="bg-[#1F3D5A] py-6">
+            <div
+                class="max-w-7xl mx-auto px-6 md:px-10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm font-medium text-white/70">
+                <p>Copyright © Kritox Digital 2026</p>
+                <div class="flex gap-6">
+                    <a href="sitemap.html" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="sitemap.html" class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js" defer></script>
+</body>
+
+</html>
