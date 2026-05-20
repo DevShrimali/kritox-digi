@@ -285,6 +285,8 @@ body {
 .btn-quote-sm {
     display: inline-flex;
     align-items: center;
+    justify-content: space-between;
+    width: 100%;
     gap: 0.5rem;
     padding: 0.3rem 0.3rem 0.3rem 0.9rem;
     background-color: var(--white);
@@ -310,7 +312,7 @@ body {
     justify-content: center;
     width: 1.6rem;
     height: 1.6rem;
-    background-color: var(--primary-base);
+    background-color: var(--primary-dark);
     border-radius: 9999px;
     color: var(--white);
     flex-shrink: 0;
