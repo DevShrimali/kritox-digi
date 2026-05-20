@@ -1153,65 +1153,111 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- SECTION: FAQ / Frequently Asked Questions (Inner Page)     -->
+    <!-- SECTION: FAQ / Frequently Asked Questions (Custom Layout)   -->
     <!-- ============================================================ -->
     <section class="py-24 bg-[#FAFAFA] border-b border-[#EDEDED]">
         <div class="max-w-7xl mx-auto px-6 md:px-10">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-                <div class="relative">
-                    <div class="rounded-3xl overflow-hidden shadow-2xl mb-8">
-                        <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800"
-                            alt="FAQ" class="w-full h-[300px] object-cover">
-                    </div>
-                    <div class="bg-[#1F3D5A] rounded-3xl p-8 text-white">
-                        <h3 class="text-2xl font-black mb-3">Still Have Questions?</h3>
-                        <p class="text-white/80 mb-6 leading-relaxed">Our experts are ready to guide you through our processes, pricing, and timelines.</p>
-                        <div class="grid grid-cols-2 gap-4 mb-6">
-                            <div class="bg-white/10 rounded-2xl p-4 text-center">
-                                <p class="text-3xl font-black text-[#E5B93C]">500+</p>
-                                <p class="text-xs text-white/60 uppercase tracking-widest mt-1">Happy Clients</p>
-                            </div>
-                            <div class="bg-white/10 rounded-2xl p-4 text-center">
-                                <p class="text-3xl font-black text-[#E5B93C]">4.9/5</p>
-                                <p class="text-xs text-white/60 uppercase tracking-widest mt-1">Average Rating</p>
-                            </div>
-                        </div>
-                        <a href="contact.html"
-                            class="inline-flex items-center gap-2 px-6 py-3 bg-[#E5B93C] text-[#1F3D5A] font-bold rounded-xl hover:brightness-110 transition-all">
-                            Talk to an Expert <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                        </a>
-                    </div>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                <!-- Left Column -->
+                <div class="lg:col-span-5">
+                    <h2 class="text-4xl md:text-5xl font-black text-[#1F3D5A] mb-6 leading-tight tracking-tight">
+                        Have Any Questions<br>on your minds!
+                    </h2>
+                    <p class="text-base md:text-lg text-[#4A4A4A] mb-8 leading-relaxed">
+                        We know choosing the right software can raise a lot of questions. That's why we've put together answers to the most common ones.
+                    </p>
+                    <a href="contact.html" class="btn-quote inline-flex">
+                        Get A Quote
+                        <span class="btn-quote-icon">
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </span>
+                    </a>
                 </div>
-                <div>
-                    <div class="mb-10">
-                        <p class="text-[12px] font-black text-[#2F6F73] uppercase tracking-[0.2em] mb-3">FREQUENTLY ASKED</p>
-                        <h2 class="text-3xl md:text-4xl font-black text-[#1F3D5A]">Got Questions?<br>We Have Answers.</h2>
-                    </div>
-                    <div class="space-y-4">
-                        <details class="group bg-white border border-[#EDEDED] rounded-2xl overflow-hidden" open>
-                            <summary class="flex items-center justify-between p-6 cursor-pointer list-none font-bold text-[#1F3D5A]">
-                                How long does a typical project take?<i data-lucide="chevron-down" class="w-5 h-5 text-[#2F6F73] shrink-0 transition-transform group-open:rotate-180"></i>
+
+                <!-- Right Column -->
+                <div class="lg:col-span-7">
+                    <div class="bg-white rounded-3xl border border-[#EDEDED] shadow-sm divide-y divide-[#EDEDED] overflow-hidden">
+                        
+                        <!-- Item 1 -->
+                        <details class="group" open>
+                            <summary class="flex items-center justify-between p-6 md:p-8 cursor-pointer list-none font-bold text-lg text-[#1F3D5A] hover:bg-slate-50 transition-colors select-none">
+                                <span class="flex items-center gap-4">
+                                    <span class="text-[#2F6F73] font-black">1.</span>
+                                    <span>What digital services do you provide?</span>
+                                </span>
+                                <span class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-[#1F3D5A] group-open:bg-[#2F6F73] group-open:text-white transition-all shrink-0">
+                                    <i data-lucide="chevron-right" class="w-4 h-4 transition-transform group-open:rotate-90"></i>
+                                </span>
                             </summary>
-                            <div class="px-6 pb-6 text-[#4A4A4A] leading-relaxed border-t border-[#EDEDED] pt-4">Project timelines vary by scope. A simple website takes 2–4 weeks, while a complex application can take 3–6 months. We provide a detailed timeline during our initial consultation.</div>
+                            <div class="px-6 md:px-8 pb-6 md:pb-8 text-[#4A4A4A] leading-relaxed pt-2">
+                                We provide full-scale digital services including brand strategy, UI/UX design, custom web and mobile app development, e-commerce integration, cloud solutions, and digital marketing.
+                            </div>
                         </details>
-                        <details class="group bg-white border border-[#EDEDED] rounded-2xl overflow-hidden">
-                            <summary class="flex items-center justify-between p-6 cursor-pointer list-none font-bold text-[#1F3D5A]">
-                                What engagement models do you offer?<i data-lucide="chevron-down" class="w-5 h-5 text-[#2F6F73] shrink-0 transition-transform group-open:rotate-180"></i>
+
+                        <!-- Item 2 -->
+                        <details class="group">
+                            <summary class="flex items-center justify-between p-6 md:p-8 cursor-pointer list-none font-bold text-lg text-[#1F3D5A] hover:bg-slate-50 transition-colors select-none">
+                                <span class="flex items-center gap-4">
+                                    <span class="text-[#2F6F73] font-black">2.</span>
+                                    <span>How do you ensure high-quality delivery?</span>
+                                </span>
+                                <span class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-[#1F3D5A] group-open:bg-[#2F6F73] group-open:text-white transition-all shrink-0">
+                                    <i data-lucide="chevron-right" class="w-4 h-4 transition-transform group-open:rotate-90"></i>
+                                </span>
                             </summary>
-                            <div class="px-6 pb-6 text-[#4A4A4A] leading-relaxed border-t border-[#EDEDED] pt-4">We offer Fixed Price, Time &amp; Material, and Dedicated Team models. We recommend the best fit after understanding your goals.</div>
+                            <div class="px-6 md:px-8 pb-6 md:pb-8 text-[#4A4A4A] leading-relaxed pt-2">
+                                We follow strict Agile methodologies, conduct automated and manual QA testing, perform comprehensive peer code reviews, and maintain direct, transparent communication channels throughout every sprint.
+                            </div>
                         </details>
-                        <details class="group bg-white border border-[#EDEDED] rounded-2xl overflow-hidden">
-                            <summary class="flex items-center justify-between p-6 cursor-pointer list-none font-bold text-[#1F3D5A]">
-                                Do you sign NDAs to protect my idea?<i data-lucide="chevron-down" class="w-5 h-5 text-[#2F6F73] shrink-0 transition-transform group-open:rotate-180"></i>
+
+                        <!-- Item 3 -->
+                        <details class="group">
+                            <summary class="flex items-center justify-between p-6 md:p-8 cursor-pointer list-none font-bold text-lg text-[#1F3D5A] hover:bg-slate-50 transition-colors select-none">
+                                <span class="flex items-center gap-4">
+                                    <span class="text-[#2F6F73] font-black">3.</span>
+                                    <span>Do you support flexible hiring models?</span>
+                                </span>
+                                <span class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-[#1F3D5A] group-open:bg-[#2F6F73] group-open:text-white transition-all shrink-0">
+                                    <i data-lucide="chevron-right" class="w-4 h-4 transition-transform group-open:rotate-90"></i>
+                                </span>
                             </summary>
-                            <div class="px-6 pb-6 text-[#4A4A4A] leading-relaxed border-t border-[#EDEDED] pt-4">Absolutely. We sign NDAs before any project discussion and follow strict IP protection. Your idea and codebase remain 100% yours.</div>
+                            <div class="px-6 md:px-8 pb-6 md:pb-8 text-[#4A4A4A] leading-relaxed pt-2">
+                                Yes, we offer fixed-price projects, time and material setups, and dedicated team extensions so you can easily scale up or down based on your business requirements.
+                            </div>
                         </details>
-                        <details class="group bg-white border border-[#EDEDED] rounded-2xl overflow-hidden">
-                            <summary class="flex items-center justify-between p-6 cursor-pointer list-none font-bold text-[#1F3D5A]">
-                                Will I get post-launch support?<i data-lucide="chevron-down" class="w-5 h-5 text-[#2F6F73] shrink-0 transition-transform group-open:rotate-180"></i>
+
+                        <!-- Item 4 -->
+                        <details class="group">
+                            <summary class="flex items-center justify-between p-6 md:p-8 cursor-pointer list-none font-bold text-lg text-[#1F3D5A] hover:bg-slate-50 transition-colors select-none">
+                                <span class="flex items-center gap-4">
+                                    <span class="text-[#2F6F73] font-black">4.</span>
+                                    <span>How is intellectual property (IP) handled?</span>
+                                </span>
+                                <span class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-[#1F3D5A] group-open:bg-[#2F6F73] group-open:text-white transition-all shrink-0">
+                                    <i data-lucide="chevron-right" class="w-4 h-4 transition-transform group-open:rotate-90"></i>
+                                </span>
                             </summary>
-                            <div class="px-6 pb-6 text-[#4A4A4A] leading-relaxed border-t border-[#EDEDED] pt-4">Yes, we provide 30-90 days of free post-launch support and maintenance to ensure seamless operations and handle any issues.</div>
+                            <div class="px-6 md:px-8 pb-6 md:pb-8 text-[#4A4A4A] leading-relaxed pt-2">
+                                Your project and codebase are 100% yours. We sign comprehensive NDAs before starting and transfer all intellectual property and source code ownership upon project completion.
+                            </div>
                         </details>
+
+                        <!-- Item 5 -->
+                        <details class="group">
+                            <summary class="flex items-center justify-between p-6 md:p-8 cursor-pointer list-none font-bold text-lg text-[#1F3D5A] hover:bg-slate-50 transition-colors select-none">
+                                <span class="flex items-center gap-4">
+                                    <span class="text-[#2F6F73] font-black">5.</span>
+                                    <span>What post-launch support do you offer?</span>
+                                </span>
+                                <span class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-[#1F3D5A] group-open:bg-[#2F6F73] group-open:text-white transition-all shrink-0">
+                                    <i data-lucide="chevron-right" class="w-4 h-4 transition-transform group-open:rotate-90"></i>
+                                </span>
+                            </summary>
+                            <div class="px-6 md:px-8 pb-6 md:pb-8 text-[#4A4A4A] leading-relaxed pt-2">
+                                We provide 30 to 90 days of free support and maintenance following any major release to resolve any issues and ensure smooth operation of your software across all platforms.
+                            </div>
+                        </details>
+
                     </div>
                 </div>
             </div>
