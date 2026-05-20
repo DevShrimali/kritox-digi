@@ -843,7 +843,7 @@
                 <h2 class="text-3xl md:text-5xl font-black text-[#1F3D5A] mb-6 tracking-tight">
                     What Services We Provide
                 </h2>
-                <p class="text-lg text-[#4A4A4A] leading-relaxed max-w-3xl mx-auto">
+                <p class="text-lg text-[#4A4A4A] leading-relaxed mx-auto">
                     From designing intuitive user experiences to building robust backend systems, we at Kritox Digital
                     provide Design, Web Development, E-Commerce, and AI/ML services. We do not only offer services; your
                     users are always kept in the hands of advanced design and development, allowing you to reimagine
@@ -962,20 +962,33 @@
     </section>
 
     <!-- Hire a Dedicated Resource -->
-    <section class="bg-brand-dark py-20 relative overflow-hidden">
-        <div
-            class="max-w-7xl mx-auto px-6 md:px-10 relative z-10 flex flex-col md:flex-row items-center justify-between gap-10">
-            <div class="max-w-2xl text-center md:text-left">
-                <h2 class="text-3xl md:text-4xl font-black text-white mb-4">Hire a Dedicated Resource</h2>
-                <p class="text-lg text-white/90">
-                    Extend your engineering capacity immediately by hiring our pre-vetted, elite-level developers. Save
-                    on hiring costs and start building within days.
-                </p>
+    <section class="bg-brand-dark py-24 relative overflow-hidden">
+        <!-- Glowing background shapes & Mesh overlay -->
+        <div class="absolute inset-0 pointer-events-none z-0">
+            <div class="absolute top-[-30%] left-[-10%] w-[500px] h-[500px] bg-[#2F6F73] rounded-full blur-[120px] opacity-[0.25]"></div>
+            <div class="absolute bottom-[-30%] right-[-10%] w-[500px] h-[500px] bg-[#E5B93C] rounded-full blur-[120px] opacity-[0.15]"></div>
+            <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.08]"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 md:px-10 relative z-10">
+            <div class="bg-white/5 border border-white/10 rounded-[2.5rem] p-10 md:p-16 flex flex-col lg:flex-row items-center justify-between gap-10 backdrop-blur-md">
+                <div class="max-w-2xl text-center lg:text-left">
+                    <span class="inline-block px-4 py-1.5 bg-[#E5B93C]/10 text-[#E5B93C] border border-[#E5B93C]/20 text-xs font-semibold rounded-full mb-4 uppercase tracking-widest">
+                        Scale Your Team
+                    </span>
+                    <h2 class="text-3xl md:text-5xl font-black text-white mb-6 tracking-tight">Hire a Dedicated Resource</h2>
+                    <p class="text-base md:text-lg text-teal-50/80 leading-relaxed">
+                        Extend your engineering capacity immediately by hiring our pre-vetted, elite-level developers. Save on hiring costs and start building within days.
+                    </p>
+                </div>
+                <div class="shrink-0 w-full lg:w-auto text-center">
+                    <a href="contact.html" class="btn-quote inline-flex" style="background-color: #E5B93C; color: #1F3D5A;">
+                        Hire Now
+                        <span class="btn-quote-icon" style="background-color: #1F3D5A; color: white;">
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </span>
+                    </a>
+                </div>
             </div>
-            <a href="contact.html"
-                class="shrink-0 inline-flex items-center gap-2 px-8 py-4 bg-white text-[#2F6F73] font-bold text-base rounded-2xl hover:bg-[#F0F4F8] transition-colors">
-                Hire Now <i data-lucide="arrow-right" class="w-5 h-5"></i>
-            </a>
         </div>
     </section>
 
@@ -1086,228 +1099,140 @@
         </div>
     </section>
 
-    <!-- Case Studies Section -->
-    <section id="case-studies" class="py-24 bg-white overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 md:px-10 mb-16">
-            <!-- Header -->
-            <div class="text-center max-w-4xl mx-auto">
-                <p class="text-[12px] font-black text-[#2F6F73] uppercase tracking-[0.2em] mb-4">OUR WORK</p>
-                <h2 class="text-3xl md:text-5xl font-black text-[#1F3D5A] mb-6 tracking-tight">Case Studies</h2>
-                <p class="text-lg text-[#4A4A4A] leading-relaxed max-w-3xl mx-auto">
-                    Explore our latest projects and see how we've helped businesses achieve their digital goals through
-                    innovative design and development.
-                </p>
-            </div>
-        </div>
-
-        <div class="relative">
-            <div class="pointer-events-none absolute left-0 top-0 h-full w-24 md:w-40 z-10"
-                style="background: linear-gradient(to right, #ffffff 0%, rgba(255,255,255,0) 100%);"></div>
-
-            <div id="portfolio-carousel"
-                class="bleed-carousel-container carousel-container carousel-seamless carousel-no-hover-pause flex gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-10 cursor-grab active:cursor-grabbing">
-                <!-- Item 1 -->
-                <div
-                    class="snap-start shrink-0 w-[85%] sm:w-[50%] md:w-[42%] lg:w-[32%] xl:w-[28%] min-h-[460px] md:min-h-[500px] relative rounded-[1rem] overflow-hidden group cursor-pointer shadow-[0_8px_28px_rgba(31,61,90,0.08)] hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
-                    <img src="https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=800"
-                        alt="Financial Services" draggable="false"
-                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 select-none">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none">
-                    </div>
-                    <div class="absolute inset-0 p-6 md:p-8 flex flex-col justify-end text-white z-10">
-                        <h3 class="text-[28px] md:text-[32px] font-bold leading-tight mb-4">Fintech
-                            Mobile<br>Application</h3>
-                        <div class="space-y-2 mb-8">
-                            <p class="text-[14px]"><span class="font-bold text-[16px]">40%</span> <span
-                                    class="text-white/80">Active Users</span></p>
-                            <p class="text-[14px]"><span class="font-bold text-[16px]">$5B+</span> <span
-                                    class="text-white/80">Transactions Processed</span></p>
-                        </div>
-                        <div class="flex items-center uppercase tracking-widest text-[12px] font-bold">
-                            EXPLORE NOW
-                            <div
-                                class="flex items-center ml-4 group-hover:translate-x-2 transition-transform duration-300">
-                                <div class="w-8 h-[2px] bg-white -mr-1"></div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="text-white">
-                                    <path d="m9 18 6-6-6-6" />
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 2 -->
-                <div
-                    class="snap-start shrink-0 w-[85%] sm:w-[50%] md:w-[42%] lg:w-[32%] xl:w-[28%] min-h-[460px] md:min-h-[500px] relative rounded-[1rem] overflow-hidden group cursor-pointer shadow-[0_8px_28px_rgba(31,61,90,0.08)] hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
-                    <img src="https://images.pexels.com/photos/439391/pexels-photo-439391.jpeg?auto=compress&cs=tinysrgb&w=800"
-                        alt="Enterprise SaaS" draggable="false"
-                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 select-none">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none">
-                    </div>
-                    <div class="absolute inset-0 p-6 md:p-8 flex flex-col justify-end text-white z-10">
-                        <h3 class="text-[28px] md:text-[32px] font-bold leading-tight mb-4">Enterprise SaaS<br>Platform
-                        </h3>
-                        <div class="space-y-2 mb-8">
-                            <p class="text-[14px]"><span class="font-bold text-[16px]">500+</span> <span
-                                    class="text-white/80">B2B Integrations</span></p>
-                            <p class="text-[14px]"><span class="font-bold text-[16px]">10M+</span> <span
-                                    class="text-white/80">Daily API Calls</span></p>
-                        </div>
-                        <div class="flex items-center uppercase tracking-widest text-[12px] font-bold">
-                            EXPLORE NOW
-                            <div
-                                class="flex items-center ml-4 group-hover:translate-x-2 transition-transform duration-300">
-                                <div class="w-8 h-[2px] bg-white -mr-1"></div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="text-white">
-                                    <path d="m9 18 6-6-6-6" />
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 3 -->
-                <div
-                    class="snap-start shrink-0 w-[85%] sm:w-[50%] md:w-[42%] lg:w-[32%] xl:w-[28%] min-h-[460px] md:min-h-[500px] relative rounded-[1rem] overflow-hidden group cursor-pointer shadow-[0_8px_28px_rgba(31,61,90,0.08)] hover:shadow-xl hover:-translate-y-2 transition-all duration-500">
-                    <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800"
-                        alt="E-Commerce Web Portal" draggable="false"
-                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 select-none">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none">
-                    </div>
-                    <div class="absolute inset-0 p-6 md:p-8 flex flex-col justify-end text-white z-10">
-                        <h3 class="text-[28px] md:text-[32px] font-bold leading-tight mb-4">E-Commerce Web<br>Portal
-                        </h3>
-                        <div class="space-y-2 mb-8">
-                            <p class="text-[14px]"><span class="font-bold text-[16px]">250K+</span> <span
-                                    class="text-white/80">Monthly Orders</span></p>
-                            <p class="text-[14px]"><span class="font-bold text-[16px]">45%</span> <span
-                                    class="text-white/80">Conversion Increase</span></p>
-                        </div>
-                        <div class="flex items-center uppercase tracking-widest text-[12px] font-bold">
-                            EXPLORE NOW
-                            <div
-                                class="flex items-center ml-4 group-hover:translate-x-2 transition-transform duration-300">
-                                <div class="w-8 h-[2px] bg-white -mr-1"></div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="text-white">
-                                    <path d="m9 18 6-6-6-6" />
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div
-                class="max-w-7xl mx-auto px-6 md:px-10 mt-6 relative z-20 pointer-events-auto flex items-center justify-between">
-                <div class="flex gap-3">
-                    <button id="portfolio-carousel-prev"
-                        class="w-12 h-12 rounded-full border border-[#D5E0E2] flex items-center justify-center text-[#1F3D5A] hover:bg-[#2F6F73] hover:text-white hover:border-[#2F6F73] transition-all group">
-                        <svg class="w-5 h-5 transition-transform group-hover:-translate-x-1" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7">
-                            </path>
-                        </svg>
-                    </button>
-                    <button id="portfolio-carousel-next"
-                        class="w-12 h-12 rounded-full border border-[#D5E0E2] flex items-center justify-center text-[#1F3D5A] hover:bg-[#2F6F73] hover:text-white hover:border-[#2F6F73] transition-all group">
-                        <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
-                            </path>
-                        </svg>
-                    </button>
-                </div>
-                <a href="case-studies/index.html"
-                    class="inline-flex items-center justify-center gap-2 px-8 py-3 bg-[#1F3D5A] text-white font-bold rounded-2xl hover:bg-[#2F6F73] transition-colors shadow-lg shadow-[#1F3D5A]/20 text-sm">View
-                    All <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="text-white">
-                        <path d="m9 18 6-6-6-6" />
-                    </svg></a>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Having Quick Form -->
-    <section class="bg-[#FAFAFA] py-24 border-t border-[#EDEDED]">
+    <!-- Our Recent Work Section -->
+    <section class="py-24 bg-white border-b border-[#EDEDED]">
         <div class="max-w-7xl mx-auto px-6 md:px-10">
-            <div
-                class="bg-white rounded-[3rem] p-10 md:p-16 shadow-xl border border-[#EDEDED] relative overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-br from-[#2F6F73]/5 to-transparent"></div>
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <p class="text-[12px] font-black text-[#2F6F73] uppercase tracking-[0.2em] mb-4">OUR PORTFOLIO</p>
+                <h2 class="text-3xl md:text-5xl font-black text-[#1F3D5A] mb-4">Our Recent Work</h2>
+                <p class="text-[#4A4A4A] text-lg">Real outcomes driven by our technical expertise.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div
+                    class="group cursor-pointer rounded-3xl overflow-hidden border border-[#EDEDED] bg-[#FAFAFA] hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="Fintech Project"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-8">
+                        <p class="text-[12px] font-black text-[#2F6F73] uppercase tracking-[0.2em] mb-2">FINTECH</p>
+                        <h3 class="text-2xl font-bold text-[#1F3D5A] mb-3">Enterprise Financial Platform</h3>
+                        <p class="text-[#4A4A4A] mb-6">A secure, scalable banking solution processing $5B+ annually.</p>
+                        <span
+                            class="inline-flex items-center gap-2 font-bold text-[#1F3D5A] group-hover:text-[#2F6F73] transition-colors">
+                            View Case Study <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </span>
+                    </div>
+                </div>
+                <div
+                    class="group cursor-pointer rounded-3xl overflow-hidden border border-[#EDEDED] bg-[#FAFAFA] hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.pexels.com/photos/439391/pexels-photo-439391.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="SaaS Project"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-8">
+                        <p class="text-[12px] font-black text-[#2F6F73] uppercase tracking-[0.2em] mb-2">SAAS PLATFORM</p>
+                        <h3 class="text-2xl font-bold text-[#1F3D5A] mb-3">B2B Workflow Automation</h3>
+                        <p class="text-[#4A4A4A] mb-6">Empowering teams with seamless integrations and robust analytics.</p>
+                        <span
+                            class="inline-flex items-center gap-2 font-bold text-[#1F3D5A] group-hover:text-[#2F6F73] transition-colors">
+                            View Case Study <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <a href="portfolio/index.html"
+                    class="inline-flex items-center gap-2 px-8 py-4 bg-[#1F3D5A] text-white rounded-xl font-bold hover:bg-[#2F6F73] transition-colors">
+                    See All Projects <i data-lucide="layout-grid" class="w-5 h-5"></i>
+                </a>
+            </div>
+        </div>
+    </section>
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 relative z-10">
-                    <div>
-                        <p class="text-sm font-bold tracking-widest uppercase text-[#2F6F73] mb-4">Let's Connect</p>
-                        <h2 class="text-4xl md:text-5xl font-black text-[#1F3D5A] mb-6">Have a Great Idea?<br>Tell us
-                            about it.</h2>
-                        <p class="text-lg text-[#4A4A4A] mb-8 leading-relaxed">
-                            Share your project details with us, and our experts will get back to you with a free
-                            consultation and project estimate within 24 hours.
-                        </p>
-                        <div class="space-y-6 mb-8">
-                            <div class="flex items-center gap-4">
-                                <div
-                                    class="w-12 h-12 rounded-full bg-[#FAFAFA] flex items-center justify-center border border-[#EDEDED] shrink-0">
-                                    <i data-lucide="mail" class="w-5 h-5 text-[#2F6F73]"></i>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-[#4A4A4A] font-semibold">Email Us</p>
-                                    <a href="mailto:info@kritox.com"
-                                        class="text-lg font-bold text-[#1F3D5A]">info@kritox.com</a>
-                                </div>
+    <!-- ============================================================ -->
+    <!-- SECTION: FAQ / Frequently Asked Questions (Inner Page)     -->
+    <!-- ============================================================ -->
+    <section class="py-24 bg-[#FAFAFA] border-b border-[#EDEDED]">
+        <div class="max-w-7xl mx-auto px-6 md:px-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                <div class="relative">
+                    <div class="rounded-3xl overflow-hidden shadow-2xl mb-8">
+                        <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800"
+                            alt="FAQ" class="w-full h-[300px] object-cover">
+                    </div>
+                    <div class="bg-[#1F3D5A] rounded-3xl p-8 text-white">
+                        <h3 class="text-2xl font-black mb-3">Still Have Questions?</h3>
+                        <p class="text-white/80 mb-6 leading-relaxed">Our experts are ready to guide you through our processes, pricing, and timelines.</p>
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="bg-white/10 rounded-2xl p-4 text-center">
+                                <p class="text-3xl font-black text-[#E5B93C]">500+</p>
+                                <p class="text-xs text-white/60 uppercase tracking-widest mt-1">Happy Clients</p>
                             </div>
-                            <div class="flex items-center gap-4">
-                                <div
-                                    class="w-12 h-12 rounded-full bg-[#FAFAFA] flex items-center justify-center border border-[#EDEDED] shrink-0">
-                                    <i data-lucide="phone" class="w-5 h-5 text-[#2F6F73]"></i>
-                                </div>
-                                <div>
-                                    <p class="text-sm text-[#4A4A4A] font-semibold">Call Us</p>
-                                    <a href="tel:+123456789" class="text-lg font-bold text-[#1F3D5A]">+1 234 567 89</a>
-                                </div>
+                            <div class="bg-white/10 rounded-2xl p-4 text-center">
+                                <p class="text-3xl font-black text-[#E5B93C]">4.9/5</p>
+                                <p class="text-xs text-white/60 uppercase tracking-widest mt-1">Average Rating</p>
                             </div>
                         </div>
+                        <a href="contact.html"
+                            class="inline-flex items-center gap-2 px-6 py-3 bg-[#E5B93C] text-[#1F3D5A] font-bold rounded-xl hover:brightness-110 transition-all">
+                            Talk to an Expert <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
                     </div>
-
-                    <div class="bg-white p-8 rounded-3xl shadow-sm border border-[#EDEDED]">
-                        <form class="space-y-6">
-                            <div>
-                                <label class="block text-sm font-bold text-[#1F3D5A] mb-2">Name</label>
-                                <input type="text"
-                                    class="w-full px-5 py-4 rounded-xl border border-[#EDEDED] bg-[#FAFAFA] focus:bg-white focus:border-[#2F6F73] focus:outline-none transition-colors"
-                                    placeholder="John Doe">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-bold text-[#1F3D5A] mb-2">Email</label>
-                                <input type="email"
-                                    class="w-full px-5 py-4 rounded-xl border border-[#EDEDED] bg-[#FAFAFA] focus:bg-white focus:border-[#2F6F73] focus:outline-none transition-colors"
-                                    placeholder="john@example.com">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-bold text-[#1F3D5A] mb-2">Project Details</label>
-                                <textarea rows="4"
-                                    class="w-full px-5 py-4 rounded-xl border border-[#EDEDED] bg-[#FAFAFA] focus:bg-white focus:border-[#2F6F73] focus:outline-none transition-colors"
-                                    placeholder="Tell us about your requirements..."></textarea>
-                            </div>
-                            <button type="submit"
-                                class="w-full py-4 bg-[#1F3D5A] text-white font-bold text-lg rounded-xl hover:bg-[#2F6F73] transition-colors shadow-lg shadow-[#1F3D5A]/20">
-                                Submit Request
-                            </button>
-                        </form>
+                </div>
+                <div>
+                    <div class="mb-10">
+                        <p class="text-[12px] font-black text-[#2F6F73] uppercase tracking-[0.2em] mb-3">FREQUENTLY ASKED</p>
+                        <h2 class="text-3xl md:text-4xl font-black text-[#1F3D5A]">Got Questions?<br>We Have Answers.</h2>
+                    </div>
+                    <div class="space-y-4">
+                        <details class="group bg-white border border-[#EDEDED] rounded-2xl overflow-hidden" open>
+                            <summary class="flex items-center justify-between p-6 cursor-pointer list-none font-bold text-[#1F3D5A]">
+                                How long does a typical project take?<i data-lucide="chevron-down" class="w-5 h-5 text-[#2F6F73] shrink-0 transition-transform group-open:rotate-180"></i>
+                            </summary>
+                            <div class="px-6 pb-6 text-[#4A4A4A] leading-relaxed border-t border-[#EDEDED] pt-4">Project timelines vary by scope. A simple website takes 2–4 weeks, while a complex application can take 3–6 months. We provide a detailed timeline during our initial consultation.</div>
+                        </details>
+                        <details class="group bg-white border border-[#EDEDED] rounded-2xl overflow-hidden">
+                            <summary class="flex items-center justify-between p-6 cursor-pointer list-none font-bold text-[#1F3D5A]">
+                                What engagement models do you offer?<i data-lucide="chevron-down" class="w-5 h-5 text-[#2F6F73] shrink-0 transition-transform group-open:rotate-180"></i>
+                            </summary>
+                            <div class="px-6 pb-6 text-[#4A4A4A] leading-relaxed border-t border-[#EDEDED] pt-4">We offer Fixed Price, Time &amp; Material, and Dedicated Team models. We recommend the best fit after understanding your goals.</div>
+                        </details>
+                        <details class="group bg-white border border-[#EDEDED] rounded-2xl overflow-hidden">
+                            <summary class="flex items-center justify-between p-6 cursor-pointer list-none font-bold text-[#1F3D5A]">
+                                Do you sign NDAs to protect my idea?<i data-lucide="chevron-down" class="w-5 h-5 text-[#2F6F73] shrink-0 transition-transform group-open:rotate-180"></i>
+                            </summary>
+                            <div class="px-6 pb-6 text-[#4A4A4A] leading-relaxed border-t border-[#EDEDED] pt-4">Absolutely. We sign NDAs before any project discussion and follow strict IP protection. Your idea and codebase remain 100% yours.</div>
+                        </details>
+                        <details class="group bg-white border border-[#EDEDED] rounded-2xl overflow-hidden">
+                            <summary class="flex items-center justify-between p-6 cursor-pointer list-none font-bold text-[#1F3D5A]">
+                                Will I get post-launch support?<i data-lucide="chevron-down" class="w-5 h-5 text-[#2F6F73] shrink-0 transition-transform group-open:rotate-180"></i>
+                            </summary>
+                            <div class="px-6 pb-6 text-[#4A4A4A] leading-relaxed border-t border-[#EDEDED] pt-4">Yes, we provide 30-90 days of free post-launch support and maintenance to ensure seamless operations and handle any issues.</div>
+                        </details>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- ============================================================ -->
+    <!-- SECTION: CTA Banner / "Have a Great Idea?" Call-to-Action  -->
+    <!-- ============================================================ -->
+    <section class="py-24 bg-[#1F3D5A] relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-[#1F3D5A] via-[#2F6F73]/20 to-[#1F3D5A] z-0"></div>
+        <div class="max-w-4xl mx-auto px-6 md:px-10 text-center relative z-10">
+            <h2 class="text-4xl md:text-6xl font-black text-white mb-6">Have a Great Idea? <br /><span class="text-[#E5B93C]">Tell us about it.</span></h2>
+            <p class="text-white/70 text-lg md:text-xl mb-12">Let's discuss your project and turn your ideas into a robust digital reality.</p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+                <a href="contact.html" class="w-full sm:w-auto px-10 py-5 bg-[#E5B93C] text-[#1F3D5A] font-black rounded-2xl hover:bg-white transition-colors">Schedule Free Consultation</a>
+                <a href="contact.html" class="w-full sm:w-auto px-10 py-5 bg-transparent border-2 border-white text-white font-black rounded-2xl hover:bg-white/10 transition-colors">Request Project Quote</a>
+            </div>
+        </div>
+    </section>
+
 
 
     <!-- Inner Industries Variant -->
@@ -1397,59 +1322,6 @@
         </div>
     </section>
 
-    <!-- Inner Portfolio Variant -->
-    <section class="py-24 bg-white border-b border-[#EDEDED]">
-        <div class="max-w-7xl mx-auto px-6 md:px-10">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-3xl md:text-5xl font-black text-[#1F3D5A] mb-4">Our Recent Work</h2>
-                <p class="text-[#4A4A4A] text-lg">Real outcomes driven by our technical expertise.</p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div
-                    class="group cursor-pointer rounded-3xl overflow-hidden border border-[#EDEDED] bg-[#FAFAFA] hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-                    <div class="h-64 overflow-hidden relative">
-                        <img src="https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=800"
-                            alt="Fintech Project"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    </div>
-                    <div class="p-8">
-                        <p class="text-[12px] font-black text-[#2F6F73] uppercase tracking-[0.2em] mb-2">FINTECH</p>
-                        <h3 class="text-2xl font-bold text-[#1F3D5A] mb-3">Enterprise Financial Platform</h3>
-                        <p class="text-[#4A4A4A] mb-6">A secure, scalable banking solution processing $5B+ annually.</p>
-                        <span
-                            class="inline-flex items-center gap-2 font-bold text-[#1F3D5A] group-hover:text-[#2F6F73] transition-colors">
-                            View Case Study <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                        </span>
-                    </div>
-                </div>
-                <div
-                    class="group cursor-pointer rounded-3xl overflow-hidden border border-[#EDEDED] bg-[#FAFAFA] hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-                    <div class="h-64 overflow-hidden relative">
-                        <img src="https://images.pexels.com/photos/439391/pexels-photo-439391.jpeg?auto=compress&cs=tinysrgb&w=800"
-                            alt="SaaS Project"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    </div>
-                    <div class="p-8">
-                        <p class="text-[12px] font-black text-[#2F6F73] uppercase tracking-[0.2em] mb-2">SAAS PLATFORM
-                        </p>
-                        <h3 class="text-2xl font-bold text-[#1F3D5A] mb-3">B2B Workflow Automation</h3>
-                        <p class="text-[#4A4A4A] mb-6">Empowering teams with seamless integrations and robust analytics.
-                        </p>
-                        <span
-                            class="inline-flex items-center gap-2 font-bold text-[#1F3D5A] group-hover:text-[#2F6F73] transition-colors">
-                            View Case Study <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center mt-12">
-                <a href="case-studies/index.html"
-                    class="inline-flex items-center gap-2 px-8 py-4 bg-[#1F3D5A] text-white rounded-xl font-bold hover:bg-[#2F6F73] transition-colors">
-                    See All Projects <i data-lucide="layout-grid" class="w-5 h-5"></i>
-                </a>
-            </div>
-        </div>
-    </section>
 
     <!-- Testimonials Section -->
     <section id="testimonials" class="py-24 bg-white overflow-hidden">
