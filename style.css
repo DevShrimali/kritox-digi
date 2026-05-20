@@ -273,6 +273,32 @@ body {
     transform: translateX(3px);
 }
 
+/* White variant for dark backgrounds */
+.btn-quote-white {
+    background-color: var(--white);
+    color: var(--primary-base);
+}
+
+.btn-quote-white .btn-quote-icon {
+    background-color: var(--primary-base);
+    color: var(--white);
+}
+
+.btn-quote-white:hover {
+    filter: brightness(0.95);
+}
+
+/* Large size variant for hero or prominent sections */
+.btn-quote-lg {
+    padding: 0.5rem 0.5rem 0.5rem 1.75rem;
+    font-size: 1.125rem;
+}
+
+.btn-quote-lg .btn-quote-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
 /* Full-width variant (mobile menu) */
 .btn-quote.btn-quote-full {
     width: 100%;
